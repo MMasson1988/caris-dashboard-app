@@ -1,0 +1,1052 @@
+[
+  {
+    "objectID": "tracking-ptme.html#nombre-de-femmes-enceintes-en-club-par-bureau",
+    "href": "tracking-ptme.html#nombre-de-femmes-enceintes-en-club-par-bureau",
+    "title": "PROGRAMME PTME",
+    "section": "2.1 Nombre de femmes enceintes en club par bureau",
+    "text": "2.1 Nombre de femmes enceintes en club par bureau"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-de-femmes-enceintes-non-en-club-par-bureau",
+    "href": "tracking-ptme.html#nombre-de-femmes-enceintes-non-en-club-par-bureau",
+    "title": "PROGRAMME PTME",
+    "section": "2.2 Nombre de femmes enceintes non en club par bureau",
+    "text": "2.2 Nombre de femmes enceintes non en club par bureau"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-ptme-non-en-club",
+    "href": "tracking-ptme.html#liste-des-ptme-non-en-club",
+    "title": "PROGRAMME PTME",
+    "section": "2.3 Liste des PTME non en club",
+    "text": "2.3 Liste des PTME non en club"
+  },
+  {
+    "objectID": "tracking-ptme.html#femmes-enceintes-avec-comptage-de-menage",
+    "href": "tracking-ptme.html#femmes-enceintes-avec-comptage-de-menage",
+    "title": "PROGRAMME PTME",
+    "section": "3.1 Femmes enceintes avec comptage de menage",
+    "text": "3.1 Femmes enceintes avec comptage de menage"
+  },
+  {
+    "objectID": "tracking-ptme.html#femmes-enceintes-sans-comptage-de-menage",
+    "href": "tracking-ptme.html#femmes-enceintes-sans-comptage-de-menage",
+    "title": "PROGRAMME PTME",
+    "section": "3.2 Femmes enceintes sans comptage de menage",
+    "text": "3.2 Femmes enceintes sans comptage de menage"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-femmes-enceintes-sans-comptage",
+    "href": "tracking-ptme.html#liste-des-femmes-enceintes-sans-comptage",
+    "title": "PROGRAMME PTME",
+    "section": "3.3 Liste des femmes enceintes sans comptage",
+    "text": "3.3 Liste des femmes enceintes sans comptage"
+  },
+  {
+    "objectID": "tracking-ptme.html#participation-en-club-des-femmes-enceintes-pour-cette-semaine",
+    "href": "tracking-ptme.html#participation-en-club-des-femmes-enceintes-pour-cette-semaine",
+    "title": "PROGRAMME PTME",
+    "section": "4.1 Participation en club des femmes enceintes pour cette semaine",
+    "text": "4.1 Participation en club des femmes enceintes pour cette semaine\n\n\n[1] \"2025-07-07\"\n\n\n[1] \"2025-07-11\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-23-au-2025-06-28",
+    "href": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-23-au-2025-06-28",
+    "title": "PROGRAMME PTME",
+    "section": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-23 au 2025-06-28)",
+    "text": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-23 au 2025-06-28)\nDurant cette période, sur 50 Femme(s) PTME attendues en club, 30 était(aient) présente(s) contre 20 qui était(aient) absente(s)."
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-23-au-2025-06-28",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-23-au-2025-06-28",
+    "title": "PROGRAMME PTME",
+    "section": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-23 au 2025-06-28)",
+    "text": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-23 au 2025-06-28)"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy24-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy24-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "4.4 Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY24 versus celles qui y ont effectivement participé",
+    "text": "4.4 Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY24 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#données-décrivant-les-activités-dans-les-clubs-pour-la-semaine",
+    "href": "tracking-ptme.html#données-décrivant-les-activités-dans-les-clubs-pour-la-semaine",
+    "title": "PROGRAMME PTME",
+    "section": "4.6 Données décrivant les activités dans les clubs pour la semaine",
+    "text": "4.6 Données décrivant les activités dans les clubs pour la semaine\n\n\n\n\n\n\n\n#Modify only the end_date_club\nstart_date_club='2018-01-01'\nend_date_club='2025-07-30'\n\n\nes=dbSendQuery(\n  dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),\n \n  gsubfn::fn$identity(\"SELECT w.*, sum(month(w.session_date)=10) as oct, sum(month(w.session_date)=11) as nov,\nsum(month(w.session_date)=12) as decem, sum(month(w.session_date)=1) as jan,\nsum(month(w.session_date)=2) as fev,sum(month(w.session_date)=3) as mar,\nsum(month(w.session_date)=4) as avr, sum(month(w.session_date)=5) as mai,\nsum(month(w.session_date)=6) as juin,sum(month(w.session_date)=7) as juil,\nsum(month(w.session_date)=8) as aout,sum(month(w.session_date)=9) as sep \nFROM (SELECT\n    IF(p.linked_to_id_patient &gt; 0,\n        p.linked_to_id_patient,\n        p.id) AS id_patient,\n        \n    lh.name AS hopital,\n    CONCAT(lh.city_code, '/', lh.hospital_code) AS site_code, lh.office as office, lce.name as Commune, lnt.name as network,\n    c.name AS club_name,\n    lct.name AS club_type,\n    p.patient_code,\n    cs.date AS session_date,\n    lctc.name_fr AS topic,\n    a.date AS first_attendance_date,\n    b.date AS last_attendance_date,\n    aa.date as first_attendance_date_by_club,\n    COALESCE(ti.first_name, tm.first_name) AS first_name,\n    COALESCE(ti.last_name, tm.last_name) AS last_name,\n    COALESCE(ti.dob, tm.dob) AS dob,\n    coalesce(ti.is_abandoned, tm.is_abandoned) as is_abandoned,\n    coalesce( ti.is_dead, tm.is_dead) as is_dead,\n        if(tm.is_graduate=1,'Yes','Non') as graduation,\n    tm.graduation_date as graduation_date,\n    IF(ti.gender=1,'male',IF(ti.gender=2,'female',IF(ti.gender=3,'unknown',ti.gender))) as sex,\n    ss.clore,\n    ss.nbre_deparasitaires,\n    ss.nbre_preservatifs,\n    ss.nbre_vit_a,\n    ss.nbre_moustiquaires,\n    ss.code,\n    ss.is_patient_tb,\n    is_patient_on_pf,\n    adh\nFROM\n    session ss\n        LEFT JOIN\n    club_session cs ON cs.id = ss.id_club_session\n        LEFT JOIN\n    club c ON c.id = cs.id_club\n        LEFT JOIN\n    lookup_club_type lct ON lct.id = c.club_type\n        LEFT JOIN\n    lookup_club_topic lctc ON lctc.id = cs.topic\n        LEFT JOIN\n    patient p ON p.id = ss.id_patient\n        LEFT JOIN\n    tracking_motherbasicinfo tm ON tm.id_patient = IF(p.linked_to_id_patient &gt; 0,\n        p.linked_to_id_patient,\n        ss.id_patient)\n        LEFT JOIN\n    tracking_infant ti ON ti.id_patient = IF(p.linked_to_id_patient &gt; 0,\n        p.linked_to_id_patient,\n        ss.id_patient)\n        LEFT JOIN\n    lookup_hospital lh ON lh.id = c.id_hospital\n    left join lookup_commune lce on lce.id=lh.commune\n    left join lookup_network lnt on lnt.id=lh.network\n        LEFT JOIN\n    (SELECT \n        MIN(cs1.date) AS 'date', s1.id_patient,main_id\n    FROM\n        session s1\n    LEFT JOIN club_session cs1 ON cs1.id = s1.id_club_session\n    LEFT join (select p12.*,IF(p12.linked_to_id_patient&gt;0,p12.linked_to_id_patient,p12.id) as main_id from patient p12) pp on pp.id=s1.id_patient\n    WHERE\n        s1.is_present = 1\n    GROUP BY pp.main_id ) a ON a.main_id = IF(p.linked_to_id_patient &gt; 0,\n        p.linked_to_id_patient,\n        p.id)\n        LEFT JOIN\n    (SELECT \n        MAX(cs2.date) AS 'date', s2.id_patient\n    FROM\n        session s2\n    LEFT JOIN club_session cs2 ON cs2.id = s2.id_club_session\n    WHERE\n        s2.is_present = 1\n    GROUP BY s2.id_patient) b ON b.id_patient = ss.id_patient\n    \n    \n            LEFT JOIN\n    (SELECT \n        MIN(cs3.date) AS 'date', s3.id_patient, cs3.id_club\n    FROM\n        session s3\n    LEFT JOIN club_session cs3 ON cs3.id = s3.id_club_session\n    WHERE\n        s3.is_present = 1\n    GROUP BY cs3.id_club, s3.id_patient) aa ON aa.id_patient = ss.id_patient and c.id=aa.id_club\n    \n    \nWHERE\n(cs.date between '`start_date_club`' AND '`end_date_club`') AND \n    ss.is_present = 1 AND p.id IS NOT NULL\nORDER BY CONCAT(lh.city_code, '/', lh.hospital_code) , c.name , p.patient_code , cs.date\n) as w group by w.patient_code\n\nLIMIT 100000000\"\n))\n\n  #Fetching the data\ndata_infos_club = fetch(es, n=-1)\n\ndata_infos_club = data_infos_club %&gt;%\n  filter(!office %in% c(\"CAY\",\"JER\"))\n\n\n#Data processing\ndata_infos_club$is_abandoned[is.na(data_infos_club$is_abandoned)]&lt;-0\ndata_infos_club$is_dead[is.na(data_infos_club$is_dead)]&lt;-0\ndata_infos_club$graduation[is.na(data_infos_club$graduation)]&lt;-'Non'\ndata_infos_club$graduation[data_infos_club$graduation == '']&lt;-'Non'\ndata_infos_club$graduation_date[is.na(data_infos_club$graduation_date)]&lt;-'0000-00-00'\n\nclub_infos&lt;-data_infos_club%&gt;%\n  filter(club_type=='Club Mere')%&gt;%\n  distinct(patient_code, .keep_all = TRUE)%&gt;%\n  select(patient_code,hopital,office, dob,club_name,last_attendance_date,graduation, graduation_date)\nwrite_xlsx(club_infos, path = \"club_infos.xlsx\")\n\n#——#\n\nfrom datetime import date\n#Mastersheet club\npy_p_start = date.today()\npy_p_end = date.today()\npy_start_date = date.today() + relativedelta(months = -24)\npy_end_date = date.today() + relativedelta(months = 9)\n\n\n#Downloading the phone number data for women on mastersheet\n\n#Convert python date object into R one (with single quote)\np_start0=as.Date(py$py_p_start)\np_start&lt;-sQuote(p_start0,options(useFancyQuotes = TRUE))\n\np_end0=as.Date(py$py_p_end)\np_end&lt;-sQuote(p_end0,options(useFancyQuotes = TRUE))\n\nstart_date0=as.Date(py$py_start_date)\nstart_date&lt;-sQuote(start_date0,options(useFancyQuotes = TRUE))\n\n\nend_date0=as.Date(py$py_end_date)\nend_date&lt;-sQuote(end_date0,options(useFancyQuotes = TRUE))\n\n\n#PTME SQL Query\ntel_ptme&lt;-dbSendQuery(\n    dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),\n    \n   gsubfn::fn$identity(\n     \n   \"\nselect a.*,\np.patient_code, \ntmi.telephone as telephone1 , \ntmi.telephone2 as Telephone2\n\n from \n((SELECT\n        tmi.id_patient\n    FROM\n        tracking_pregnancy tp\n    LEFT JOIN tracking_motherbasicinfo tmi ON tmi.id_patient = tp.id_patient_mother\n    WHERE\n        (tp.dpa BETWEEN `start_date` AND `end_date`)\n            OR ((tp.ddr + INTERVAL 9 MONTH + INTERVAL 7 DAY) BETWEEN `start_date` AND `end_date`)\n            OR (tp.actual_delivery_date BETWEEN `start_date` AND `end_date`) OR (tp.created_at between `p_start` and `p_end`) OR (tmi.created_at between `p_start` and `p_end`))\n            UNION (SELECT\n        p.id AS id_patient\n    FROM\n        testing_mereenfant tme\n    LEFT JOIN patient p ON p.patient_code = CONCAT(tme.mother_city_code, '/', tme.mother_hospital_code, '/', tme.mother_code)\n    WHERE\n        tme.infant_dob BETWEEN `start_date` AND `end_date`) UNION (SELECT\n        id_patient_mother AS id_patient\n    FROM\n        tracking_children tc\n        LEFT JOIN tracking_motherbasicinfo tmi2 on tmi2.id_patient = tc.id_patient_mother\n    LEFT JOIN testing_mereenfant tm ON tm.id_patient = tc.id_patient_child\n    WHERE (tmi2.id is not null) AND\n        (tm.infant_dob BETWEEN `start_date` AND `end_date`)\n            OR (tc.dob BETWEEN `start_date` AND `end_date`))) a\n            left join tracking_motherbasicinfo tmi on a.id_patient=tmi.id_patient\n            left join patient p on a.id_patient = p.id\n   \"  \n     \n))\n\n\ntel=fetch(tel_ptme,n=-1)\n\n\ntel$telephone1[is.na(tel$telephone1)]&lt;-'---'\ntel$Telephone2[is.na(tel$Telephone2)]&lt;-'---'\ntel$telephone1[tel$telephone1=='']&lt;-'---'\ntel$Telephone2[tel$Telephone2=='']&lt;-'---'\ntel = tel%&gt;%\n  distinct(patient_code, .keep_all=T)\n\n\n#Importing the ovc_serv dataset\n#Current quarter\n#start_date &lt;- '2024-04-01'\n#end_date &lt;- '2024-06-30'\nstart_date &lt;- '2025-01-01'\nend_date &lt;- '2025-03-31'\n#Last quarter\n#start_date_last &lt;- '2024-01-01'\n#end_date_last &lt;- '2024-03-31'\nstart_date_last &lt;- '2025-04-01'\nend_date_last &lt;- '2025-06-31'\n\nptme_serv=dbSendQuery(\n          dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),\n          \n          gsubfn::fn$identity(\"SELECT bot.patient_code,\n    IF(p.id is null,'no','yes') as is_patient_on_hivhaiti,\n    IF(club_q1 IS NOT NULL,\n        'yes',\n        IF(quest_q1 IS NOT NULL,\n            'yes',\n            IF(arv_1 IS NOT NULL,\n                'yes',\n                IF(odk_1 IS NOT NULL,\n                    'yes',\n                    IF(ptme_1 IS NOT NULL,\n                        'yes',\n                        IF(ptme1_1 IS NOT NULL,\n                            'yes',\n                            IF(mereenfant_1 IS NOT NULL,\n                                'yes',\n                                IF(opf_q1.case_id IS NOT NULL ,'yes',\n                                IF(tmf_q1.patient_code IS NOT NULL,'yes',\n                                IF(tpv_q1.patient_code IS NOT NULL,'yes',\n                                IF(oto1.patient_code IS NOT NULL,'yes',\n                                'no'))))))))))) AS q1,\n    IF(club_q2 IS NOT NULL,\n        'yes',\n        IF(quest_q2 IS NOT NULL,\n            'yes',\n            IF(arv_2 IS NOT NULL,\n                'yes',\n                IF(odk_2 IS NOT NULL,\n                    'yes',\n                    IF(ptme_2 IS NOT NULL,\n                        'yes',\n                        IF(ptme1_2 IS NOT NULL,\n                            'yes',\n                            IF(mereenfant_2 IS NOT NULL,\n                                'yes',\n                                IF(opf_q2.case_id IS NOT NULL ,\n                                'yes',\n                                IF(tmf_q2.patient_code IS NOT NULL, 'yes',\n                                IF(oto2.patient_code IS NOT NULL, 'yes',\n                                IF(tpv_q2.patient_code IS NOT NULL,'yes','no'))))))))))) AS q2,\n    IF(club_q1 IS NOT NULL, 'yes', 'no') AS club_q1,\n    IF(club_q2 IS NOT NULL, 'yes', 'no') AS club_q2,\n    IF(quest_q1 IS NOT NULL, 'yes', 'no') AS quest_q1,\n    IF(quest_q2 IS NOT NULL, 'yes', 'no') AS quest_q2,\n    IF(arv_1 IS NOT NULL, 'yes', 'no') AS on_arv_q1,\n    IF(arv_2 IS NOT NULL, 'yes', 'no') AS on_arv_q2,\n    IF(odk_1 IS NOT NULL, 'yes', 'no') AS odk_q1,\n    IF(odk_2 IS NOT NULL, 'yes', 'no') AS odk_q2,\n    IF(tmf_q1.patient_code IS NOT NULL, 'yes','no')  as followup_q1,\n    IF(tmf_q2.patient_code IS NOT NULL, 'yes','no')  as followup_q2,\n    IF(tpv_q1.patient_code IS NOT NULL,'yes','no') as visit_ptme_q1,\n    IF(tpv_q2.patient_code IS NOT NULL,'yes','no') as visit_ptme_q2,\n    IF(oto1.patient_code IS NOT NULL,'yes','no') as visit_ptme_ratio_q1,\n    IF(oto2.patient_code IS NOT NULL,'yes','no') as visit_ptme_ratio_q2,\n\n    IF(opf_q1.case_id IS NOT NULL ,'yes','no') AS odk_phone_followup_q1,\n    IF(opf_q2.case_id IS NOT NULL ,'yes','no') AS odk_phone_followup_q2,\n    if(tmf_q1.patient_code IS NOT NULL,'yes','no') as mother_followup_q1,\n    if(tmf_q2.patient_code IS NOT NULL,'yes','no') as mother_followup_q2,\n    IF(COALESCE(ptme_1, ptme1_1) IS NOT NULL,\n        'yes',\n        'no') AS ptme_q1,\n    IF(COALESCE(ptme_2, ptme1_2) IS NOT NULL,\n        'yes',\n        'no') AS ptme_q2,\n    IF(mereenfant_1 IS NOT NULL,\n        'yes',\n        'no') AS mereenfant_q1,\n    IF(mereenfant_2 IS NOT NULL,\n        'yes',\n        'no') AS mereenfant_q2,\n    office,\n    p.created_at as patient_created_date,\n    IF(p.created_at BETWEEN '`start_date`' AND '`end_date`' , 'yes','no') as is_patient_created_on_q2,\n    IF(tr.id_patient is not null , 'yes','no') as on_arv,\n    tmi.dob,\n    tmi.is_dead,\n    tmi.is_abandoned\nFROM\n    (SELECT\n        *\n    FROM\n        (SELECT\n        patient_code\n    FROM\n        tracking_motherbasicinfo\n    LEFT JOIN patient ON patient.id = tracking_motherbasicinfo.id_patient) o UNION (SELECT\n        health_id AS patient_code\n    FROM\n        openfn.odk_pregnancy_visit\n    WHERE\n        date_of_visit BETWEEN '`start_date_last`' AND '`end_date`') \n        ## ODK PHONE FOLLOWUP START\n        UNION (\n        select topf.patient_code as patient_code from tracking_odk_phone_followup topf \n            where topf.eccm_joignable_par_tel!=0 and (topf.eccm_date between '`start_date_last`' AND '`end_date`') and topf.name='Enquette Corona club meres'\n        )\n        ## ODK PHONE FOLLOWUP END\n\n        UNION (\n\n          select tpv.patient_code from tracking_ptme_visit tpv where tpv.date_of_visit between '`start_date_last`' AND '`end_date`'\n        \n        )\n        ## ODK Ratio Visits\n        UNION (\n           select opt.patient_code from odk_tracking_other_visit_ptme opt where opt.date_of_visit between '`start_date_last`' AND '`end_date`' \n        )\n        ) bot\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS club_q2\n    FROM\n        session\n    LEFT JOIN club_session ON club_session.id = session.id_club_session\n    LEFT JOIN patient ON patient.id = session.id_patient\n    WHERE\n        is_present = 1\n            AND club_session.date BETWEEN '`start_date`' AND '`end_date`') c2 ON club_q2 = bot.patient_code\n        LEFT JOIN\n    patient ON patient.patient_code = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS club_q1\n    FROM\n        session\n    LEFT JOIN club_session ON club_session.id = session.id_club_session\n    LEFT JOIN patient ON patient.id = session.id_patient\n    WHERE\n        is_present = 1\n            AND club_session.date BETWEEN '`start_date_last`' AND '`end_date_last`') c1 ON club_q1 = bot.patient_code\n        LEFT JOIN\n    (SELECT\n        patient_code AS quest_q1, date\n    FROM\n        (SELECT\n        id_patient, date\n    FROM\n        questionnaire_motherhivknowledge UNION SELECT\n        id_patient, date\n    FROM\n        questionnaire_mothersurvey UNION SELECT\n        id_patient, date\n    FROM\n        questionnaire_newmotherhivknowledge) x\n    LEFT JOIN patient ON patient.id = x.id_patient\n    WHERE\n        date BETWEEN '`start_date_last`' AND '`end_date_last`') quest ON quest_q1 = bot.patient_code\n        LEFT JOIN\n    (SELECT\n        patient_code AS quest_q2\n    FROM\n        (SELECT\n        id_patient\n    FROM\n        questionnaire_motherhivknowledge\n    WHERE\n        date BETWEEN '`start_date`' AND '`end_date`' UNION SELECT\n        id_patient\n    FROM\n        questionnaire_mothersurvey\n    WHERE\n        date BETWEEN '`start_date`' AND '`end_date`' UNION SELECT\n        id_patient\n    FROM\n        questionnaire_newmotherhivknowledge\n    WHERE\n        date BETWEEN '`start_date`' AND '`end_date`') y\n    LEFT JOIN patient ON patient.id = y.id_patient) ques ON quest_q2 = bot.patient_code\n        LEFT JOIN\n    lookup_hospital ON CONCAT(lookup_hospital.city_code,\n            '/',\n            lookup_hospital.hospital_code) = LEFT(patient.patient_code, 8)\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS arv_1\n    FROM\n        tracking_regime\n    LEFT JOIN patient ON patient.id = id_patient\n    WHERE\n        (start_date BETWEEN '`start_date_last`' AND '`end_date_last`'\n            OR end_date BETWEEN '`start_date_last`' AND '`end_date_last`')\n            AND category = 'regime_mother_treatment') ar ON arv_1 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS arv_2\n    FROM\n        tracking_regime\n    LEFT JOIN patient ON patient.id = id_patient\n    WHERE\n        (start_date BETWEEN '`start_date`' AND '`end_date`'\n            OR end_date BETWEEN '`start_date`' AND '`end_date`')\n            AND category = 'regime_mother_treatment') arv ON arv_2 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        health_id AS odk_1\n    FROM\n        openfn.odk_pregnancy_visit\n    WHERE\n        date_of_visit BETWEEN '`start_date_last`' AND '`end_date_last`') odk1 ON odk_1 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        health_id AS odk_2\n    FROM\n        openfn.odk_pregnancy_visit\n    WHERE\n        date_of_visit BETWEEN '`start_date`' AND '`end_date`') odk2 ON odk_2 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS ptme_1\n    FROM\n        tracking_pregnancy\n    LEFT JOIN patient ON patient.id = id_patient_mother\n    WHERE\n        (ptme_enrollment_date BETWEEN '`start_date_last`' AND '`end_date_last`')\n            OR (actual_delivery_date BETWEEN '`start_date_last`' AND '`end_date_last`')) ptme1 ON ptme_1 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS ptme_2\n    FROM\n        tracking_pregnancy\n    LEFT JOIN patient ON patient.id = id_patient_mother\n    WHERE\n        (ptme_enrollment_date BETWEEN '`start_date`' AND '`end_date`')\n            OR (actual_delivery_date BETWEEN '`start_date`' AND '`end_date`')) ptme2 ON ptme_2 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS ptme1_1\n    FROM\n        tracking_motherbasicinfo\n    LEFT JOIN patient ON patient.id = id_patient\n    WHERE\n        PTME_date BETWEEN '`start_date_last`' AND '`end_date_last`') pt1 ON ptme1_1 = bot.patient_code\n        LEFT JOIN\n    (SELECT DISTINCT\n        patient_code AS ptme1_2\n    FROM\n        tracking_motherbasicinfo\n    LEFT JOIN patient ON patient.id = id_patient\n    WHERE\n        PTME_date BETWEEN '`start_date`' AND '`end_date`') pt2 ON ptme1_2 = bot.patient_code\n        LEFT JOIN\n    (SELECT\n        patient.patient_code AS mereenfant_1\n    FROM\n        tracking_motherbasicinfo\n    LEFT JOIN patient ON patient.id = tracking_motherbasicinfo.id_patient\n    LEFT JOIN testing_mereenfant ON CONCAT(testing_mereenfant.mother_city_code, '/', testing_mereenfant.mother_hospital_code, '/', testing_mereenfant.mother_code) = patient_code\n    WHERE\n        date BETWEEN '`start_date_last`' AND '`end_date_last`'\n            AND patient_code IS NOT NULL\n    GROUP BY patient_code) me1 ON mereenfant_1 = bot.patient_code\n        LEFT JOIN\n    (SELECT\n        patient.patient_code AS mereenfant_2\n    FROM\n        tracking_motherbasicinfo\n    LEFT JOIN patient ON patient.id = tracking_motherbasicinfo.id_patient\n    LEFT JOIN testing_mereenfant ON CONCAT(testing_mereenfant.mother_city_code, '/', testing_mereenfant.mother_hospital_code, '/', testing_mereenfant.mother_code) = patient_code\n    WHERE\n        date BETWEEN '`start_date`' AND '`end_date`'\n            AND patient_code IS NOT NULL\n    GROUP BY patient_code) me2 ON mereenfant_2 = bot.patient_code\n    left join patient p on p.patient_code=bot.patient_code\n    ## ODK FOLLOWUP PHONE END\n    LEFT JOIN (\n    select case_id,eccm_date, topf.patient_code from tracking_odk_phone_followup topf\n    where topf.eccm_joignable_par_tel!=0 and topf.eccm_date BETWEEN '`start_date_last`' AND '`end_date_last`' group by topf.case_id\n    ) opf_q1 on opf_q1.patient_code= bot.patient_code\n    LEFT JOIN (\n    select case_id,eccm_date, topf.patient_code from tracking_odk_phone_followup topf\n    where topf.eccm_joignable_par_tel!=0 and topf.eccm_date BETWEEN '`start_date`' AND '`end_date`' group by topf.case_id\n    ) opf_q2 on opf_q2.patient_code= bot.patient_code\n    \n    ## MOTHER FOLLOWUP  START\n    LEFT JOIN (\n    select tmf.date, p.patient_code from tracking_motherfollowup tmf\n    left join patient p on p.id=tmf.id_patient\n    where  tmf.date BETWEEN '`start_date_last`' AND '`end_date_last`' group by tmf.id_patient\n    ) tmf_q1 on tmf_q1.patient_code= bot.patient_code\n    LEFT JOIN (\n    select tmf.date, p.patient_code from tracking_motherfollowup tmf\n    left join patient p on p.id=tmf.id_patient\n    where  tmf.date BETWEEN '`start_date`' AND '`end_date`' group by tmf.id_patient\n    ) tmf_q2 on tmf_q2.patient_code= bot.patient_code\n    \n    ##  MOTHER FOLLOWUP END\n\n    ## MOTHER Agent visit ptme  START\n    LEFT JOIN (\n    select tpv.date_of_visit, tpv.patient_code from tracking_ptme_visit tpv\n    where  tpv.date_of_visit BETWEEN '`start_date_last`' AND '`end_date_last`' group by tpv.patient_code\n    ) tpv_q1 on tpv_q1.patient_code= bot.patient_code\n    LEFT JOIN (\n    select tpv.date_of_visit, tpv.patient_code from tracking_ptme_visit tpv\n    where  tpv.date_of_visit BETWEEN '`start_date`' AND '`end_date`' group by tpv.patient_code\n    ) tpv_q2 on tpv_q2.patient_code= bot.patient_code\n    \n    ##  MOTHER Agent visit ptme END\n    \n    ## MOTHER ratio start\n    \n    LEFT JOIN (\n    select oto11.date_of_visit, oto11.patient_code from odk_tracking_other_visit_ptme oto11 \n    where oto11.date_of_visit BETWEEN '`start_date_last`' AND '`end_date_last`' group by oto11.patient_code\n    ) oto1 on oto1.patient_code= bot.patient_code\n    LEFT JOIN (\n    select oto21.date_of_visit, oto21.patient_code from odk_tracking_other_visit_ptme oto21 \n    where oto21.date_of_visit BETWEEN '`start_date`' AND '`end_date`' group by oto21.patient_code\n    ) oto2 on oto2.patient_code= bot.patient_code\n    \n    ## MOTHER ratio end\n    left join tracking_motherbasicinfo tmi on tmi.id_patient=p.id\n    left join (select distinct id_patient from tracking_regime where category='regime_mother_treatment' and (id_arv is not null) and id_arv!=0  ) tr  on tr.id_patient=p.id\nWHERE\n    (p.linked_to_id_patient = 0 or p.linked_to_id_patient is null)\n        AND (club_q1 IS NOT NULL\n        OR club_q2 IS NOT NULL\n        OR quest_q1 IS NOT NULL\n        OR quest_q2 IS NOT NULL\n        OR arv_1 IS NOT NULL\n        OR arv_2 IS NOT NULL\n        OR odk_1 IS NOT NULL\n        OR odk_2 IS NOT NULL\n        OR ptme_1 IS NOT NULL\n        OR ptme_2 IS NOT NULL\n        OR ptme1_1 IS NOT NULL\n        OR ptme1_2 IS NOT NULL\n        OR mereenfant_1 IS NOT NULL\n        OR mereenfant_2 IS NOT NULL\n        OR opf_q1.case_id IS NOT NULL\n        OR opf_q2.case_id IS NOT NUlL\n        OR tmf_q1.patient_code IS NOT NULL\n        OR tmf_q2.patient_code IS NOT NULL\n        OR tpv_q1.patient_code IS NOT NULL \n        OR tpv_q2.patient_code IS NOT NULL\n        OR oto1.patient_code IS NOT NULL\n        OR oto2.patient_code IS NOT NULL\n        \n        )\nGROUP BY bot.patient_code\"))\n    \nserv_ptme2=fetch(ptme_serv,n=-1)%&gt;%\n  mutate(site_code = substr(patient_code, 1,8))"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-beneficiaires-eligibles-par-type-de-malnutrtion",
+    "href": "tracking-nutrition.html#nombre-de-beneficiaires-eligibles-par-type-de-malnutrtion",
+    "title": "PROGRAMME NUTRITION",
+    "section": "2.1 NOMBRE DE BENEFICIAIRES ELIGIBLES PAR TYPE DE MALNUTRTION",
+    "text": "2.1 NOMBRE DE BENEFICIAIRES ELIGIBLES PAR TYPE DE MALNUTRTION"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-beneficiaires-eligibles-par-sexe",
+    "href": "tracking-nutrition.html#nombre-de-beneficiaires-eligibles-par-sexe",
+    "title": "PROGRAMME NUTRITION",
+    "section": "2.2 NOMBRE DE BENEFICIAIRES ELIGIBLES PAR SEXE",
+    "text": "2.2 NOMBRE DE BENEFICIAIRES ELIGIBLES PAR SEXE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-office",
+    "href": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-office",
+    "title": "PROGRAMME NUTRITION",
+    "section": "3.1 NOMBRE DE BENEFICIAIRES ENROLÉS PAR OFFICE",
+    "text": "3.1 NOMBRE DE BENEFICIAIRES ENROLÉS PAR OFFICE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-sexe",
+    "href": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-sexe",
+    "title": "PROGRAMME NUTRITION",
+    "section": "3.2 NOMBRE DE BENEFICIAIRES ENROLÉS PAR SEXE",
+    "text": "3.2 NOMBRE DE BENEFICIAIRES ENROLÉS PAR SEXE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-agent",
+    "href": "tracking-nutrition.html#nombre-de-beneficiaires-enrolés-par-agent",
+    "title": "PROGRAMME NUTRITION",
+    "section": "3.3 NOMBRE DE BENEFICIAIRES ENROLÉS PAR AGENT",
+    "text": "3.3 NOMBRE DE BENEFICIAIRES ENROLÉS PAR AGENT"
+  },
+  {
+    "objectID": "tracking-nutrition.html#liste-des-enrolés",
+    "href": "tracking-nutrition.html#liste-des-enrolés",
+    "title": "PROGRAMME NUTRITION",
+    "section": "3.4 LISTE DES ENROLÉS",
+    "text": "3.4 LISTE DES ENROLÉS"
+  },
+  {
+    "objectID": "tracking-nutrition.html#repartition-des-beneficiaires-comptés-par-office",
+    "href": "tracking-nutrition.html#repartition-des-beneficiaires-comptés-par-office",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.1 REPARTITION DES BENEFICIAIRES COMPTÉS PAR OFFICE",
+    "text": "4.1 REPARTITION DES BENEFICIAIRES COMPTÉS PAR OFFICE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#repartition-des-beneficiaires-comptés-par-agent",
+    "href": "tracking-nutrition.html#repartition-des-beneficiaires-comptés-par-agent",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.2 REPARTITION DES BENEFICIAIRES COMPTÉS PAR AGENT",
+    "text": "4.2 REPARTITION DES BENEFICIAIRES COMPTÉS PAR AGENT"
+  },
+  {
+    "objectID": "tracking-nutrition.html#repartition-des-menages-comptés-par-office",
+    "href": "tracking-nutrition.html#repartition-des-menages-comptés-par-office",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.3 REPARTITION DES MENAGES COMPTÉS PAR OFFICE",
+    "text": "4.3 REPARTITION DES MENAGES COMPTÉS PAR OFFICE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#repartition-des-menages-comptés-par-agent",
+    "href": "tracking-nutrition.html#repartition-des-menages-comptés-par-agent",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.4 REPARTITION DES MENAGES COMPTÉS PAR AGENT",
+    "text": "4.4 REPARTITION DES MENAGES COMPTÉS PAR AGENT"
+  },
+  {
+    "objectID": "tracking-nutrition.html#nombre-de-menage-sans-depistage",
+    "href": "tracking-nutrition.html#nombre-de-menage-sans-depistage",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.5 NOMBRE DE MENAGE SANS DEPISTAGE",
+    "text": "4.5 NOMBRE DE MENAGE SANS DEPISTAGE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#liste-des-beneficiaires-sans-comptage",
+    "href": "tracking-nutrition.html#liste-des-beneficiaires-sans-comptage",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.6 LISTE DES BENEFICIAIRES SANS COMPTAGE",
+    "text": "4.6 LISTE DES BENEFICIAIRES SANS COMPTAGE"
+  },
+  {
+    "objectID": "tracking-nutrition.html#liste-des-menages-sans-depistage",
+    "href": "tracking-nutrition.html#liste-des-menages-sans-depistage",
+    "title": "PROGRAMME NUTRITION",
+    "section": "4.7 LISTE DES MENAGES SANS DEPISTAGE",
+    "text": "4.7 LISTE DES MENAGES SANS DEPISTAGE"
+  },
+  {
+    "objectID": "tracking-oev.html#nombre-doev-en-club-par-office",
+    "href": "tracking-oev.html#nombre-doev-en-club-par-office",
+    "title": "PROGRAMME OEV",
+    "section": "2.1 Nombre d’OEV en club par office",
+    "text": "2.1 Nombre d’OEV en club par office"
+  },
+  {
+    "objectID": "tracking-oev.html#cascade-de-suppression-de-charge-virale-pédiatrique-chez-les-enfants-de-moins-de-18-ans-en-club",
+    "href": "tracking-oev.html#cascade-de-suppression-de-charge-virale-pédiatrique-chez-les-enfants-de-moins-de-18-ans-en-club",
+    "title": "PROGRAMME OEV",
+    "section": "2.2 Cascade de Suppression de Charge virale pédiatrique chez les enfants de moins de 18 ans en club",
+    "text": "2.2 Cascade de Suppression de Charge virale pédiatrique chez les enfants de moins de 18 ans en club"
+  },
+  {
+    "objectID": "tracking-oev.html#pyramide-des-ages-des-oev",
+    "href": "tracking-oev.html#pyramide-des-ages-des-oev",
+    "title": "PROGRAMME OEV",
+    "section": "2.3 Pyramide des ages des OEV",
+    "text": "2.3 Pyramide des ages des OEV"
+  },
+  {
+    "objectID": "tracking-oev.html#nombre-doev-non-en-club-par-office",
+    "href": "tracking-oev.html#nombre-doev-non-en-club-par-office",
+    "title": "PROGRAMME OEV",
+    "section": "2.4 Nombre d’OEV non en club par office",
+    "text": "2.4 Nombre d’OEV non en club par office"
+  },
+  {
+    "objectID": "tracking-oev.html#cascade-de-suppression-de-charge-virale-pédiatrique-chez-les-enfants-de-moins-de-18-ans-non-en-club",
+    "href": "tracking-oev.html#cascade-de-suppression-de-charge-virale-pédiatrique-chez-les-enfants-de-moins-de-18-ans-non-en-club",
+    "title": "PROGRAMME OEV",
+    "section": "2.5 Cascade de Suppression de Charge virale pédiatrique chez les enfants de moins de 18 ans non en club",
+    "text": "2.5 Cascade de Suppression de Charge virale pédiatrique chez les enfants de moins de 18 ans non en club"
+  },
+  {
+    "objectID": "tracking-oev.html#liste-des-oev-non-en-club",
+    "href": "tracking-oev.html#liste-des-oev-non-en-club",
+    "title": "PROGRAMME OEV",
+    "section": "2.6 Liste des OEV non en club",
+    "text": "2.6 Liste des OEV non en club"
+  },
+  {
+    "objectID": "tracking-oev.html#participation-en-club-des-oev-pour-cette-semaine",
+    "href": "tracking-oev.html#participation-en-club-des-oev-pour-cette-semaine",
+    "title": "PROGRAMME OEV",
+    "section": "3.1 Participation en club des oev pour cette semaine",
+    "text": "3.1 Participation en club des oev pour cette semaine"
+  },
+  {
+    "objectID": "tracking-oev.html#nombre-doev-avec-un-comptage-de-menage",
+    "href": "tracking-oev.html#nombre-doev-avec-un-comptage-de-menage",
+    "title": "PROGRAMME OEV",
+    "section": "4.1 Nombre d’OEV avec un comptage de menage",
+    "text": "4.1 Nombre d’OEV avec un comptage de menage"
+  },
+  {
+    "objectID": "tracking-oev.html#liste-des-enfants-sans-comptage-de-menage",
+    "href": "tracking-oev.html#liste-des-enfants-sans-comptage-de-menage",
+    "title": "PROGRAMME OEV",
+    "section": "4.2 Liste des enfants sans comptage de menage",
+    "text": "4.2 Liste des enfants sans comptage de menage"
+  },
+  {
+    "objectID": "tracking-oev.html#liste-des-enfants-avec-comptage-non-actualisée",
+    "href": "tracking-oev.html#liste-des-enfants-avec-comptage-non-actualisée",
+    "title": "PROGRAMME OEV",
+    "section": "4.3 Liste des enfants avec comptage non actualisée",
+    "text": "4.3 Liste des enfants avec comptage non actualisée"
+  },
+  {
+    "objectID": "tracking-oev.html#répartition-des-fatries-selon-leur-statut-de-dépistage",
+    "href": "tracking-oev.html#répartition-des-fatries-selon-leur-statut-de-dépistage",
+    "title": "PROGRAMME OEV",
+    "section": "5.1 Répartition des fatries selon leur statut de dépistage",
+    "text": "5.1 Répartition des fatries selon leur statut de dépistage"
+  },
+  {
+    "objectID": "tracking-oev.html#liste-des-enfants-sans-code-st",
+    "href": "tracking-oev.html#liste-des-enfants-sans-code-st",
+    "title": "PROGRAMME OEV",
+    "section": "5.2 Liste des enfants sans code ST",
+    "text": "5.2 Liste des enfants sans code ST"
+  },
+  {
+    "objectID": "tracking-oev.html#liste-des-fratries-sans-test-de-dépistage",
+    "href": "tracking-oev.html#liste-des-fratries-sans-test-de-dépistage",
+    "title": "PROGRAMME OEV",
+    "section": "5.3 Liste des fratries sans test de dépistage",
+    "text": "5.3 Liste des fratries sans test de dépistage"
+  },
+  {
+    "objectID": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-de-menage",
+    "href": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-de-menage",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.1 BENEFICIAIRES JARDINAGE AVEC COMPTAGE DE MENAGE",
+    "text": "9.1 BENEFICIAIRES JARDINAGE AVEC COMPTAGE DE MENAGE"
+  },
+  {
+    "objectID": "tracking-gardening.html#beneficiaires-jardinage-sans-comptage-de-menage",
+    "href": "tracking-gardening.html#beneficiaires-jardinage-sans-comptage-de-menage",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.2 BENEFICIAIRES JARDINAGE SANS COMPTAGE DE MENAGE",
+    "text": "9.2 BENEFICIAIRES JARDINAGE SANS COMPTAGE DE MENAGE"
+  },
+  {
+    "objectID": "tracking-gardening.html#liste-des-beneficiaires-sans-comptage-de-menage",
+    "href": "tracking-gardening.html#liste-des-beneficiaires-sans-comptage-de-menage",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.3 LISTE DES BENEFICIAIRES SANS COMPTAGE DE MENAGE",
+    "text": "9.3 LISTE DES BENEFICIAIRES SANS COMPTAGE DE MENAGE"
+  },
+  {
+    "objectID": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-actualisé",
+    "href": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-actualisé",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.4 BENEFICIAIRES JARDINAGE AVEC COMPTAGE ACTUALISÉ",
+    "text": "9.4 BENEFICIAIRES JARDINAGE AVEC COMPTAGE ACTUALISÉ"
+  },
+  {
+    "objectID": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-non-actualisé",
+    "href": "tracking-gardening.html#beneficiaires-jardinage-avec-comptage-non-actualisé",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.5 BENEFICIAIRES JARDINAGE AVEC COMPTAGE NON ACTUALISÉ",
+    "text": "9.5 BENEFICIAIRES JARDINAGE AVEC COMPTAGE NON ACTUALISÉ"
+  },
+  {
+    "objectID": "tracking-gardening.html#liste-des-beneficiaires-avec-comptage-non-actualisé",
+    "href": "tracking-gardening.html#liste-des-beneficiaires-avec-comptage-non-actualisé",
+    "title": "PROGRAMME JARDINAGE",
+    "section": "9.6 LISTE DES BENEFICIAIRES AVEC COMPTAGE NON ACTUALISÉ",
+    "text": "9.6 LISTE DES BENEFICIAIRES AVEC COMPTAGE NON ACTUALISÉ"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-05",
+    "href": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-05",
+    "title": "PROGRAMME PTME",
+    "section": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-05)",
+    "text": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-05)\nDurant cette période, sur 0 Femme(s) PTME attendues en club, était(aient) présente(s) contre qui était(aient) absente(s).\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-05",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-05",
+    "title": "PROGRAMME PTME",
+    "section": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-05)",
+    "text": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-05)\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-04",
+    "href": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-04",
+    "title": "PROGRAMME PTME",
+    "section": "4.1 📊 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-04)",
+    "text": "4.1 📊 Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-04)\nDurant cette période, sur 0 Femme(s) PTME attendues en club, était(aient) présente(s) contre qui était(aient) absente(s).\n\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-04",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-04",
+    "title": "PROGRAMME PTME",
+    "section": "4.2 📊 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-04)",
+    "text": "4.2 📊 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-04)\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-pour-la-semaine-écoulée-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-pour-la-semaine-écoulée-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "4.4 Représentation graphique de l’effectif total des femmes PTME attendues en club pour la semaine écoulée versus celles qui y ont effectivement participé",
+    "text": "4.4 Représentation graphique de l’effectif total des femmes PTME attendues en club pour la semaine écoulée versus celles qui y ont effectivement participé\n\n\n[1] \"Il n'y a pas d'activité pour la semaine écoulée.\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-pour-le-bimestre-en-cours-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-pour-le-bimestre-en-cours-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "4.5 Représentation graphique de l’effectif total des femmes PTME attendues en club pour le bimestre en cours versus celles qui y ont effectivement participé",
+    "text": "4.5 Représentation graphique de l’effectif total des femmes PTME attendues en club pour le bimestre en cours versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-de-femmes-enceintes-en-club-par-bureau-1",
+    "href": "tracking-ptme.html#nombre-de-femmes-enceintes-en-club-par-bureau-1",
+    "title": "PROGRAMME PTME",
+    "section": "2.1 Nombre de femmes enceintes en club par bureau",
+    "text": "2.1 Nombre de femmes enceintes en club par bureau"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-1.1---représentation-graphique-des-fréquences-de-femmes-participant-en-club-en-q3-ou-q4-fy24-avec-un-comptage-de-ménage-ou-non",
+    "href": "tracking-ptme.html#figure-1.1---représentation-graphique-des-fréquences-de-femmes-participant-en-club-en-q3-ou-q4-fy24-avec-un-comptage-de-ménage-ou-non",
+    "title": "PROGRAMME PTME",
+    "section": "4.5 📊 Figure 1.1 - Représentation graphique des fréquences de femmes participant en club en Q3 ou Q4 FY24 avec un comptage de ménage ou non",
+    "text": "4.5 📊 Figure 1.1 - Représentation graphique des fréquences de femmes participant en club en Q3 ou Q4 FY24 avec un comptage de ménage ou non\n\n\n\n\n\n\n\n4.5.0.1 Tableau 1.1 - Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-1.2---représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "href": "tracking-ptme.html#figure-1.2---représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "title": "PROGRAMME PTME",
+    "section": "4.6 Figure 1.2 - Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…",
+    "text": "4.6 Figure 1.2 - Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…\nNote: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de 1."
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-2.1---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy24",
+    "href": "tracking-ptme.html#figure-2.1---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy24",
+    "title": "PROGRAMME PTME",
+    "section": "5.1 📊 Figure 2.1 - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY24",
+    "text": "5.1 📊 Figure 2.1 - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY24\n\n\n\n\n\n\n\n\n\n\n5.1.0.1 Tableau 2.1 - Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY24 (jusqu’ici)"
+  },
+  {
+    "objectID": "tracking-ptme.html#statistiques-des-services-aux-femmes-ptme-en-q3-en-q4-fy24",
+    "href": "tracking-ptme.html#statistiques-des-services-aux-femmes-ptme-en-q3-en-q4-fy24",
+    "title": "PROGRAMME PTME",
+    "section": "5.2 STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY24",
+    "text": "5.2 STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY24"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-3.1---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy24",
+    "href": "tracking-ptme.html#figure-3.1---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy24",
+    "title": "PROGRAMME PTME",
+    "section": "5.3 📊 Figure 3.1 - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY24",
+    "text": "5.3 📊 Figure 3.1 - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY24\n\n\n\n\n\n\n\n\n\n\n5.3.0.1 Tableau 3.1 - Liste dynamique des femmes PTME ayant bénéficié d’au moins un (1) service en Q3 mais aucun en Q4 FY24 (jusqu’ici)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-4.1---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-04",
+    "href": "tracking-ptme.html#figure-4.1---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-06-30-au-2025-07-04",
+    "title": "PROGRAMME PTME",
+    "section": "6.1 📊 Figure 4.1 - Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-04)",
+    "text": "6.1 📊 Figure 4.1 - Représentation graphique des présences en club durant la semaine écoulée (du 2025-06-30 au 2025-07-04)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-4.2---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-04",
+    "href": "tracking-ptme.html#figure-4.2---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-06-30-au-2025-07-04",
+    "title": "PROGRAMME PTME",
+    "section": "6.2 📊 Figure 4.2 - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-04)",
+    "text": "6.2 📊 Figure 4.2 - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-06-30 au 2025-07-04)\n\n\n[1] \"Il n'y a pas d'activité\""
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.1---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy24-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#figure-5.1---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy24-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "7.1 📊 Figure 5.1 - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY24 versus celles qui y ont effectivement participé",
+    "text": "7.1 📊 Figure 5.1 - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY24 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.2---représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure-5.2---représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.2 Figure 5.2 - Représentation graphique des raisons d’absence en club en Q4 FY25",
+    "text": "7.2 Figure 5.2 - Représentation graphique des raisons d’absence en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#tableau-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy24",
+    "href": "tracking-ptme.html#tableau-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy24",
+    "title": "PROGRAMME PTME",
+    "section": "7.3 📊 Tableau 5.2 - Données décrivant les activités dans les clubs en Q4 FY24",
+    "text": "7.3 📊 Tableau 5.2 - Données décrivant les activités dans les clubs en Q4 FY24"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.3---représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "href": "tracking-ptme.html#figure-5.3---représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "title": "PROGRAMME PTME",
+    "section": "7.4 Figure 5.3 - Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre",
+    "text": "7.4 Figure 5.3 - Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.5---figure-représentative-des-néophytes-intégrées-en-club-en-q4-fy24",
+    "href": "tracking-ptme.html#figure-5.5---figure-représentative-des-néophytes-intégrées-en-club-en-q4-fy24",
+    "title": "PROGRAMME PTME",
+    "section": "7.5 📊 Figure 5.5 - Figure représentative des néophytes intégrées en club en Q4 FY24",
+    "text": "7.5 📊 Figure 5.5 - Figure représentative des néophytes intégrées en club en Q4 FY24\n\n#Data processing\nclub_new_df&lt;-data_infos_club%&gt;%\n  select(patient_code,site_code,hopital,dob,office,club_name,club_type,\n         first_attendance_date,last_attendance_date,\n         is_abandoned,is_dead, graduation,graduation_date)%&gt;%\n  filter((first_attendance_date&gt;='2025-01-01' & first_attendance_date&lt;='2025-07-10') & club_type=='Club Mere' & is_abandoned!=1 & is_dead!=1)%&gt;%\n  distinct(patient_code,.keep_all=TRUE)\n\nclub_new_df=left_join(club_new_df,tel,by='patient_code')\n#club_new_df=left_join(club_new_df,lookup_net, by='site_code')\n\n\n\nif(nrow(club_new_df)==0){\n  print(\"Il n'y a pas d'activite\")\n}else{\nclub_new_df%&gt;%\n  group_by(office)%&gt;%\n  count()%&gt;%\nggplot(aes(y=n, x=reorder(office,n)))+ \n  geom_bar(fill='#0099a1',stat=\"identity\",color=\"black\",show.legend = F) +\n  geom_label(aes(label =n, hjust = 0.5),size=2.7,show.legend = F)+\n  coord_flip()+\n  theme_bw()+\n  labs(caption=paste(\"Data source: hivhaiti\",sep = \" / \", Sys.Date()))+\n  theme(\n    plot.caption = element_text(face=\"italic\",size = 8))+\n  xlab(\"\")+\n  ylab(\"néophytes intégrées en club\")\n}\n\n\n\n\n\n\n\n\n\n\n7.5.0.1 Tableau 5.5 - Liste des néophytes intégrées en club en Q4 FY24"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-9.1---représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "href": "tracking-ptme.html#figure-9.1---représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "title": "PROGRAMME PTME",
+    "section": "11.1 Figure 9.1 - Représentation graphique du taux de positivité des enfants EID",
+    "text": "11.1 Figure 9.1 - Représentation graphique du taux de positivité des enfants EID"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-9.2---nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-9.2---nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "11.2 Figure 9.2 - Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "11.2 Figure 9.2 - Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-9.3---nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-9.3---nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "11.3 Figure 9.3 - Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti",
+    "text": "11.3 Figure 9.3 - Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-9.4---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-9.4---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "11.4 Figure 9.4 - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "11.4 Figure 9.4 - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-9.5---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-9.5---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "11.5 Figure 9.5 - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti",
+    "text": "11.5 Figure 9.5 - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-1.1---représentation-graphique-des-fréquences-de-femmes-participant-en-club-en-q3-ou-q4-fy25-avec-un-comptage-de-ménage-ou-non",
+    "href": "tracking-ptme.html#figure-1.1---représentation-graphique-des-fréquences-de-femmes-participant-en-club-en-q3-ou-q4-fy25-avec-un-comptage-de-ménage-ou-non",
+    "title": "PROGRAMME PTME",
+    "section": "4.5 📊 Figure 1.1 - Représentation graphique des fréquences de femmes participant en club en Q3 ou Q4 FY25 avec un comptage de ménage ou non",
+    "text": "4.5 📊 Figure 1.1 - Représentation graphique des fréquences de femmes participant en club en Q3 ou Q4 FY25 avec un comptage de ménage ou non"
+  },
+  {
+    "objectID": "tracking-ptme.html#tableau-1.1---liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "href": "tracking-ptme.html#tableau-1.1---liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "title": "PROGRAMME PTME",
+    "section": "4.6 Tableau 1.1 - Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage",
+    "text": "4.6 Tableau 1.1 - Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-2.1---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure-2.1---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "5.1 Figure 2.1 - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25",
+    "text": "5.1 Figure 2.1 - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#statistiques-des-services-aux-femmes-ptme-en-q3-en-q4-fy25",
+    "href": "tracking-ptme.html#statistiques-des-services-aux-femmes-ptme-en-q3-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.3 STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY25",
+    "text": "6.3 STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-3.1---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure-3.1---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "5.4 Figure 3.1 - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25",
+    "text": "5.4 Figure 3.1 - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.1---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#figure-5.1---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "7.1 Figure 5.1 - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé",
+    "text": "7.1 Figure 5.1 - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#tableau-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "href": "tracking-ptme.html#tableau-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.3 📊 Tableau 5.2 - Données décrivant les activités dans les clubs en Q4 FY25",
+    "text": "7.3 📊 Tableau 5.2 - Données décrivant les activités dans les clubs en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-5.5---figure-représentative-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure-5.5---figure-représentative-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.6 Figure 5.5 - Figure représentative des néophytes intégrées en club en Q4 FY25",
+    "text": "7.6 Figure 5.5 - Figure représentative des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#tableau-5.5---liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#tableau-5.5---liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.6 Tableau 5.5 - Liste des néophytes intégrées en club en Q4 FY25",
+    "text": "7.6 Tableau 5.5 - Liste des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-femmes-en-ptme",
+    "href": "tracking-ptme.html#liste-des-femmes-en-ptme",
+    "title": "PROGRAMME PTME",
+    "section": "1.2 Liste des femmes en PTME",
+    "text": "1.2 Liste des femmes en PTME"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-accouchements-délinquants",
+    "href": "tracking-ptme.html#liste-des-accouchements-délinquants",
+    "title": "PROGRAMME PTME",
+    "section": "1.3 Liste des accouchements délinquants",
+    "text": "1.3 Liste des accouchements délinquants"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "4.2 Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)\nDurant cette période, sur 0 Femme(s) PTME attendues en club, était(aient) présente(s) contre qui était(aient) absente(s).\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "4.3 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-données-décrivant-les-activités-dans-les-clubs-pour-la-semaine",
+    "href": "tracking-ptme.html#liste-données-décrivant-les-activités-dans-les-clubs-pour-la-semaine",
+    "title": "PROGRAMME PTME",
+    "section": "5.2 Liste Données décrivant les activités dans les clubs pour la semaine",
+    "text": "5.2 Liste Données décrivant les activités dans les clubs pour la semaine"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-1.1---liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "href": "tracking-ptme.html#liste-1.1---liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "title": "PROGRAMME PTME",
+    "section": "4.5 Liste 1.1 - Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage",
+    "text": "4.5 Liste 1.1 - Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-1.2---liste-dynamique-des-filles-fils-non-encore-testés",
+    "href": "tracking-ptme.html#liste-1.2---liste-dynamique-des-filles-fils-non-encore-testés",
+    "title": "PROGRAMME PTME",
+    "section": "4.7 Liste 1.2 - Liste dynamique des filles & fils non encore testés",
+    "text": "4.7 Liste 1.2 - Liste dynamique des filles & fils non encore testés"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-1.3---liste-dynamique-des-filles-et-fils-vih-sans-code-st-sur-commcare",
+    "href": "tracking-ptme.html#liste-1.3---liste-dynamique-des-filles-et-fils-vih-sans-code-st-sur-commcare",
+    "title": "PROGRAMME PTME",
+    "section": "4.8 Liste 1.3 - Liste dynamique des filles et fils VIH+ sans code ST sur CommCare",
+    "text": "4.8 Liste 1.3 - Liste dynamique des filles et fils VIH+ sans code ST sur CommCare"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-1.4---liste-dynamique-des-filles-et-fils-avec-statut-inconnu-sur-commcare",
+    "href": "tracking-ptme.html#liste-1.4---liste-dynamique-des-filles-et-fils-avec-statut-inconnu-sur-commcare",
+    "title": "PROGRAMME PTME",
+    "section": "4.9 Liste 1.4 - Liste dynamique des filles et fils avec statut inconnu sur Commcare",
+    "text": "4.9 Liste 1.4 - Liste dynamique des filles et fils avec statut inconnu sur Commcare"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-2.1---liste-dynamique-des-femmes-ptme-ayant-eu-au-moins-une-1-participation-en-club-en-q3-mais-aucune-en-q4-fy25-jusquici",
+    "href": "tracking-ptme.html#liste-2.1---liste-dynamique-des-femmes-ptme-ayant-eu-au-moins-une-1-participation-en-club-en-q3-mais-aucune-en-q4-fy25-jusquici",
+    "title": "PROGRAMME PTME",
+    "section": "5.2 Liste 2.1 - Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu’ici)",
+    "text": "5.2 Liste 2.1 - Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu’ici)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-4.1---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure-4.1---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "6.1 Figure 4.1 - Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "6.1 Figure 4.1 - Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-4.2---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure-4.2---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "6.2 Figure 4.2 - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "6.2 Figure 4.2 - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "href": "tracking-ptme.html#liste-5.2---données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.3 Liste 5.2 - Données décrivant les activités dans les clubs en Q4 FY25",
+    "text": "7.3 Liste 5.2 - Données décrivant les activités dans les clubs en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-5.4---liste-des-nouveaux-clubs-mère-en-q1-q2-q3-et-q4",
+    "href": "tracking-ptme.html#liste-5.4---liste-des-nouveaux-clubs-mère-en-q1-q2-q3-et-q4",
+    "title": "PROGRAMME PTME",
+    "section": "7.5 Liste 5.4 - Liste des nouveaux clubs mère en Q1, Q2, Q3 et Q4",
+    "text": "7.5 Liste 5.4 - Liste des nouveaux clubs mère en Q1, Q2, Q3 et Q4"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-5.5---liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#liste-5.5---liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "7.7 Liste 5.5 - Liste des néophytes intégrées en club en Q4 FY25",
+    "text": "7.7 Liste 5.5 - Liste des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-6.1---table-des-pcrs-non-liés-en-fy25",
+    "href": "tracking-ptme.html#liste-6.1---table-des-pcrs-non-liés-en-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.1 Liste 6.1 - Table des PCRs non liés en FY25",
+    "text": "8.1 Liste 6.1 - Table des PCRs non liés en FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-7.1---table-des-grossesses-ajoutées-sur-le-système-sans-aucune-information-pertinente",
+    "href": "tracking-ptme.html#liste-7.1---table-des-grossesses-ajoutées-sur-le-système-sans-aucune-information-pertinente",
+    "title": "PROGRAMME PTME",
+    "section": "9.1 Liste 7.1 - Table des grossesses ajoutées sur le système sans aucune information pertinente",
+    "text": "9.1 Liste 7.1 - Table des grossesses ajoutées sur le système sans aucune information pertinente"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-8.1---liste-des-femmes-enceintes-ajoutées-sur-le-système-la-semaine-écoulée",
+    "href": "tracking-ptme.html#liste-8.1---liste-des-femmes-enceintes-ajoutées-sur-le-système-la-semaine-écoulée",
+    "title": "PROGRAMME PTME",
+    "section": "10.1 Liste 8.1 - Liste des femmes enceintes ajoutées sur le système la semaine écoulée",
+    "text": "10.1 Liste 8.1 - Liste des femmes enceintes ajoutées sur le système la semaine écoulée"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-9.1---enfants-sans-test-pcr",
+    "href": "tracking-ptme.html#liste-9.1---enfants-sans-test-pcr",
+    "title": "PROGRAMME PTME",
+    "section": "11.6 Liste 9.1 - Enfants sans test PCR",
+    "text": "11.6 Liste 9.1 - Enfants sans test PCR"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "href": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-au-moins-une-1-participation-en-club-sans-comptage-de-ménage",
+    "title": "PROGRAMME PTME",
+    "section": "5.3 Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage",
+    "text": "5.3 Liste dynamique des femmes PTME ayant au moins une (1) participation en club sans comptage de ménage\n\n\n[1] \"Il n'y a pas d'activite\""
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "title": "PROGRAMME PTME",
+    "section": "5.4 Figure - Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…",
+    "text": "5.4 Figure - Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…\nNote: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de 1."
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-filles-fils-non-encore-testés",
+    "href": "tracking-ptme.html#liste-dynamique-des-filles-fils-non-encore-testés",
+    "title": "PROGRAMME PTME",
+    "section": "4.2 Liste dynamique des filles & fils non encore testés",
+    "text": "4.2 Liste dynamique des filles & fils non encore testés"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-filles-et-fils-vih-sans-code-st-sur-commcare",
+    "href": "tracking-ptme.html#liste-dynamique-des-filles-et-fils-vih-sans-code-st-sur-commcare",
+    "title": "PROGRAMME PTME",
+    "section": "4.3 Liste dynamique des filles et fils VIH+ sans code ST sur CommCare",
+    "text": "4.3 Liste dynamique des filles et fils VIH+ sans code ST sur CommCare"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-filles-et-fils-avec-statut-inconnu-sur-commcare",
+    "href": "tracking-ptme.html#liste-dynamique-des-filles-et-fils-avec-statut-inconnu-sur-commcare",
+    "title": "PROGRAMME PTME",
+    "section": "4.4 Liste dynamique des filles et fils avec statut inconnu sur Commcare",
+    "text": "4.4 Liste dynamique des filles et fils avec statut inconnu sur Commcare"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.1 Figure - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25",
+    "text": "6.1 Figure - Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-eu-au-moins-une-1-participation-en-club-en-q3-mais-aucune-en-q4-fy25-jusquici",
+    "href": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-eu-au-moins-une-1-participation-en-club-en-q3-mais-aucune-en-q4-fy25-jusquici",
+    "title": "PROGRAMME PTME",
+    "section": "6.2 Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu’ici)",
+    "text": "6.2 Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu’ici)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.4 Figure - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25",
+    "text": "6.4 Figure - Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "7.1 Figure - Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "7.1 Figure - Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "7.2 Figure - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "7.2 Figure - Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#figure---représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "8.1 Figure - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé",
+    "text": "8.1 Figure - Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure---représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.2 Figure - Représentation graphique des raisons d’absence en club en Q4 FY25",
+    "text": "8.2 Figure - Représentation graphique des raisons d’absence en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "href": "tracking-ptme.html#liste-des-données-décrivant-les-activités-dans-les-clubs-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.3 Liste des données décrivant les activités dans les clubs en Q4 FY25",
+    "text": "8.3 Liste des données décrivant les activités dans les clubs en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "href": "tracking-ptme.html#figure---représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "title": "PROGRAMME PTME",
+    "section": "8.4 Figure - Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre",
+    "text": "8.4 Figure - Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-nouveaux-clubs-mère-en-q1-q2-q3-et-q4",
+    "href": "tracking-ptme.html#liste-des-nouveaux-clubs-mère-en-q1-q2-q3-et-q4",
+    "title": "PROGRAMME PTME",
+    "section": "8.5 Liste des nouveaux clubs mère en Q1, Q2, Q3 et Q4",
+    "text": "8.5 Liste des nouveaux clubs mère en Q1, Q2, Q3 et Q4"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure---représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.6 Figure - Représentatation des néophytes intégrées en club en Q4 FY25",
+    "text": "8.6 Figure - Représentatation des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#liste-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.7 Liste des néophytes intégrées en club en Q4 FY25",
+    "text": "8.7 Liste des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-pcrs-non-liés-en-fy25",
+    "href": "tracking-ptme.html#liste-des-pcrs-non-liés-en-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "9.1 Liste des PCRs non liés en FY25",
+    "text": "9.1 Liste des PCRs non liés en FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-grossesses-ajoutées-sur-le-système-sans-aucune-information-pertinente",
+    "href": "tracking-ptme.html#liste-des-grossesses-ajoutées-sur-le-système-sans-aucune-information-pertinente",
+    "title": "PROGRAMME PTME",
+    "section": "10.1 Liste des grossesses ajoutées sur le système sans aucune information pertinente",
+    "text": "10.1 Liste des grossesses ajoutées sur le système sans aucune information pertinente"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-femmes-enceintes-ajoutées-sur-le-système-la-semaine-écoulée",
+    "href": "tracking-ptme.html#liste-des-femmes-enceintes-ajoutées-sur-le-système-la-semaine-écoulée",
+    "title": "PROGRAMME PTME",
+    "section": "11.1 Liste des femmes enceintes ajoutées sur le système la semaine écoulée",
+    "text": "11.1 Liste des femmes enceintes ajoutées sur le système la semaine écoulée"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "href": "tracking-ptme.html#figure---représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "title": "PROGRAMME PTME",
+    "section": "12.1 Figure - Représentation graphique du taux de positivité des enfants EID",
+    "text": "12.1 Figure - Représentation graphique du taux de positivité des enfants EID"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.2 Figure - Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.2 Figure - Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.3 Figure - Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti",
+    "text": "12.3 Figure - Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.4 Figure - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.4 Figure - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure---nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.5 Figure - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti",
+    "text": "12.5 Figure - Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-des-enfants-sans-test-pcr",
+    "href": "tracking-ptme.html#liste-des-enfants-sans-test-pcr",
+    "title": "PROGRAMME PTME",
+    "section": "12.6 Liste des enfants sans test PCR",
+    "text": "12.6 Liste des enfants sans test PCR"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "title": "PROGRAMME PTME",
+    "section": "5.3 Figure-Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…",
+    "text": "5.3 Figure-Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…\nNote: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de 1."
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.1 Figure-Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25",
+    "text": "6.1 Figure-Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.4 Figure-Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25",
+    "text": "6.4 Figure-Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-bénéficié-dau-moins-un-1-service-en-q3-mais-aucun-en-q4-fy25-jusquici",
+    "href": "tracking-ptme.html#liste-dynamique-des-femmes-ptme-ayant-bénéficié-dau-moins-un-1-service-en-q3-mais-aucun-en-q4-fy25-jusquici",
+    "title": "PROGRAMME PTME",
+    "section": "5.2 Liste dynamique des femmes PTME ayant bénéficié d’au moins un (1) service en Q3 mais aucun en Q4 FY25 (jusqu’ici)",
+    "text": "5.2 Liste dynamique des femmes PTME ayant bénéficié d’au moins un (1) service en Q3 mais aucun en Q4 FY25 (jusqu’ici)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "7.1 Figure-Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "7.1 Figure-Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-11",
+    "title": "PROGRAMME PTME",
+    "section": "7.2 Figure-Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)",
+    "text": "7.2 Figure-Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-11)"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#figure-représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "8.1 Figure-Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé",
+    "text": "8.1 Figure-Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure-représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.2 Figure-Représentation graphique des raisons d’absence en club en Q4 FY25",
+    "text": "8.2 Figure-Représentation graphique des raisons d’absence en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "href": "tracking-ptme.html#figure-représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "title": "PROGRAMME PTME",
+    "section": "8.4 Figure-Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre",
+    "text": "8.4 Figure-Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#figure-représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.6 Figure-Représentatation des néophytes intégrées en club en Q4 FY25",
+    "text": "8.6 Figure-Représentatation des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "href": "tracking-ptme.html#figure-représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "title": "PROGRAMME PTME",
+    "section": "12.1 Figure-Représentation graphique du taux de positivité des enfants EID",
+    "text": "12.1 Figure-Représentation graphique du taux de positivité des enfants EID"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.2 Figure-Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.2 Figure-Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.3 Figure-Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti",
+    "text": "12.3 Figure-Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.4 Figure-Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.4 Figure-Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#figure-nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.5 Figure-Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti",
+    "text": "12.5 Figure-Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "href": "tracking-ptme.html#représentation-graphique-des-fréquences-denfants-testés-vih--vih-non-testés",
+    "title": "PROGRAMME PTME",
+    "section": "4.1 Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…",
+    "text": "4.1 Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…\nNote: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de 1."
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#représentation-graphique-des-statistiques-de-participation-en-club-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "6.1 Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25",
+    "text": "6.1 Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "href": "tracking-ptme.html#représentation-graphique-des-statistiques-sur-les-femmes-servies-en-q3-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "5.1 Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25",
+    "text": "5.1 Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "href": "tracking-ptme.html#représentation-graphique-de-leffectif-total-des-femmes-ptme-attendues-en-club-en-q4-fy25-versus-celles-qui-y-ont-effectivement-participé",
+    "title": "PROGRAMME PTME",
+    "section": "8.1 Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé",
+    "text": "8.1 Représentation graphique de l’effectif total des femmes PTME attendues en club en Q4 FY25 versus celles qui y ont effectivement participé"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.2 Représentation graphique des raisons d’absence en club en Q4 FY25",
+    "text": "8.2 Représentation graphique des raisons d’absence en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "href": "tracking-ptme.html#représentation-graphique-du-nombre-de-nouveaux-clubs-de-mère-créés-par-bureau-et-par-trimestre",
+    "title": "PROGRAMME PTME",
+    "section": "8.4 Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre",
+    "text": "8.4 Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "href": "tracking-ptme.html#représentatation-des-néophytes-intégrées-en-club-en-q4-fy25",
+    "title": "PROGRAMME PTME",
+    "section": "8.6 Représentatation des néophytes intégrées en club en Q4 FY25",
+    "text": "8.6 Représentatation des néophytes intégrées en club en Q4 FY25"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "href": "tracking-ptme.html#représentation-graphique-du-taux-de-positivité-des-enfants-eid",
+    "title": "PROGRAMME PTME",
+    "section": "12.1 Représentation graphique du taux de positivité des enfants EID",
+    "text": "12.1 Représentation graphique du taux de positivité des enfants EID"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-par-tranche-dâge-en-mois-pour-q2_fy25-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.2 Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.2 Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour Q2_FY25: mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-dans-les-temps-0---2-mois-vs-nombre-denfants-exposés-ayant-un-test-pcr-après-2-mois-3-12-mois-pour-q2_fy23-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.3 Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti",
+    "text": "12.3 Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour Q2_FY23: mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-en-club-vs-mères-non-en-club-vs-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.4 Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti",
+    "text": "12.4 Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "href": "tracking-ptme.html#nombre-denfants-exposés-ayant-un-test-pcr-positif-vs-nombre-denfants-exposés-ayant-un-test-pcr-négatif-mères-non-sur-hivhaiti",
+    "title": "PROGRAMME PTME",
+    "section": "12.5 Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti",
+    "text": "12.5 Nombre d’enfants exposés ayant un test PCR positif vs Nombre d’enfants exposés ayant un test PCR négatif : mères non sur hivhaiti"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-13",
+    "href": "tracking-ptme.html#représentation-graphique-des-présences-en-club-durant-la-semaine-écoulée-du-2025-07-07-au-2025-07-13",
+    "title": "PROGRAMME PTME",
+    "section": "7.1 Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-13)",
+    "text": "7.1 Représentation graphique des présences en club durant la semaine écoulée (du 2025-07-07 au 2025-07-13)"
+  },
+  {
+    "objectID": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-13",
+    "href": "tracking-ptme.html#représentation-graphique-des-raisons-dabsence-en-club-durant-la-période-écoulée-du-2025-07-07-au-2025-07-13",
+    "title": "PROGRAMME PTME",
+    "section": "7.2 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-13)",
+    "text": "7.2 Représentation graphique des raisons d’absence en club durant la période écoulée (du 2025-07-07 au 2025-07-13)"
+  }
+]
