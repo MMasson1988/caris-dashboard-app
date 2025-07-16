@@ -35,3 +35,4 @@ Application interactive pour le **suivi et évaluation (MEAL)** du projet **Cari
 bash
 git clone https://github.com/tonutilisateur/caris-dashboard-app.git
 cd caris-dashboard-app
+#caris-meal-app
