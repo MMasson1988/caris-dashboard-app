@@ -1,14 +1,42 @@
-# commcare_download.py
 
+# Standard library imports
 import os
+import re
 import time
-import glob
+import warnings
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+from dateutil.parser import parse
+
+# Third-party imports
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+import openpyxl
+import xlsxwriter
+import pymysql
+from sqlalchemy import create_engine
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
+# import functions
+from utils import get_commcare_odata
+# Download charges virales database from "Charges_virales_pediatriques.sql file"
+from caris_fonctions import execute_sql_query
+
+# Load environment variables from .env file
+load_dotenv('dot.env')
+pd.set_option('display.float_format', '{:.2f}'.format)  # Set float format
+# Suppress warnings
+warnings.filterwarnings('ignore')
+
 
 # Chargement des identifiants CommCare
 load_dotenv("id_cc.env")
@@ -103,6 +131,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-#================================= PHASE II =================================================================================
-
-#============================================================================================================================
+#================================= PHASE II ==============================
