@@ -193,7 +193,7 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     # Configuration générale adaptée pour Quarto
     sns.set(rc={'figure.figsize': (15, 10)})
     sns.set_style("whitegrid")
-    sns.set_context("notebook", font_scale=1.2)
+    sns.set_context("notebook", font_scale=1.5)
 
     # Agréger et trier les données
     sorted_data = df.groupby(lo_department).size().sort_values(ascending=False)
@@ -215,9 +215,9 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     )
 
     # Titre et labels
-    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=22, weight='bold')
-    ax.set_xlabel(set_xlabel, fontsize=18)
-    ax.set_ylabel(set_ylabel, fontsize=18)
+    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=24, weight='bold')
+    ax.set_xlabel(set_xlabel, fontsize=22)
+    ax.set_ylabel(set_ylabel, fontsize=22)
     #Retrait de la grille
     ax.grid(False)
 

@@ -15,7 +15,44 @@ format:
     number-sections: true
     self-contained: true
 ---
+<style>
 
+  /* Applique au titre de niveau 1 à 3 */
+  h2, h3 {
+    color: #003366;                             /* Bleu foncé pour les titres */
+    border-bottom: 2px solid #0055a5;           /* Ligne décorative sous les titres */
+    padding-bottom: 0.3em;                      /* Espace entre le titre et la ligne */
+  }
+
+  /* Applique aux en-têtes de colonne */
+  th {
+    background-color: #003366;                  /* Fond bleu foncé */
+    color: #fff;                                /* Texte blanc */
+    text-align: left;                           /* Alignement à gauche */
+    padding: 12px;                              /* Espace interne */
+  }
+
+  /* Applique aux cellules du tableau */
+  td {
+    padding: 10px;                              /* Espace interne */
+    border-top: 1px solid #ddd;                 /* Ligne de séparation entre lignes */
+  }
+
+  /* Applique une couleur de fond alternée à une ligne sur deux */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;                  /* Fond gris très clair */
+  }
+
+  /* Style pour les cartes ("cards") visuelles */
+  .card {
+    background: white;                          /* Fond blanc */
+    border: 1px solid #ddd;                     /* Bordure grise claire */
+    border-radius: 10px;                        /* Coins arrondis */
+    padding: 1.5rem;                            /* Espace interne généreux */
+    margin-bottom: 2rem;                        /* Espace entre les cartes */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);       /* Ombre portée discrète */
+  }
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
@@ -94,127 +131,7 @@ pd.set_option('display.float_format', '{:.2f}'.format)  # Set float format
 warnings.filterwarnings('ignore')
 ```
 
-```{python, echo= FALSE}
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
 
-def plot_viral_load_summary2_sns(df, age_min=0, age_max=19, start_date=None, end_date=None, title=None, output='plot', palette='viridis'):
-    df = df.copy()
-
-    # Nettoyage
-    df['age'] = pd.to_numeric(df['age'], errors='coerce')
-    df['last_viral_load_collection_date'] = pd.to_datetime(df['last_viral_load_collection_date'], errors='coerce')
-    df['arv_start_date'] = pd.to_datetime(df['arv_start_date'], errors='coerce')
-
-    # Filtrage âge
-    df = df[(df['age'] >= age_min) & (df['age'] <= age_max)]
-    if df.empty:
-        print(f"Aucune donnée pour les patients âgés de {age_min} à {age_max} ans.")
-        return None
-
-    end_date = pd.to_datetime('today')
-
-    # Étapes cascade
-    on_arv = df[df['arv_start_date'] <= end_date - pd.DateOffset(months=2)]
-    not_on_arv = df[~df.index.isin(on_arv.index)]
-
-    vl_coverage = on_arv[on_arv['last_viral_load_collection_date'] >= end_date - pd.DateOffset(months=12)]
-    not_covered = on_arv[~on_arv.index.isin(vl_coverage.index)]
-
-    suppression_col = 'indetectable_ou_inf_1000'
-    df[suppression_col] = df[suppression_col].astype(str)
-    vl_suppression = vl_coverage[vl_coverage[suppression_col].str.upper() == "OUI"]
-    not_suppressed = vl_coverage[~vl_coverage.index.isin(vl_suppression.index)]
-
-    # Output dataframe
-    if output == 'on_arv': return on_arv
-    elif output == 'not_on_arv': return not_on_arv
-    elif output == 'vl_coverage': return vl_coverage
-    elif output == 'not_covered': return not_covered
-    elif output == 'vl_suppression': return vl_suppression
-    elif output == 'not_suppressed': return not_suppressed
-    elif output == 'TX_CURR': return df
-
-    # Données pour graphique
-    Indicators = ['TX_CURR', 'On ARV ≥3mois', 'Viral Load Coverage', 'Viral Load Suppression']
-    n_1 = [df.shape[0], on_arv.shape[0], vl_coverage.shape[0], vl_suppression.shape[0]]
-    prop_impact1 = [
-        1.0,
-        on_arv.shape[0] / df.shape[0] if df.shape[0] > 0 else 0,
-        vl_coverage.shape[0] / on_arv.shape[0] if on_arv.shape[0] > 0 else 0,
-        vl_suppression.shape[0] / vl_coverage.shape[0] if vl_coverage.shape[0] > 0 else 0
-    ]
-
-    med = pd.DataFrame({
-        'Indicators': Indicators,
-        'n_1': n_1,
-        'prop_impact1': [round(p * 100, 1) for p in prop_impact1]
-    })
-
-    # Palette dynamique
-    if isinstance(palette, str):
-        colors = sns.color_palette(palette, len(med))
-    else:
-        colors = palette  # palette personnalisée passée en liste
-    color_map = dict(zip(med['Indicators'], colors))
-    med['Color'] = med['Indicators'].map(color_map)
-    med['Label'] = med.apply(lambda row: f"{row['n_1']:,} ({row['prop_impact1']}%)", axis=1)
-
-    # Titre
-    if title is None:
-        title = f"Cascade des OEV âgés de {age_min}-{age_max} ans"
-
-    # Création du graphique
-    sns.set(style="whitegrid")
-    fig, ax = plt.subplots(figsize=(12, 6))
-
-    bars = sns.barplot(
-        x='Indicators',
-        y='n_1',
-        data=med,
-        palette=color_map,
-        ax=ax
-    )
-
-    # Ajouter les annotations
-    for i, row in med.iterrows():
-        ax.text(
-            i,
-            row['n_1'] + max(med['n_1']) * 0.02,
-            row['Label'],
-            ha='center',
-            va='bottom',
-            fontsize=11,
-            fontweight='bold'
-        )
-
-    # Mise en forme
-    ax.set_title(title, fontsize=18, weight='bold')
-    ax.set_xlabel('')
-    ax.set_ylabel('Fréquence')
-    sns.despine(left=True, bottom=True)
-    ax.grid(False)
-    ax.set_facecolor('white')
-    fig.patch.set_facecolor('white')
-
-    # Annotation source
-    ax.annotate(
-        f"Source: hivhaiti / {end_date.date()}",
-        xy=(0.5, -0.15),
-        xycoords='axes fraction',
-        ha='center',
-        fontsize=10,
-        color='gray'
-    )
-
-    plt.tight_layout()
-    plt.show()
-#palette='Set2'  # ou 'Paired', 'Pastel1', etc.
-#palette=["#77198C", "#EF553B", "#00C2CC", "#F7FA63"]
-
-```
 
 ```{python, echo=FALSE}
 import matplotlib.pyplot as plt
@@ -272,7 +189,7 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     # Configuration générale adaptée pour Quarto
     sns.set(rc={'figure.figsize': (15, 10)})
     sns.set_style("whitegrid")
-    sns.set_context("notebook", font_scale=1.2)
+    sns.set_context("notebook", font_scale=1.5)
 
     # Agréger et trier les données
     sorted_data = df.groupby(lo_department).size().sort_values(ascending=False)
@@ -294,10 +211,9 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     )
 
     # Titre et labels
-    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=22, weight='bold')
-    ax.set_xlabel(set_xlabel, fontsize=18)
-    ax.set_ylabel(set_ylabel, fontsize=18)
-
+    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=24, weight='bold')
+    ax.set_xlabel(set_xlabel, fontsize=22)
+    ax.set_ylabel(set_ylabel, fontsize=22)
     #Retrait de la grille
     ax.grid(False)
 
@@ -314,6 +230,7 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
 ```
 
 # GENÉRALITÉS
+::: card
 ## Répartition des femmes enceintes par bureau
 ```{r, echo=FALSE}
 ptme_enceinte <- read_excel("ptme_enceinte.xlsx", sheet = 1)
@@ -334,7 +251,9 @@ plot_beneficiaries_by_categorie(
   set_ylabel = "Bureau"
 )
 ```
+:::
 
+:::card
 ## Liste des femmes en PTME
 ```{r, echo=FALSE}
 rptme_enceinte<-py$ptme_enceinte
@@ -360,6 +279,7 @@ DT::datatable(
   ")
 )
 ```
+:::
 
 ## Liste des accouchements délinquants
 ```{r, echo=FALSE}
@@ -388,6 +308,7 @@ DT::datatable(
 
 
 # CLUB PTME
+:::card
 ## Nombre de femmes enceintes en club par bureau
 ```{python, echo= FALSE}
 ptme_in_club = pd.read_excel("woman_in_club.xlsx",sheet_name=0)
@@ -400,7 +321,9 @@ plot_beneficiaries_by_categorie(
   set_ylabel = "office"
 )
 ```
+:::
 
+:::card
 ## Nombre de femmes enceintes non en club par bureau
 ```{python, echo= FALSE}
 ptme_not_in_club = pd.read_excel("woman_not_in_club.xlsx",sheet_name=0)
@@ -412,6 +335,8 @@ plot_beneficiaries_by_categorie(
   set_ylabel = "office"
 )
 ```
+:::
+
 
 ## Liste des PTME non en club
 ```{python, echo= FALSE}
@@ -456,6 +381,7 @@ DT::datatable(
 
 
 # COMPTAGE DE MENAGE
+
 ## Femmes enceintes avec comptage de menage
 ```{python, echo= FALSE}
 ptme_avec_comptage = pd.read_excel("ptme_avec_comptage.xlsx",sheet_name=0)
