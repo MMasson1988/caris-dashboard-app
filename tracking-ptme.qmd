@@ -1901,7 +1901,7 @@ if (nrow(clb_ptme_df) == 0) {
 
 :::card
 ## Représentation graphique des participations mensuelles au club mère
-:::card
+
 ```{r presence mensuelle, echo=FALSE}
 library(lubridate)
 library(dplyr)
@@ -2708,10 +2708,10 @@ ggplot(aes(fill=Result, y=n, x=reorder(Result,n))) +
 ```
 :::
 
-:::card
-## Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour `r paste(period,sep="_","FY25")`: mères en club vs mères non en club vs mères non sur hivhaiti
-:::
 
+## Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour `r paste(period,sep="_","FY25")`: mères en club vs mères non en club vs mères non sur hivhaiti
+
+:::card
 ```{r,fig.height=7, echo=FALSE}
 eid_ptme_club_df%>%
   select(tranche_age,in_club)%>%
@@ -2744,7 +2744,7 @@ eid_ptme_club_df1%>%
   ylab("")
 }
 ```
-
+:::
 
 
 
@@ -2769,6 +2769,7 @@ mother_club_rec<-eid_ptme_club_df1%>%
 mother_not_club_rec<-eid_ptme_club_df1%>%
   filter(in_club=="not_in_club")
 ```
+
 
 :::card
 ***Note***: Du 2024-01-01 au `r Sys.Date()`, `r sum(eid_ptme_club_df1$n)` enfants ont été testés dont `r sum(testes_0_2$n)` sont âgés entre 0 et 2 mois, `r sum(testes_2_6$n)` entre 3 et 6 mois et `r sum(testes_6_12$n)` entre 7 et 12 mois. Parmi ces enfants, `r sum(mother_not_rec$n)` d’entre eux n’ont pas de mère enregistrée sur HIV Haiti, `r sum(mother_club_rec$n)` d’entre eux ont leur mère en club et `r sum(mother_not_club_rec$n)` ont leur mère non en club.
