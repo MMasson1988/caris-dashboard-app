@@ -1909,14 +1909,14 @@ library(ggplot2)
 library(readxl)
 
 # Charger les données depuis le fichier Excel
-club_s_ptme <- read_excel("club_s_ptme_club.xlsx")
+#club_s_ptme <- read_excel("club_s_ptme_club.xlsx")
 
 # Définir la date de fin comme aujourd'hui
 end_date <- Sys.Date()
 start_date <- floor_date(end_date %m-% months(2), unit = "month")
 
 # Nettoyer et filtrer les données
-clb_ptme_df <- club_s_ptme %>%
+clb_ptme_df <- df_clb_ptme %>%
   select(
     patient_code,
     hopital,
