@@ -1396,11 +1396,11 @@ datatable(inconnu_ptme_com, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-# STATISTIQUES DE PARTICIPATION DES FEMMES PTME EN CLUB EN Q3 & EN Q4 FY24
+# STATISTIQUES DE PARTICIPATION DES FEMMES PTME EN CLUB EN Q3 & EN Q4 FY25
 
 
 :::card
-## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY24
+## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25
 ```{r,echo=FALSE}
 #writexl::write_xlsx(serv_ptme,'serv_ptme.xlsx')
 #club_q4=yes & club_q1=no
@@ -1446,7 +1446,7 @@ df_ptme_club %>%
 :::
 
 
-## Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY24 (jusqu'ici)
+## Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu'ici)
 
 
 ```{r,echo=FALSE}
@@ -1480,10 +1480,10 @@ datatable(join_cq1y_cq2n, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-# STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY24
+# STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY25
 
 :::card
-## Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY24
+## Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY25
 ```{r, echo=FALSE}
 library(dplyr)
 library(lubridate)
@@ -1568,7 +1568,7 @@ if(nrow(ptme_services) == 0){
 :::
 
 
-## Liste dynamique des femmes PTME ayant bénéficié d'au moins un (1) service en Q3 mais aucun en Q4 FY24 (jusqu'ici)
+## Liste dynamique des femmes PTME ayant bénéficié d'au moins un (1) service en Q3 mais aucun en Q4 FY25 (jusqu'ici)
 
 ```{r,echo=FALSE}
 #Table services q2=yes & q3=no
@@ -1817,10 +1817,10 @@ if (nrow(graf_clb_ptme) == 0) {
 ```
 :::
 
-# ACTIVITE DANS LES CLUBS EN Q4 FY24
+# ACTIVITE DANS LES CLUBS EN Q4 FY25
 
 :::card
-## Représentation graphique de l'effectif total des femmes PTME attendues en club en Q4 FY24  versus celles qui y ont effectivement participé
+## Représentation graphique de l'effectif total des femmes PTME attendues en club en Q4 FY25  versus celles qui y ont effectivement participé
 
 ```{r, echo=FALSE}
 library(lubridate)
@@ -1972,7 +1972,7 @@ if(nrow(clb_ptme_df) == 0){
 :::
 
 :::card
-## Représentation graphique des raisons d'absence en club en Q4 FY24 
+## Représentation graphique des raisons d'absence en club en Q4 FY25 
 ```{r, fig.height=8, eval=TRUE, echo=FALSE}
 # S'assurer que "mois" est formaté en texte "July 2025"
 graf_clb_month_ptme <- clb_ptme_df %>%
@@ -2014,7 +2014,7 @@ if(nrow(graf_clb_month_ptme) == 0){
 ```
 :::
 
-## Tableau des données décrivant les activités dans les clubs en Q4 FY24 
+## Tableau des données décrivant les activités dans les clubs en Q4 FY25 
 
 ```{r,echo=FALSE}
 if(nrow(clb_ptme_df)==0){
@@ -2150,7 +2150,7 @@ datatable(cr_club, extensions = 'Buttons', filter = 'bottom',
 
 
 :::card
-## Figure représentative des néophytes intégrées en club en Q4 FY24
+## Figure représentative des néophytes intégrées en club en Q4 FY25
 
 ```{r, eval= TRUE, echo=FALSE}
 #Data processing
@@ -2190,7 +2190,7 @@ ggplot(aes(y=n, x=reorder(office,n)))+
 :::
 
 
-## Liste des néophytes intégrées en club en Q4 FY24
+## Liste des néophytes intégrées en club en Q4 FY25
 
 ```{r,echo=FALSE}
 if(nrow(club_new_df)==0){
@@ -2207,7 +2207,7 @@ datatable(club_new_df, filter = 'bottom', extensions = 'Buttons',
 }
 ```
 
-# STATISTIQUES RELATIVES AUX PCR NON LIES EN FY24
+# STATISTIQUES RELATIVES AUX PCR NON LIES EN FY25
 
 ```{r PCR non lies,echo=FALSE, message=FALSE, warning=FALSE}
 #Reported by quarter
@@ -2284,7 +2284,7 @@ data_eid = data_eid %>%
 
 
 
-## Table des PCRs non liés en FY24
+## Table des PCRs non liés en FY25
 
 ```{r,echo=FALSE}
 df_eid<-data_eid%>%
