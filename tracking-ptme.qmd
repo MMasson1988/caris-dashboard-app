@@ -404,6 +404,7 @@ DT::datatable(
 
 # COMPTAGE DE MENAGE
 
+:::card
 ## Femmes enceintes avec comptage de menage
 ```{python, echo= FALSE}
 ptme_avec_comptage = pd.read_excel("ptme_avec_comptage.xlsx",sheet_name=0)
@@ -415,8 +416,10 @@ plot_beneficiaries_by_categorie(
   set_ylabel = "office"
 )
 ```
+:::
 
 
+:::card
 ## Femmes enceintes sans comptage de menage
 ```{python, echo= FALSE}
 ptme_sans_comptage = pd.read_excel("ptme_sans_comptage.xlsx",sheet_name=0)
@@ -428,7 +431,7 @@ plot_beneficiaries_by_categorie(
   set_ylabel = "office"
 )
 ```
-
+:::
 
 ## Liste des femmes enceintes sans comptage
 ```{python, echo=FALSE}
@@ -614,8 +617,8 @@ prev <- floor_date(d - 1, unit = "week", week_start = 1)
 after <- prev + days(6)
 
 # Affichage (optionnel)
-prev
-after
+#prev
+#after
 ```
 
 
@@ -1150,6 +1153,8 @@ distinct(patient_code, .keep_all = T)
 #accept
 ```
 
+
+# INDEX TESTING
 ```{r,echo=FALSE}
 name_part_ptme="household mother "
 compt_ptme4<-read_excel(paste(first_part,name_part_ptme,sep="",Sys.Date(),".xlsx"),sheet = 1)
@@ -1275,34 +1280,7 @@ no_accept = left_join(serv_ptme1,accept, by = 'patient_code')%>%
   filter(is_accepted == '0')
 ```
 
-
-## Liste dynamique des femmes PTME ayant au moins une (1) participation en club en Q2 ou Q3 FY24 sans comptage de ménage
-```{r,echo=FALSE}
-#Table principale de donnees
-comptage_ptme_no_0<-comm_ptme_mix%>%
-  distinct(patient_code, .keep_all = TRUE)%>%
-  filter(on_commCare == 'no' & !patient_code %in% accept$patient_code)%>%
-  mutate(site_code = substr(patient_code,0,8))
-
-comptage_ptme_no = left_join(comptage_ptme_no_0, club_infos%>%select(-c(office)), by='patient_code')
-#comptage_ptme_no = left_join(comptage_ptme_no,lookup_coord_site, by = 'site_code')
-
-if(nrow(comptage_ptme_no)==0){
-  print("Il n'y a pas d'activite")
-}else{
-DT::datatable(comptage_ptme_no, extensions = 'Buttons', filter = 'bottom',
-              options = list(dom = 'Bfrtip',
-                             columnDefs = list(list(className = 'dt-center', targets = "_all")),
-                             initComplete = JS(
-                               "function(settings, json) {",
-                               "$(this.api().table().header()).css({'background-color': '#3E4827', 'color': '#fff'});",
-                               "}"),
-                             buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                             pageLength = 4))
-}
-```
-
-
+:::card
 ## Représentation graphique des fréquences d'enfants testés, VIH-, VIH+, non testés...
 
 ***Note***: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de `r sum(enf_vih_pos$n)`.
@@ -1338,7 +1316,7 @@ df_ptme_test %>%
   ylab("")
 }
 ```
-
+:::
 
 ## Liste dynamique des filles & fils non encore testés
 
@@ -1421,6 +1399,7 @@ datatable(inconnu_ptme_com, extensions = 'Buttons', filter = 'bottom',
 # STATISTIQUES DE PARTICIPATION DES FEMMES PTME EN CLUB EN Q3 & EN Q4 FY24
 
 
+:::card
 ## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY24
 ```{r,echo=FALSE}
 #writexl::write_xlsx(serv_ptme,'serv_ptme.xlsx')
@@ -1464,7 +1443,7 @@ df_ptme_club %>%
     ylab("Fréquence")
 }
 ```
-
+:::
 
 
 ## Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY24 (jusqu'ici)
@@ -1503,7 +1482,7 @@ datatable(join_cq1y_cq2n, extensions = 'Buttons', filter = 'bottom',
 
 # STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY24
 
-
+:::card
 ## Représentation graphique des statistiques sur les femmes servies en Q3 & Q4 FY24
 ```{r, echo=FALSE}
 library(dplyr)
@@ -1538,6 +1517,7 @@ serv_ptme_app3 <- serv_ptme_app3 %>%
   )
 write_xlsx(serv_ptme_app3, path = "serv_ptme_app3.xlsx")
 ```
+
 
 ```{r,echo=FALSE}
 # Création sous-groupes
@@ -1585,6 +1565,8 @@ if(nrow(ptme_services) == 0){
     )
 }
 ```
+:::
+
 
 ## Liste dynamique des femmes PTME ayant bénéficié d'au moins un (1) service en Q3 mais aucun en Q4 FY24 (jusqu'ici)
 
@@ -1606,7 +1588,7 @@ datatable(q1yes_q2no, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-### **4.ACTIVITE DANS LES CLUBS DURANT LA SEMAINE ALLANT DU `r prev` AU `r after`**
+# ACTIVITE DANS LES CLUBS DURANT LA SEMAINE ALLANT DU `r prev` AU `r after`
 
 N.B: On exclut les cas d'abandon, de mort et de graduation.
 
@@ -1716,8 +1698,8 @@ club_s_ptme <- fetch(sess_club, n = -1)
 writexl::write_xlsx(club_s_ptme, "club_s_ptme.xlsx")
 
 # Fermer la connexion
-dbClearResult(sess_club)
-dbDisconnect(con)
+#dbClearResult(sess_club)
+#dbDisconnect(con)
 ```
 
 
@@ -1750,7 +1732,7 @@ writexl::write_xlsx(club_df_ptme, "club_df_ptme.xlsx")
 
 ```
 
-
+:::card
 ## Représentation graphique des présences en club durant la semaine écoulée (du `r prev` au `r after`)
 
 ```{r,echo=FALSE}
@@ -1790,8 +1772,9 @@ fig <- plot_ly(graf_abs_pres_ptme, labels = ~present, values = ~freq, marker = l
 fig 
 }
 ```
+:::
 
-
+:::card
 ## Représentation graphique des raisons d'absence en club durant la période écoulée (du `r prev` au `r after`)
 
 ```{r,echo=FALSE}
@@ -1832,11 +1815,11 @@ if (nrow(graf_clb_ptme) == 0) {
 }
 
 ```
-
+:::
 
 # ACTIVITE DANS LES CLUBS EN Q4 FY24
 
-
+:::card
 ## Représentation graphique de l'effectif total des femmes PTME attendues en club en Q4 FY24  versus celles qui y ont effectivement participé
 
 ```{r, echo=FALSE}
@@ -1852,8 +1835,8 @@ rough_start <- end_date %m-% months(2)
 start_date <- floor_date(rough_start, unit = "month")
 
 # Affichage
-start_date
-end_date
+#start_date
+#end_date
 
 
 clb_ptme_df <- club_s_ptme %>%
@@ -1914,7 +1897,9 @@ if (nrow(clb_ptme_df) == 0) {
 
 
 ```
+:::
 
+:::card
 ## Représentation graphique des participations mensuelles au club mère
 :::card
 ```{r presence mensuelle, echo=FALSE}
@@ -1986,6 +1971,7 @@ if(nrow(clb_ptme_df) == 0){
 ```
 :::
 
+:::card
 ## Représentation graphique des raisons d'absence en club en Q4 FY24 
 ```{r, fig.height=8, eval=TRUE, echo=FALSE}
 # S'assurer que "mois" est formaté en texte "July 2025"
@@ -2026,7 +2012,7 @@ if(nrow(graf_clb_month_ptme) == 0){
     ylab("")
 }
 ```
-
+:::
 
 ## Tableau des données décrivant les activités dans les clubs en Q4 FY24 
 
@@ -2047,7 +2033,7 @@ datatable(clb_ptme_df, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-
+:::card
 ## Représentation graphique du nombre de nouveaux clubs de mère créés par bureau et par trimestre
 
 ```{r new created club, echo=FALSE}
@@ -2088,29 +2074,40 @@ FROM
 
 #Fetch the data
 cr_club=fetch(cr_club_sql,n=-1)
+cr_club <- read_excel("cr_club.xlsx")
 ```
 
 
 
 ```{r, fig.height=5, echo=FALSE}
 cr_club <- cr_club%>%
-  select(club_name, club_type, start_date, last_session_date, Quarter) %>%
+  select(site, club_name, club_type, start_date, last_session_date, Quarter) %>%
   filter(club_type == 'Club Mere')
+# Charger les données depuis le fichier Excel
+info <- read_excel(
+  "site_info.xlsx",
+  sheet = 1,  # En R, l’index commence à 1 et non 0
+  col_types = "text"  # pour éviter la détection automatique incorrecte
+) %>%
+  select(office, site, coordonnatrices, nom_complet_agent, username_agent)
 
+# Joindre les deux dataframes sur la colonne 'site'
+cr_club <- left_join(cr_club, info, by = "site")
 
-#cr_club$office[is.na(cr_club$office)] <- "Autres"
+cr_club$office[is.na(cr_club$office)] <- "Autres"
+
 
 
 office<-cr_club%>%
-  select(club_name, Quarter)%>%
-	group_by(club_name, Quarter) %>%
+  select(office, Quarter)%>%
+	group_by(office, Quarter) %>%
   count() %>%
   ungroup()
 
 office %>%
-	group_by(club_name)%>%
+	group_by(office)%>%
 	mutate(prop=n/sum(n))%>%
-	ggplot(aes(fill=Quarter, y=n, x=reorder(club_name,n)))+
+	ggplot(aes(fill=Quarter, y=n, x=reorder(office,n)))+
 	geom_bar(position="dodge", stat="identity",color="black") +
 	geom_text(aes(label = n), fill="white",vjust=0.5,hjust=-0.3,
 				position = position_dodge(width = 0.9),size=3.3)+
@@ -2129,8 +2126,7 @@ office %>%
 	ylab("")
 
 ```
-
-
+:::
 
 
 ## Liste des nouveaux clubs mère en Q1, Q2, Q3 et Q4
@@ -2152,6 +2148,8 @@ datatable(cr_club, extensions = 'Buttons', filter = 'bottom',
 }
 ```
 
+
+:::card
 ## Figure représentative des néophytes intégrées en club en Q4 FY24
 
 ```{r, eval= TRUE, echo=FALSE}
@@ -2189,9 +2187,7 @@ ggplot(aes(y=n, x=reorder(office,n)))+
   ylab("néophytes intégrées en club")
 }
 ```
-
-
-
+:::
 
 
 ## Liste des néophytes intégrées en club en Q4 FY24
@@ -2478,7 +2474,7 @@ datatable(gross2, extensions = 'Buttons', filter = 'bottom',
 
 ## ANALYSE DES DONNEES PCR
 
-```{python, eval=TRUE, echo=FALSE}
+```{python,echo=FALSE}
 
 #Mastersheet club
 py_p_start = date.today()
@@ -2489,7 +2485,7 @@ py_end_date = date.today() + relativedelta(months = 9)
 ```
 
 
-```{r, eval=TRUE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
 #Convert python date object into R one (with single quote)
 p_start0=as.Date(py$py_p_start)
@@ -2509,7 +2505,7 @@ end_date<-sQuote(end_date0,options(useFancyQuotes = TRUE))
 
 
 
-```{r club_data}
+```{r club_data, echo=FALSE, message=FALSE, warning=FALSE}
 #Downloading the club data for women on mastersheet
 
 sql_eid_ptme= dbSendQuery(
@@ -2676,7 +2672,7 @@ eid_ptme_club_df[age >12, tranche_age := "outlier"]
 ```
 
 
-
+:::card
 ## Représentation graphique du taux de positivité des enfants EID
 
 ```{r,echo=FALSE}
@@ -2710,9 +2706,11 @@ ggplot(aes(fill=Result, y=n, x=reorder(Result,n))) +
   ylab("")
 }
 ```
+:::
 
+:::card
 ## Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour `r paste(period,sep="_","FY25")`: mères en club vs mères non en club vs mères non sur hivhaiti
-
+:::
 
 ```{r,fig.height=7, echo=FALSE}
 eid_ptme_club_df%>%
@@ -2772,9 +2770,9 @@ mother_not_club_rec<-eid_ptme_club_df1%>%
   filter(in_club=="not_in_club")
 ```
 
-
+:::card
 ***Note***: Du 2024-01-01 au `r Sys.Date()`, `r sum(eid_ptme_club_df1$n)` enfants ont été testés dont `r sum(testes_0_2$n)` sont âgés entre 0 et 2 mois, `r sum(testes_2_6$n)` entre 3 et 6 mois et `r sum(testes_6_12$n)` entre 7 et 12 mois. Parmi ces enfants, `r sum(mother_not_rec$n)` d’entre eux n’ont pas de mère enregistrée sur HIV Haiti, `r sum(mother_club_rec$n)` d’entre eux ont leur mère en club et `r sum(mother_not_club_rec$n)` ont leur mère non en club.
-
+:::
 
 
 
@@ -2858,8 +2856,6 @@ eid_ptme_club_df3%>%
 
 
 
-
-
 ```{r,echo=FALSE}
 #Calculation for numbers embedded in text
 eid_ptme_res_df_neg<-eid_ptme_club_df%>%
@@ -2926,12 +2922,13 @@ eid_ptme_res_df_pos_not_club<-eid_ptme_club_df%>%
   filter(Result %in% "positif")
 ```
 
+
+:::card
 ***Note***: Parmi les enfants testés, `r sum(eid_ptme_res_df_neg$n)` sont non détectés et `r sum(eid_ptme_res_df_pos$n)` sont dépistés positifs. Les autres résultats ne sont pas encore retournés.
 
 -	`r sum(eid_ptme_res_df_neg$n)` : `r sum(eid_ptme_res_df_neg_not_hiv$n)` mère(s) non sur HIV Haiti, `r sum(eid_ptme_res_df_neg_club$n)` mère(s) en club, `r sum(eid_ptme_res_df_neg_not_club$n)` mère(s) non en club.
 -	`r sum(eid_ptme_res_df_pos$n)` : `r sum(eid_ptme_res_df_pos_not_hiv$n)` mères non sur HIV Haiti, `r sum(eid_ptme_res_df_pos_club$n)` mère(s) en club, `r sum(eid_ptme_res_df_pos_not_club$n)` mère(s) non en club.
-
-
+:::
 
 
 ## Nombre d'enfants exposés ayant un test PCR positif vs Nombre d'enfants exposés ayant un test PCR négatif : mères non sur hivhaiti
