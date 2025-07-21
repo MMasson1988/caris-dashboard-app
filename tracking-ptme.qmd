@@ -1275,30 +1275,8 @@ no_accept = left_join(serv_ptme1,accept, by = 'patient_code')%>%
   filter(is_accepted == '0')
 ```
 
-## Représentation graphique des fréquences de femmes participant en club en Q3 ou Q4 FY24 avec un comptage de ménage ou non
-
-```{r,echo=FALSE}
-#, fig.width=5
-dat_ind_ptme<-data.frame(comptage=c("Comptage: oui","Comptage: non", "Comptage: refus"),
-                         effectif=c(length(commcare_ptme_yes$on_commCare),
-                                    length(commcare_ptme_no$on_commCare),
-                                    length(no_accept$patient_code)))
-
-#ggiraphExtra::ggDonut(dat_ind_ptme,aes(donuts=comptage,count=effectif),interactive=TRUE, alpha=5, reverse=F, palette = "Dark2")
-if(nrow(dat_ind_ptme)==0){
-  print("Il n'y a pas d'activite")
-}else{
-fig <- plot_ly(dat_ind_ptme, labels = ~comptage, values = ~effectif,
-               type = 'pie',textinfo='value+percent',
-               insidetextorientation='radial')
-
-fig  
-}
-```
 
 ## Liste dynamique des femmes PTME ayant au moins une (1) participation en club en Q2 ou Q3 FY24 sans comptage de ménage
-
-
 ```{r,echo=FALSE}
 #Table principale de donnees
 comptage_ptme_no_0<-comm_ptme_mix%>%
