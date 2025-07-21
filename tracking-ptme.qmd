@@ -458,8 +458,8 @@ datatable(rptme_zero_comptage, extensions = 'Buttons', filter = 'bottom',
 )}
 ```
 
-# PARTICIPATION EN CLUB
-## Participation en club des femmes enceintes pour cette semaine
+
+
 ```{r, echo=FALSE}
 #Modify only the end_date_club
 start_date_club='2018-01-01'
@@ -608,7 +608,7 @@ library(lubridate)
 d <- floor_date(Sys.Date(), unit = "week", week_start = 1)
 
 # Obtenir la date du lundi de la semaine précédente (1 jours avant, puis arrondi à la semaine)
-prev <- floor_date(d - 0, unit = "week", week_start = 1)
+prev <- floor_date(d - 1, unit = "week", week_start = 1)
 
 # Obtenir une date 6 jours après 'prev'
 after <- prev + days(6)
@@ -618,600 +618,6 @@ prev
 after
 ```
 
-
-```{r club_activity2, echo=FALSE}
-
-#start_date_club = '2025-01-01'
-#end_date_club = '2025-07-30'
-
-# Fixer la date de fin manuellement
-start_date_club <- as.Date("2025-01-01")
-
-# Fixer la date de début à aujourd'hui
-end_date_club <- Sys.Date()
-
-# Afficher les deux dates
-start_date_club
-end_date_club
-
-
-sess_club=dbSendQuery(
-      dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),
-      gsubfn::fn$identity("SELECT
-    IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        p.id) AS id_patient,
-        
-    lh.name AS hopital,
-    
-    CONCAT(lh.city_code, '/', lh.hospital_code) AS site_code,
-    c.name AS club_name,
-    lct.name AS club_type,
-    p.patient_code,
-    cs.date AS 'session_date(presence)',
-    lctc.name_fr AS topic,
-    a.date AS first_attendance_date,
-    b.date AS last_attendance_date,
-    aa.date as first_attendance_date_by_club,
-    COALESCE(ti.first_name, tm.first_name) AS first_name,
-    COALESCE(ti.last_name, tm.last_name) AS last_name,
-    COALESCE(ti.dob, tm.dob) AS dob,
-    coalesce(ti.is_abandoned, tm.is_abandoned) as is_abandoned,
-    coalesce( ti.is_dead, tm.is_dead) as is_dead,
-    if(tm.is_graduate=1,'Yes','Non') as graduation,
-    tm.graduation_date as graduation_date,
-    IF(ti.gender=1,'male',IF(ti.gender=2,'female',IF(ti.gender=3,'unknown',ti.gender))) as sex,
-    ss.clore,
-    ss.nbre_deparasitaires,
-    ss.nbre_preservatifs,
-    ss.nbre_vit_a,
-    ss.nbre_moustiquaires,
-    ss.code,
-    ss.is_patient_tb,
-    is_patient_on_pf,
-    adh,
-    ss.is_present as present,
-    lca.name as raison_absence
-FROM
-    session ss
-        LEFT JOIN
-    club_session cs ON cs.id = ss.id_club_session
-        LEFT JOIN
-    club c ON c.id = cs.id_club
-        LEFT JOIN
-    lookup_club_type lct ON lct.id = c.club_type
-        LEFT JOIN
-    lookup_club_topic lctc ON lctc.id = cs.topic
-        LEFT JOIN
-    patient p ON p.id = ss.id_patient
-        LEFT JOIN
-    tracking_motherbasicinfo tm ON tm.id_patient = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        ss.id_patient)
-        LEFT JOIN
-    tracking_infant ti ON ti.id_patient = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        ss.id_patient)
-        LEFT JOIN
-    lookup_hospital lh ON lh.id = c.id_hospital
-        LEFT JOIN
-    (SELECT 
-        MIN(cs1.date) AS 'date', s1.id_patient,main_id
-    FROM
-        session s1
-    LEFT JOIN club_session cs1 ON cs1.id = s1.id_club_session
-    LEFT join (select p12.*,IF(p12.linked_to_id_patient>0,p12.linked_to_id_patient,p12.id) as main_id from patient p12) pp on pp.id=s1.id_patient
-    WHERE
-        s1.is_present is not null
-    GROUP BY pp.main_id ) a ON a.main_id = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        p.id)
-        LEFT JOIN
-    (SELECT 
-        MAX(cs2.date) AS 'date', s2.id_patient
-    FROM
-        session s2
-    LEFT JOIN club_session cs2 ON cs2.id = s2.id_club_session
-    WHERE
-        s2.is_present is not null
-    GROUP BY s2.id_patient) b ON b.id_patient = ss.id_patient
-    
-    
-            LEFT JOIN
-    (SELECT 
-        MIN(cs3.date) AS 'date', s3.id_patient, cs3.id_club
-    FROM
-        session s3
-    LEFT JOIN club_session cs3 ON cs3.id = s3.id_club_session
-    WHERE
-        s3.is_present is not null
-    GROUP BY cs3.id_club, s3.id_patient) aa ON aa.id_patient = ss.id_patient and c.id=aa.id_club
-    left join lookup_club_attendance lca on lca.id=ss.is_present
-    
-    
-WHERE
-    ss.is_present is not null AND 
-    p.id IS NOT NULL
-     and cs.date between '`start_date_club`' and '`end_date_club`'
-ORDER BY CONCAT(lh.city_code, '/', lh.hospital_code) , c.name , p.patient_code , cs.date
-LIMIT 100000000"))
-
-#Fetching the data
-club_s_ptme=fetch(sess_club,n=-1)
-#head(club_s_ptme,3)
-writexl::write_xlsx(club_s_ptme,'club_s_ptme.xlsx')
-```
-
-```{r club_info, echo=FALSE}
-# Nettoyage des données
-club_s_ptme$is_abandoned[is.na(club_s_ptme$is_abandoned)] <- 0
-club_s_ptme$is_dead[is.na(club_s_ptme$is_dead)] <- 0
-club_s_ptme$raison_absence[is.na(club_s_ptme$raison_absence)] <- "blank"
-club_s_ptme$graduation[is.na(club_s_ptme$graduation) | club_s_ptme$graduation == ""] <- "Non"
-club_s_ptme$graduation_date[is.na(club_s_ptme$graduation_date)] <- as.Date("0000-00-00", format = "%Y-%m-%d")
-
-# Sélection et filtrage
-club_df_ptme <- club_s_ptme %>%
-  select(patient_code, hopital, dob, sex, club_name, club_type,
-         `session_date(presence)`, last_attendance_date, 
-         is_abandoned, is_dead, graduation, graduation_date, 
-         present, raison_absence) %>%
-  filter(
-    graduation == "Non",
-    `session_date(presence)` >= prev,
-    `session_date(presence)` <= after,
-    club_type == "Club Mere",
-    is_abandoned != 1,
-    is_dead != 1
-  )
-
-# Affichage des 3 premières lignes
-#head(club_df_ptme, 3)
-```
-
-## Représentation graphique des présences en club durant la semaine écoulée (du `r prev` au `r after`)
-```{r club, echo=FALSE}
-#Graphe absence & presence
-graf_abs_pres_ptme<-club_df_ptme%>%
-  select(present)%>%
-  group_by(present)%>%
-  count()
-
-graf_abs_pres_ptme$present<-ifelse(graf_abs_pres_ptme$present=='1','présence','absence')
-
-graf_abs_pres_ptme<-graf_abs_pres_ptme%>%
-  group_by(present)%>%
-  summarise(freq=sum(n))%>%
-  ungroup()
-
-graf_abs_pres_ptme = as.data.frame(graf_abs_pres_ptme)
-
-pres_ptme<-graf_abs_pres_ptme%>%
-  filter(present == "présence")
-
-abs_ptme<-graf_abs_pres_ptme%>%
-  filter(present == "absence")
-#graf_abs_pres_ptme
-write_xlsx(graf_abs_pres_ptme, path = "graf_abs_pres_ptme.xlsx")
-```
-
-Durant cette période, sur `r sum(graf_abs_pres_ptme$freq)` Femme(s) PTME attendues en club, `r pres_ptme$freq` était(aient) présente(s) contre `r abs_ptme$freq` qui était(aient) absente(s).
-
-
-```{r, echo=FALSE}
-colors <- c('rgb(204,204,204)', "#490B65")
-
-if(nrow(graf_abs_pres_ptme)==0){
-  print("Il n'y a pas d'activite")
-}else{
-fig <- plot_ly(graf_abs_pres_ptme, labels = ~present, values = ~freq, marker = list(colors = colors, line = list(color = 'white', width = 1)), type = 'pie',textinfo='value+percent',
-               insidetextorientation='radial')
-fig 
-}
-```
-
-
-## Représentation graphique des raisons d'absence en club durant la période écoulée (du `r prev` au `r after`)
-
-
-```{r ec, echo=FALSE}
-#Graphe raison absence
-graf_clb_ptme<-club_df_ptme%>%
-  filter(raison_absence!='1- Present')%>%
-  group_by(club_type,raison_absence)%>%
-  count()
-
-
-graf_clb_ptme$raison_absence<-sub("\\d+", "", graf_clb_ptme$raison_absence)
-graf_clb_ptme$raison_absence<-sub("[[:punct:]]+", "", graf_clb_ptme$raison_absence)
-
-if(nrow(graf_clb_ptme)==0){
-  print("Il n'y a pas d'activite")
-}else{
-graf_clb_ptme%>%
-        ggplot(aes(fill=club_type, y=n, x=reorder(raison_absence,n))) + 
-        geom_bar(fill='#0099a1',stat="identity",color="black",show.legend = FALSE) +
-        #scale_fill_brewer(palette = "Dark2")+
-        geom_label(fill="white",aes(label = format(n,big.mark = ",")),size=3.3)+
-        ggtitle("") +
-    coord_flip()+
-        labs(caption=paste("Data Source: hivhaiti",sep = " / ",Sys.Date())) +
-        theme_bw()+
-        theme(
-          plot.title = element_text(color = "black", size = 14, family="Cambria",face = "bold",hjust = 0.5),
-          plot.caption = element_text(face="italic",size=10),
-          axis.text.x = element_text(size = 12,family="Cambria"),
-          axis.title.y = element_text(size = 12,family = "Cambria"),
-          strip.text = element_text(size = 12,family="Cambria"))+
-        xlab("")+
-        ylab("Fréquence")
-}
-```
-
-## Représentation graphique de l'effectif total des femmes PTME attendues en club pour la semaine écoulée  versus celles qui y ont effectivement participé
-```{r club2, echo=FALSE}
-library(dplyr)
-library(ggplot2)
-library(lubridate)
-
-# Définir les bornes temporelles : semaine écoulée (lundi → dimanche)
-today <- Sys.Date()
-last_monday <- today - wday(today) - 5  # Lundi dernier (semaine écoulée)
-last_sunday <- last_monday + 6          # Dimanche suivant
-
-clb_ptme_df <- club_s_ptme %>%
-  select(patient_code, hopital, dob, sex, club_name, club_type,
-         `session_date(presence)`, last_attendance_date, 
-         is_abandoned, is_dead, graduation, raison_absence) %>%
-  filter((`session_date(presence)` >= last_monday & `session_date(presence)` <= last_sunday) &
-           club_type == 'Club Mere' & is_abandoned != 1 & is_dead != 1 & graduation == 'Non') %>%
-  mutate(
-    semaine = paste0("Semaine du ", format(last_monday, "%d %b"), " au ", format(last_sunday, "%d %b")),
-    site_code = substr(patient_code, 0, 8)
-  )
-
-if(nrow(clb_ptme_df) == 0){
-  print("Il n'y a pas d'activité pour la semaine écoulée.")
-} else {
-  total_ptme <- length(unique(clb_ptme_df$patient_code))
-  part_ptme <- clb_ptme_df %>%
-    filter(raison_absence == '1- Present') %>%
-    summarise(participation = n_distinct(patient_code)) %>%
-    pull(participation)
-
-  df_clb_ptme <- data.frame(var = c("Effectif", "Participation"),
-                            freq = c(total_ptme, part_ptme))
-
-  df_clb_ptme %>%
-    ggplot(aes(y = freq, x = reorder(var, freq))) + 
-   gplot(aes(y = freq, x = reorder(var, freq))) + 
-    geom_bar(fill = "#00AFBB", stat = "identity", color = "black", show.legend = FALSE) +
-    geom_label(aes(label = freq, hjust = 0.5), size = 3.3, show.legend = FALSE) +
-    coord_flip() +
-    theme_bw() +
-    labs(caption = paste("Data source: hivhaiti /", Sys.Date())) +
-    theme(panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      plot.caption = element_text(face = "italic", size = 8)) +
-    xlab("") +
-    ylab("")
-}
-
-```
-
-
-:::card
-## Représentation graphique de l'effectif total des femmes PTME attendues en club pour le bimestre en cours versus celles qui y ont effectivement participé
-
-```{r club3, message=FALSE, warning=FALSE}
-
-library(dplyr)
-library(lubridate)
-library(ggplot2)
-
-# Conversion sûre de la date si nécessaire
-club_s_ptme$`session_date(presence)` <- as.Date(club_s_ptme$`session_date(presence)`)
-
-# Définir la période d'analyse
-end_date <- Sys.Date()
-start_date <- floor_date(end_date %m-% months(2), unit = "month")
-
-# Filtrage des données PTME Club Mère
-clb_ptme_df <- club_s_ptme %>%
-  select(
-    patient_code, hopital, dob, sex, club_name, club_type,
-    `session_date(presence)`, last_attendance_date, 
-    is_abandoned, is_dead, graduation, raison_absence
-  ) %>%
-  filter(
-    `session_date(presence)` >= start_date & `session_date(presence)` <= end_date,
-    club_type == "Club Mere",
-    is_abandoned != 1,
-    is_dead != 1,
-    graduation == "Non"
-  ) %>%
-  mutate(
-    mois = paste(
-      lubridate::month(`session_date(presence)`, label = TRUE, abbr = FALSE),
-      lubridate::year(`session_date(presence)`)
-    ),
-    site_code = substr(patient_code, 1, 8)
-  )
-
-# Vérification : y a-t-il des données à afficher ?
-if (nrow(clb_ptme_df) == 0) {
-  cat("**Il n'y a pas d'activité pour la période sélectionnée.**")
-} else {
-  total_ptme <- n_distinct(clb_ptme_df$patient_code)
-
-  part_ptme <- clb_ptme_df %>%
-    filter(raison_absence == "1- Present") %>%
-    summarise(participants = n_distinct(patient_code)) %>%
-    pull(participants)
-
-  df_clb_ptme_mois <- tibble(
-    var = c("Effectif", "Participation"),
-    freq = c(total_ptme, part_ptme)
-  )
-
-  df_clb_ptme_mois %>%
-    ggplot(aes(y = freq, x = reorder(var, freq))) + 
-    geom_bar(stat = "identity", fill = "#00AFBB", color = "black") +
-    geom_label(aes(label = freq), size = 3.5) +
-    coord_flip() +
-    theme_bw() +
-    labs(caption = paste("Data source: hivhaiti /", Sys.Date())) +
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      plot.caption = element_text(face = "italic", size = 8)
-    ) +
-    xlab("") +
-    ylab("")
-}
-
-```
-:::
-
-## Représentation graphique des participations mensuelles au club mère
-:::card
-```{r presence mensuelle, echo=FALSE}
-library(lubridate)
-library(dplyr)
-library(ggplot2)
-library(readxl)
-
-# Charger les données depuis le fichier Excel
-club_s_ptme <- read_excel("club_s_ptme_club.xlsx")
-
-# Définir la date de fin comme aujourd'hui
-end_date <- Sys.Date()
-
-# Calculer la date de début : deux mois avant, au premier jour du mois
-start_date <- floor_date(end_date %m-% months(2), unit = "month")
-
-# Nettoyer et filtrer les données
-clb_ptme_df <- club_s_ptme %>%
-  select(
-    patient_code,
-    hopital,
-    dob,
-    sex,
-    club_name,
-    club_type,
-    `session_date(presence)`,
-    last_attendance_date,
-    is_abandoned,
-    is_dead,
-    graduation,
-    raison_absence
-  ) %>%
-  mutate(`session_date(presence)` = as.Date(`session_date(presence)`)) %>%
-  filter(
-    between(`session_date(presence)`, start_date, end_date),
-    club_type == "Club Mere",
-    is_abandoned != 1,
-    is_dead != 1,
-    graduation == "Non"
-  ) %>%
-  mutate(
-    mois = format(`session_date(presence)`, "%Y-%m")
-  )
-
-# Si aucune donnée : message
-if(nrow(clb_ptme_df) == 0){
-  cat("### Il n'y a pas d'activité durant cette période.\n")
-} else {
-  # Présences par mois
-  presence_par_mois <- clb_ptme_df %>%
-    filter(raison_absence == "1- Present") %>%
-    count(mois) %>%
-    arrange(mois)
-
-  # Graphique des présences
-  ggplot(presence_par_mois, aes(x = mois, y = n)) +
-    geom_col(fill = "#00AFBB", color = "black") +
-    geom_text(aes(label = n), vjust = -0.5, size = 3.5) +
-    labs(
-      title = "Présence au Club Mère par mois",
-      x = "Mois",
-      y = "Nombre de présences",
-      caption = paste("Source : hivhaiti /", Sys.Date())
-    ) +
-    theme_minimal(base_size = 12) +
-    theme(
-      panel.grid.major.x = element_blank(),
-      plot.caption = element_text(face = "italic", size = 8)
-    )
-}
-
-```
-:::
-
-## Données décrivant les activités dans les clubs pour la  semaine 
-
-```{r, echo=FALSE}
-if(nrow(clb_ptme_df)==0){
-  print("Il n'y a pas d'activite")
-}else{
-datatable(clb_ptme_df, extensions = 'Buttons', filter = 'bottom',
-          options = list(dom = 'Bfrtip',
-                         columnDefs = list(list(className = 'dt-center', targets = "_all")),
-                         initComplete = JS(
-      "function(settings, json) {",
-      "$(this.api().table().header()).css({'background-color': '#800000', 'color': '#fff'});",
-      "}"),
-    buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-    pageLength = 3
-  ),
-  callback = JS("
-    table.rows().every(function(rowIdx, tableLoop, rowLoop) {
-      $(this.node()).css({'font-size': '16px', 'height': '20px'});
-    });
-  ")
-)}
-```
-
-
-```{r club_info2, echo=FALSE}
-#Modify only the end_date_club
-start_date_club='2018-01-01'
-end_date_club='2025-07-30'
-
-
-es=dbSendQuery(
-  dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),
- 
-  gsubfn::fn$identity("SELECT w.*, sum(month(w.session_date)=10) as oct, sum(month(w.session_date)=11) as nov,
-sum(month(w.session_date)=12) as decem, sum(month(w.session_date)=1) as jan,
-sum(month(w.session_date)=2) as fev,sum(month(w.session_date)=3) as mar,
-sum(month(w.session_date)=4) as avr, sum(month(w.session_date)=5) as mai,
-sum(month(w.session_date)=6) as juin,sum(month(w.session_date)=7) as juil,
-sum(month(w.session_date)=8) as aout,sum(month(w.session_date)=9) as sep 
-FROM (SELECT
-    IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        p.id) AS id_patient,
-        
-    lh.name AS hopital,
-    CONCAT(lh.city_code, '/', lh.hospital_code) AS site_code, lh.office as office, lce.name as Commune, lnt.name as network,
-    c.name AS club_name,
-    lct.name AS club_type,
-    p.patient_code,
-    cs.date AS session_date,
-    lctc.name_fr AS topic,
-    a.date AS first_attendance_date,
-    b.date AS last_attendance_date,
-    aa.date as first_attendance_date_by_club,
-    COALESCE(ti.first_name, tm.first_name) AS first_name,
-    COALESCE(ti.last_name, tm.last_name) AS last_name,
-    COALESCE(ti.dob, tm.dob) AS dob,
-    coalesce(ti.is_abandoned, tm.is_abandoned) as is_abandoned,
-    coalesce( ti.is_dead, tm.is_dead) as is_dead,
-        if(tm.is_graduate=1,'Yes','Non') as graduation,
-    tm.graduation_date as graduation_date,
-    IF(ti.gender=1,'male',IF(ti.gender=2,'female',IF(ti.gender=3,'unknown',ti.gender))) as sex,
-    ss.clore,
-    ss.nbre_deparasitaires,
-    ss.nbre_preservatifs,
-    ss.nbre_vit_a,
-    ss.nbre_moustiquaires,
-    ss.code,
-    ss.is_patient_tb,
-    is_patient_on_pf,
-    adh
-FROM
-    session ss
-        LEFT JOIN
-    club_session cs ON cs.id = ss.id_club_session
-        LEFT JOIN
-    club c ON c.id = cs.id_club
-        LEFT JOIN
-    lookup_club_type lct ON lct.id = c.club_type
-        LEFT JOIN
-    lookup_club_topic lctc ON lctc.id = cs.topic
-        LEFT JOIN
-    patient p ON p.id = ss.id_patient
-        LEFT JOIN
-    tracking_motherbasicinfo tm ON tm.id_patient = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        ss.id_patient)
-        LEFT JOIN
-    tracking_infant ti ON ti.id_patient = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        ss.id_patient)
-        LEFT JOIN
-    lookup_hospital lh ON lh.id = c.id_hospital
-    left join lookup_commune lce on lce.id=lh.commune
-    left join lookup_network lnt on lnt.id=lh.network
-        LEFT JOIN
-    (SELECT 
-        MIN(cs1.date) AS 'date', s1.id_patient,main_id
-    FROM
-        session s1
-    LEFT JOIN club_session cs1 ON cs1.id = s1.id_club_session
-    LEFT join (select p12.*,IF(p12.linked_to_id_patient>0,p12.linked_to_id_patient,p12.id) as main_id from patient p12) pp on pp.id=s1.id_patient
-    WHERE
-        s1.is_present = 1
-    GROUP BY pp.main_id ) a ON a.main_id = IF(p.linked_to_id_patient > 0,
-        p.linked_to_id_patient,
-        p.id)
-        LEFT JOIN
-    (SELECT 
-        MAX(cs2.date) AS 'date', s2.id_patient
-    FROM
-        session s2
-    LEFT JOIN club_session cs2 ON cs2.id = s2.id_club_session
-    WHERE
-        s2.is_present = 1
-    GROUP BY s2.id_patient) b ON b.id_patient = ss.id_patient
-    
-    
-            LEFT JOIN
-    (SELECT 
-        MIN(cs3.date) AS 'date', s3.id_patient, cs3.id_club
-    FROM
-        session s3
-    LEFT JOIN club_session cs3 ON cs3.id = s3.id_club_session
-    WHERE
-        s3.is_present = 1
-    GROUP BY cs3.id_club, s3.id_patient) aa ON aa.id_patient = ss.id_patient and c.id=aa.id_club
-    
-    
-WHERE
-(cs.date between '`start_date_club`' AND '`end_date_club`') AND 
-    ss.is_present = 1 AND p.id IS NOT NULL
-ORDER BY CONCAT(lh.city_code, '/', lh.hospital_code) , c.name , p.patient_code , cs.date
-) as w group by w.patient_code
-
-LIMIT 100000000"
-))
-
-  #Fetching the data
-data_infos_club = fetch(es, n=-1)
-
-data_infos_club = data_infos_club %>%
-  filter(!office %in% c("CAY","JER"))
-
-```
-
-
-
-
-```{r club infos,echo=FALSE}
-#Data processing
-data_infos_club$is_abandoned[is.na(data_infos_club$is_abandoned)]<-0
-data_infos_club$is_dead[is.na(data_infos_club$is_dead)]<-0
-data_infos_club$graduation[is.na(data_infos_club$graduation)]<-'Non'
-data_infos_club$graduation[data_infos_club$graduation == '']<-'Non'
-data_infos_club$graduation_date[is.na(data_infos_club$graduation_date)]<-'0000-00-00'
-
-club_infos<-data_infos_club%>%
-  filter(club_type=='Club Mere')%>%
-  distinct(patient_code, .keep_all = TRUE)%>%
-  select(patient_code,hopital,office, dob,club_name,last_attendance_date,graduation, graduation_date)
-write_xlsx(club_infos, path = "club_infos.xlsx")
-```
 
 
 ```{python phone number,echo=FALSE, message=FALSE, warning=FALSE}
@@ -2531,41 +1937,115 @@ if (nrow(clb_ptme_df) == 0) {
 
 ```
 
+## Représentation graphique des participations mensuelles au club mère
+:::card
+```{r presence mensuelle, echo=FALSE}
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+
+# Charger les données depuis le fichier Excel
+club_s_ptme <- read_excel("club_s_ptme_club.xlsx")
+
+# Définir la date de fin comme aujourd'hui
+end_date <- Sys.Date()
+start_date <- floor_date(end_date %m-% months(2), unit = "month")
+
+# Nettoyer et filtrer les données
+clb_ptme_df <- club_s_ptme %>%
+  select(
+    patient_code,
+    hopital,
+    dob,
+    sex,
+    club_name,
+    club_type,
+    `session_date(presence)`,
+    last_attendance_date,
+    is_abandoned,
+    is_dead,
+    graduation,
+    raison_absence
+  ) %>%
+  mutate(`session_date(presence)` = as.Date(`session_date(presence)`)) %>%
+  filter(
+    between(`session_date(presence)`, start_date, end_date),
+    club_type == "Club Mere",
+    is_abandoned != 1,
+    is_dead != 1,
+    graduation == "Non"
+  ) %>%
+  mutate(
+    mois_date = floor_date(`session_date(presence)`, "month"),
+    mois = format(mois_date, "%B %Y")  # Format long
+  )
+
+if(nrow(clb_ptme_df) == 0){
+  cat("### Il n'y a pas d'activité durant cette période.\n")
+} else {
+  presence_par_mois <- clb_ptme_df %>%
+    filter(raison_absence == "1- Present") %>%
+    count(mois, mois_date) %>%
+    arrange(mois_date)
+
+  ggplot(presence_par_mois, aes(x = mois, y = n)) +
+    geom_col(fill = "#00AFBB", color = "black") +
+    geom_text(aes(label = n), vjust = -0.5, size = 3.5) +
+    labs(
+      title = "Présence au Club Mère par mois",
+      x = "Mois",
+      y = "Nombre de présences",
+      caption = paste("Source : hivhaiti /", Sys.Date())
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      panel.grid.major.x = element_blank(),
+      plot.caption = element_text(face = "italic", size = 8)
+    )
+}
+
+```
+:::
 
 ## Représentation graphique des raisons d'absence en club en Q4 FY24 
 ```{r, fig.height=8, eval=TRUE, echo=FALSE}
-#Graphe raison absence
-graf_clb_month_ptme<-clb_ptme_df%>%
-  filter(raison_absence!='1- Present')%>%
-  group_by(raison_absence, mois)%>%
+# S'assurer que "mois" est formaté en texte "July 2025"
+graf_clb_month_ptme <- clb_ptme_df %>%
+  filter(raison_absence != "1- Present") %>%
+  mutate(
+    mois_date = floor_date(`session_date(presence)`, "month"),
+    mois = format(mois_date, "%B %Y")
+  ) %>%
+  group_by(raison_absence, mois) %>%
   count()
 
+graf_clb_month_ptme$raison_absence <- sub("^\\d+\\s*-\\s*", "", graf_clb_month_ptme$raison_absence)
+graf_clb_month_ptme$raison_absence <- trimws(graf_clb_month_ptme$raison_absence)
 
-graf_clb_month_ptme$raison_absence<-sub("\\d+", "", graf_clb_month_ptme$raison_absence)
-graf_clb_month_ptme$raison_absence<-sub("[[:punct:]]+", "", graf_clb_month_ptme$raison_absence)
-
-if(nrow(graf_clb_month_ptme)==0){
-  print("Il n'y a pas d'activite")
-}else{
-graf_clb_month_ptme%>%
-ggplot(aes(fill=raison_absence, y=n, x=reorder(raison_absence,n))) + 
-  geom_bar(stat="identity",color="black",show.legend = FALSE) +
-  geom_label(fill="white",aes(label =n, hjust = 0.5,vjust=0.5),color="black",
-             size=3,show.legend = F)+
-  scale_fill_viridis(discrete = T, option = "D",direction=-1) +
-  coord_flip()+
-  facet_wrap(~mois,ncol = 1, scales='free_y')+
-  ggtitle(" ")+
-  labs(caption=paste("Data source: hivhaiti",sep = " / ", Sys.Date()))+
-  theme_bw()+
-  theme(
-    plot.title = element_text(color = "black", size = 13, family="cambria", face = "bold",hjust=0.5,vjust=0.8),
-    plot.caption = element_text(face="italic",size = 10),
-    axis.text.x = element_text(size = 12,family="Cambria"),
-    axis.title.y = element_text(size = 12,family = "Cambria"),
-    strip.text = element_text(size = 12))+
-  xlab("")+
-  ylab("")
+if(nrow(graf_clb_month_ptme) == 0){
+  print("Il n'y a pas d'activité")
+} else {
+  graf_clb_month_ptme %>%
+    ggplot(aes(fill = raison_absence, y = n, x = reorder(raison_absence, n))) + 
+    geom_bar(stat = "identity", color = "black", show.legend = FALSE) +
+    geom_label(fill = "white", aes(label = n), color = "black", size = 3, show.legend = FALSE) +
+    scale_fill_viridis(discrete = TRUE, option = "D", direction = -1) +
+    coord_flip() +
+    facet_wrap(~mois, ncol = 1, scales = 'free_y') +
+    labs(
+      caption = paste("Data source: hivhaiti", Sys.Date(), sep = " / ")
+    ) +
+    theme_bw() +
+    theme(
+      plot.title = element_text(color = "black", size = 13, family = "Cambria", face = "bold", hjust = 0.5, vjust = 0.8),
+      plot.caption = element_text(face = "italic", size = 10),
+      axis.text.x = element_text(size = 12, family = "Cambria"),
+      axis.title.y = element_text(size = 12, family = "Cambria"),
+      strip.text = element_text(size = 12)
+    ) +
+    xlab("") +
+    ylab("")
 }
 ```
 
@@ -2852,11 +2332,11 @@ datatable(df_eid, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-```{r delivery without pcr, echo=FALSE, results='asis'}
+```{r delivery without pcr, echo=FALSE}
 
 #Reported for the entire fiscal year
 start_date_dwp = '2025-01-01'
-end_date_dwp = '2025-07-10'
+end_date_dwp = '2025-07-30'
 
 del_pcr_sql<-dbSendQuery(
     dbConnect(MySQL(), user='caris_readonly', password='longlivecaris!!', dbname='caris_db', host='caris.cwyvkxmtzny2.us-east-1.rds.amazonaws.com'),
@@ -2910,12 +2390,12 @@ del_pcr=fetch(del_pcr_sql,n=-1)
 ```
 
 
-## GROSSESSES AJOUTEES SUR LE SYSTEME SANS INFORMATION
+# GROSSESSES AJOUTEES SUR LE SYSTEME SANS INFORMATION
 
 
 ## Table des grossesses ajoutées sur le système sans aucune information pertinente
 
-```{r grossesse}
+```{r grossesse, echo=FALSE}
 #Reported for the entire fiscal year
 
 start_date_gross = as.character(start_date0)
@@ -3020,9 +2500,7 @@ datatable(gross2, extensions = 'Buttons', filter = 'bottom',
 
 ## ANALYSE DES DONNEES PCR
 
-```{python, eval=TRUE, ech}
-
-#---------------------------------------------------------------------------------------------------------------
+```{python, eval=TRUE, echo=FALSE}
 
 #Mastersheet club
 py_p_start = date.today()
@@ -3255,10 +2733,10 @@ ggplot(aes(fill=Result, y=n, x=reorder(Result,n))) +
 }
 ```
 
-#### Figure 9.2 - Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour `r paste(period,sep="_","FY25")`: mères en club vs mères non en club vs mères non sur hivhaiti
+## Nombre d’enfants exposés ayant un test PCR par tranche d’âge en mois pour `r paste(period,sep="_","FY25")`: mères en club vs mères non en club vs mères non sur hivhaiti
 
 
-```{r,fig.height=7}
+```{r,fig.height=7, echo=FALSE}
 eid_ptme_club_df%>%
   select(tranche_age,in_club)%>%
   group_by(tranche_age,in_club)%>%
@@ -3322,7 +2800,7 @@ mother_not_club_rec<-eid_ptme_club_df1%>%
 
 
 
-#### Figure 9.3 - Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour `r paste(period,sep="_","FY23")`: mères non sur hivhaiti
+## Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour `r paste(period,sep="_","FY23")`: mères non sur hivhaiti
 
 
 ```{r, fig.height=8}
