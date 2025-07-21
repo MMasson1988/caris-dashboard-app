@@ -2779,7 +2779,7 @@ mother_not_club_rec<-eid_ptme_club_df1%>%
 
 ## Nombre d’enfants exposés ayant un test PCR dans les temps (0 - 2 mois) vs Nombre d’enfants exposés ayant un test PCR après 2 mois (3 – 12 mois) pour `r paste(period,sep="_","FY23")`: mères non sur hivhaiti
 
-
+:::card
 ```{r, fig.height=8, echo=FALSE}
 eid_ptme_club_df2<-eid_ptme_club_df%>%
   filter(Liaison_mere=="no")%>%
@@ -2814,14 +2814,14 @@ eid_ptme_club_df2%>%
   ylab("")
 }
 ```
-
+:::
 
 
 
 
 ## Nombre d'enfants  exposés ayant un test PCR positif  vs Nombre d'enfants exposés ayant un test PCR négatif : mères en club vs mères non en club vs mères non sur hivhaiti
 
-
+:::card
 ```{r,fig.height=7, echo=FALSE}
 eid_ptme_club_df3<-eid_ptme_club_df%>%
   select(in_club,Result)%>%
@@ -2854,7 +2854,7 @@ eid_ptme_club_df3%>%
   ylab("")
 }
 ```
-
+:::
 
 
 ```{r,echo=FALSE}
