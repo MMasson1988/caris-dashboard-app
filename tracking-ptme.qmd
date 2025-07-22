@@ -1398,88 +1398,6 @@ datatable(inconnu_ptme_com, extensions = 'Buttons', filter = 'bottom',
 ```
 
 
-# STATISTIQUES DE PARTICIPATION DES FEMMES PTME EN CLUB EN Q3 & EN Q4 FY25
-
-
-:::card
-## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25
-```{r,echo=FALSE}
-cq1y_cq2n<-serv_ptme %>%
-  distinct(patient_code, .keep_all = TRUE)%>%
-  filter(club_q1=="yes" & club_q2=="no" & is_dead==0 & is_abandoned == '0')
-
-#club_q4=yes & club_q1=yes
-cq1y_cq2y<-serv_ptme%>%
-  distinct(patient_code, .keep_all = TRUE)%>%
-  filter(club_q1=="yes" & club_q2=="yes")
-
-
-#club_q4=no & club_q1=yes
-cq1n_cq2y<-serv_ptme%>%
-  distinct(patient_code, .keep_all = TRUE)%>%
-  filter(club_q1=="no" & club_q2=="yes" & is_dead==0 & is_abandoned == '0')
-
-
-#Graphe club
-df_ptme_club<-data.frame(var=c("club_q2yes_q3no","club_q2yes_q3yes","club_q2no_q3yes"),freq=c(length(cq1y_cq2n$patient_code),length(cq1y_cq2y$patient_code),length(cq1n_cq2y$patient_code)))
-
-if(nrow(df_ptme_club)==0){
-  print("Il n'y a pas d'activite")
-}else{
-df_ptme_club %>%
-    ggplot(aes(y=freq, x=reorder(var,freq)))+ 
-    geom_bar(fill="#00AFBB",stat="identity",color="black",show.legend = F) +
-    geom_label(aes(label =freq, hjust = 0.5),size=3.3,show.legend = F)+
-    coord_flip()+
-    theme_bw()+
-    labs(caption=paste("Data source: hivhaiti",sep = " / ", Sys.Date()))+
-    theme(
-      plot.caption = element_text(face="italic",size = 8),
-      axis.text.x = element_text(size = 10,family="Cambria"),
-      axis.title.y = element_text(size = 10,family = "Cambria"),
-      strip.text = element_text(size = 10))+
-    #theme(axis.text.x = element_text(angle = 25, face="bold",size = 9, vjust = 0.95, hjust=1))+
-    xlab("")+
-    ylab("Fréquence")
-}
-```
-:::
-
-
-## Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu'ici)
-
-
-```{r,echo=FALSE}
-join_cq1y_cq2n <- cq1y_cq2n
-join_cq1y_cq2n <- left_join(join_cq1y_cq2n, club_infos%>%select(-c(graduation,office)), by='patient_code')%>%
-  mutate(site_code = substr(patient_code,0,8))
-#join_cq1y_cq2n <- left_join(join_cq1y_cq2n,lookup_coord_site,by='site_code')
-
-#join_cq1y_cq2n$network[is.na(join_cq1y_cq2n$network)]<-"---"
-#join_cq1y_cq2n$network[join_cq1y_cq2n$network=="NULL"]<-"---"
-
-```
-
-
-```{r,echo=FALSE}
-
-#Table de donnees
-if(nrow(join_cq1y_cq2n)==0){
-  print("Il n'y a pas d'activite")
-}else{
-datatable(join_cq1y_cq2n, extensions = 'Buttons', filter = 'bottom',
-          options = list(dom = 'Bfrtip',
-                         columnDefs = list(list(className = 'dt-center', targets = "_all")),
-                         initComplete = JS(
-                           "function(settings, json) {",
-                           "$(this.api().table().header()).css({'background-color': '#800000', 'color': '#fff'});",
-                           "}"),
-                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                         pageLength = 4))
-}
-```
-
-
 # STATISTIQUES DES SERVICES AUX FEMMES PTME EN Q3 & EN Q4 FY25
 
 :::card
@@ -1775,6 +1693,8 @@ club_trim <- club_trim %>%
   select(-session_date_presence)  # Optionnel
 ```
 
+# STATISTIQUES DE PARTICIPATION DES FEMMES PTME EN CLUB EN Q3 & EN Q4 FY25
+
 :::card
 ## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25
 ```{r,echo=FALSE}
@@ -1824,6 +1744,69 @@ df_ptme_club %>%
 }
 ```
 :::
+
+
+## Liste dynamique des femmes PTME ayant eu au moins une (1) participation en club en Q3 mais aucune en Q4 FY25 (jusqu'ici)
+
+```{r,echo=FALSE}
+info <- read_excel(
+  "site_info.xlsx",
+  sheet = 1,  # En R, l’index commence à 1 et non 0
+  col_types = "text"  # pour éviter la détection automatique incorrecte
+) %>%
+  select(office, site, coordonnatrices, nom_complet_agent, username_agent)
+join_cq1y_cq2n <- cq1y_cq2n
+join_cq1y_cq2n <- join_cq1y_cq2n %>% mutate(site = substr(patient_code,0,8))
+join_cq1y_cq2n <- left_join(join_cq1y_cq2n,info,by='site')
+
+#join_cq1y_cq2n$network[is.na(join_cq1y_cq2n$network)]<-"---"
+#join_cq1y_cq2n$network[join_cq1y_cq2n$network=="NULL"]<-"---"
+
+```
+
+```{r,echo=FALSE}
+
+#Table de donnees
+if(nrow(join_cq1y_cq2n)==0){
+  print("Il n'y a pas d'activite")
+}else{
+datatable(join_cq1y_cq2n, extensions = 'Buttons', filter = 'bottom',
+          options = list(dom = 'Bfrtip',
+                         columnDefs = list(list(className = 'dt-center', targets = "_all")),
+                         initComplete = JS(
+                           "function(settings, json) {",
+                           "$(this.api().table().header()).css({'background-color': '#800000', 'color': '#fff'});",
+                           "}"),
+                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                         pageLength = 4))
+}
+```
+
+## Liste dynamique des femmes PTME aucune participation ni en club Q3 ni aucune en Q4 FY25 (jusqu'ici)
+```{r,echo=FALSE}
+join_cq1n_cq2n <- cq1n_cq2n
+join_cq1n_cq2n <- join_cq1n_cq2n %>% mutate(site = substr(patient_code,0,8))
+join_cq1n_cq2n <- left_join(join_cq1n_cq2n,info,by='site')
+
+```
+
+```{r,echo=FALSE}
+
+#Table de donnees
+if(nrow(join_cq1n_cq2n)==0){
+  print("Il n'y a pas d'activite")
+}else{
+datatable(join_cq1n_cq2n, extensions = 'Buttons', filter = 'bottom',
+          options = list(dom = 'Bfrtip',
+                         columnDefs = list(list(className = 'dt-center', targets = "_all")),
+                         initComplete = JS(
+                           "function(settings, json) {",
+                           "$(this.api().table().header()).css({'background-color': '#800000', 'color': '#fff'});",
+                           "}"),
+                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                         pageLength = 4))
+}
+```
 
 ## Représentation graphique des présences en club durant la semaine écoulée (du `r prev` au `r after`)
 
@@ -2906,7 +2889,7 @@ mother_not_club_rec<-eid_ptme_club_df1%>%
 
 
 :::card
-***Note***: Du 2024-01-01 au `r Sys.Date()`, `r sum(eid_ptme_club_df1$n)` enfants ont été testés dont `r sum(testes_0_2$n)` sont âgés entre 0 et 2 mois, `r sum(testes_2_6$n)` entre 3 et 6 mois et `r sum(testes_6_12$n)` entre 7 et 12 mois. Parmi ces enfants, `r sum(mother_not_rec$n)` d’entre eux n’ont pas de mère enregistrée sur HIV Haiti, `r sum(mother_club_rec$n)` d’entre eux ont leur mère en club et `r sum(mother_not_club_rec$n)` ont leur mère non en club.
+***Note***: Du 2025-01-01 au `r Sys.Date()`, `r sum(eid_ptme_club_df1$n)` enfants ont été testés dont `r sum(testes_0_2$n)` sont âgés entre 0 et 2 mois, `r sum(testes_2_6$n)` entre 3 et 6 mois et `r sum(testes_6_12$n)` entre 7 et 12 mois. Parmi ces enfants, `r sum(mother_not_rec$n)` d’entre eux n’ont pas de mère enregistrée sur HIV Haiti, `r sum(mother_club_rec$n)` d’entre eux ont leur mère en club et `r sum(mother_not_club_rec$n)` ont leur mère non en club.
 :::
 
 
