@@ -1280,11 +1280,13 @@ no_accept = left_join(serv_ptme1,accept, by = 'patient_code')%>%
   filter(is_accepted == '0')
 ```
 
-:::card
+
 ## Représentation graphique des fréquences d'enfants testés, VIH-, VIH+, non testés...
-
+:::card
 ***Note***: Nous tenons à souligner que les filles & fils VIH+ avec un code ST sur CommCare sont au nombre de `r sum(enf_vih_pos$n)`.
+:::
 
+:::card
 ```{r,echo=FALSE}
 #####TESTING
 #Data processing
@@ -1402,8 +1404,6 @@ datatable(inconnu_ptme_com, extensions = 'Buttons', filter = 'bottom',
 :::card
 ## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25
 ```{r,echo=FALSE}
-#writexl::write_xlsx(serv_ptme,'serv_ptme.xlsx')
-#club_q4=yes & club_q1=no
 cq1y_cq2n<-serv_ptme %>%
   distinct(patient_code, .keep_all = TRUE)%>%
   filter(club_q1=="yes" & club_q2=="no" & is_dead==0 & is_abandoned == '0')
@@ -1732,7 +1732,99 @@ writexl::write_xlsx(club_df_ptme, "club_df_ptme.xlsx")
 
 ```
 
+```{r, echo=FALSE}
+# Sélection des colonnes et filtrage
+club_date_prev <- as.Date("2025-01-01")
+club_date_after <- Sys.Date()  # date du jour
+
+club_trim <- club_s_ptme %>%
+  select(
+    patient_code, hopital, dob, sex, club_name, club_type,
+    `session_date(presence)`, last_attendance_date,
+    is_abandoned, is_dead, graduation, graduation_date, present, raison_absence
+  ) %>%
+  filter(
+    graduation == "Non",
+    club_type == "Club Mere",
+    is_abandoned != 1,
+    is_dead != 1,
+    as.Date(`session_date(presence)`) >= club_date_prev,
+    as.Date(`session_date(presence)`) <= club_date_after
+  )
+club_trim <- club_trim %>%
+  mutate(
+    session_date_presence = as.Date(`session_date(presence)`),
+
+    club_q1 = if_else(
+      year(session_date_presence) == year(Sys.Date()) & month(session_date_presence) %in% 1:3,
+      "yes", "no", missing = "no"
+    ),
+    club_q2 = if_else(
+      year(session_date_presence) == year(Sys.Date()) & month(session_date_presence) %in% 4:6,
+      "yes", "no", missing = "no"
+    ),
+    club_q3 = if_else(
+      year(session_date_presence) == year(Sys.Date()) & month(session_date_presence) %in% 7:9,
+      "yes", "no", missing = "no"
+    ),
+    club_q4 = if_else(
+      year(session_date_presence) == year(Sys.Date()) & month(session_date_presence) %in% 10:12,
+      "yes", "no", missing = "no"
+    )
+  ) %>%
+  select(-session_date_presence)  # Optionnel
+```
+
 :::card
+## Représentation graphique des statistiques de participation en club en Q3 & Q4 FY25
+```{r,echo=FALSE}
+#writexl::write_xlsx(serv_ptme,'serv_ptme.xlsx')
+club_trim <- club_trim %>% inner_join(ptme_enceinte %>% select(patient_code), by = "patient_code")
+cq1y_cq2n<-club_trim %>%
+  distinct(patient_code, .keep_all = TRUE)%>%
+  filter(club_q1=="yes" & club_q2=="no" & is_dead==0 & is_abandoned == '0')
+
+#club_q4=yes & club_q1=yes
+cq1y_cq2y<-club_trim%>%
+  distinct(patient_code, .keep_all = TRUE)%>%
+  filter(club_q1=="yes" & club_q2=="yes")
+
+
+#club_q4=no & club_q1=yes
+cq1n_cq2y<-club_trim%>%
+  distinct(patient_code, .keep_all = TRUE)%>%
+  filter(club_q1=="no" & club_q2=="yes" & is_dead==0 & is_abandoned == '0')
+
+#club_q4=no & club_q1=yes
+cq1n_cq2n<-club_trim%>%
+  distinct(patient_code, .keep_all = TRUE)%>%
+  filter(club_q1=="no" & club_q2=="no" & is_dead==0 & is_abandoned == '0')
+
+#Graphe club
+df_ptme_club<-data.frame(var=c("club_q2yes_q3no","club_q2yes_q3yes","club_q2no_q3yes", "club_q2no_q3no"),freq=c(length(cq1y_cq2n$patient_code),length(cq1y_cq2y$patient_code),length(cq1n_cq2y$patient_code),length(cq1n_cq2n$patient_code)))
+
+if(nrow(df_ptme_club)==0){
+  print("Il n'y a pas d'activite")
+}else{
+df_ptme_club %>%
+    ggplot(aes(y=freq, x=reorder(var,freq)))+ 
+    geom_bar(fill="#00AFBB",stat="identity",color="black",show.legend = F) +
+    geom_label(aes(label =freq, hjust = 0.5),size=3.3,show.legend = F)+
+    coord_flip()+
+    theme_bw()+
+    labs(caption=paste("Data source: hivhaiti",sep = " / ", Sys.Date()))+
+    theme(
+      plot.caption = element_text(face="italic",size = 8),
+      axis.text.x = element_text(size = 10,family="Cambria"),
+      axis.title.y = element_text(size = 10,family = "Cambria"),
+      strip.text = element_text(size = 10))+
+    #theme(axis.text.x = element_text(angle = 25, face="bold",size = 9, vjust = 0.95, hjust=1))+
+    xlab("")+
+    ylab("Fréquence")
+}
+```
+:::
+
 ## Représentation graphique des présences en club durant la semaine écoulée (du `r prev` au `r after`)
 
 ```{r,echo=FALSE}
@@ -1758,9 +1850,11 @@ abs_ptme<-graf_abs_pres_ptme%>%
   filter(present == "absence")
 writexl::write_xlsx(graf_abs_pres_ptme, "graf_abs_pres_ptme.xlsx")
 ```
-
+:::card
 Durant cette période, sur `r sum(graf_abs_pres_ptme$freq)` Femme(s) PTME attendues en club, `r pres_ptme$freq` était(aient) présente(s) contre `r abs_ptme$freq` qui était(aient) absente(s).
+:::
 
+:::card
 ```{r,echo=FALSE}
 colors <- c('rgb(204,204,204)', "#490B65")
 
@@ -1815,6 +1909,55 @@ if (nrow(graf_clb_ptme) == 0) {
 }
 
 ```
+:::
+
+
+```{r, echo=FALSE}
+# Lire le fichier Excel
+#df <- read_excel("club_df_ptme.xlsx", sheet = "Sheet1")
+
+# Appliquer le filtre selon les conditions demandées
+df_clubs_uniques <- club_df_ptme %>%
+  filter(
+    present == 1,
+    graduation == "Non",
+    is_abandoned != 1,
+    is_dead != 1,
+    as.Date(`session_date(presence)`) >= prev,
+    as.Date(`session_date(presence)`) <= after
+  ) %>%
+  distinct(club_name, .keep_all = TRUE) # garder les colonnes uniques avec les autres colonnes
+
+# Nombre de clubs uniques
+nb_clubs_uniques <- nrow(df_clubs_uniques)
+
+# Créer un dataframe des jours de fonctionnement uniques
+df_jours_uniques <- club_df_ptme %>%
+  filter(
+    present == 1,
+    graduation == "Non",
+    is_abandoned != 1,
+    is_dead != 1,
+    as.Date(`session_date(presence)`) >= prev,
+    as.Date(`session_date(presence)`) <= after
+  ) %>%
+  distinct(`session_date(presence)`)
+
+# Nombre de jours de fonctionnement uniques
+nb_jours_uniques <- nrow(df_jours_uniques)
+
+# Afficher les résultats
+#print(paste("Nombre de clubs uniques :", nb_clubs_uniques))
+#print(paste("Nombre de jours de fonctionnement uniques :", nb_jours_uniques))
+
+# Optionnel : écrire les dataframes dans des fichiers Excel
+writexl::write_xlsx(df_clubs_uniques, "clubs_uniques.xlsx")
+writexl::write_xlsx(df_jours_uniques, "jours_uniques.xlsx")
+```
+
+
+:::card
+***Note*** : Durant cette semaine, il y a eu `r nrow(df_jours_uniques)` jour(s) de fonctionnement des clubs, pendant lesquels `r nrow(df_clubs_uniques)` club(s) ont pu être réalisés.
 :::
 
 # ACTIVITE DANS LES CLUBS EN Q4 FY25
@@ -1914,23 +2057,14 @@ library(readxl)
 # Définir la date de fin comme aujourd'hui
 end_date <- Sys.Date()
 start_date <- floor_date(end_date %m-% months(2), unit = "month")
-
-# Nettoyer et filtrer les données
-clb_ptme_df <- df_clb_ptme %>%
+clb_ptme_df <- club_s_ptme %>%
   select(
-    patient_code,
-    hopital,
-    dob,
-    sex,
-    club_name,
-    club_type,
-    `session_date(presence)`,
-    last_attendance_date,
-    is_abandoned,
-    is_dead,
-    graduation,
-    raison_absence
-  ) %>%
+    patient_code, hopital, dob, sex, club_name, club_type,
+    `session_date(presence)`, last_attendance_date, 
+    is_abandoned, is_dead, graduation, raison_absence
+  )
+# Nettoyer et filtrer les données
+clb_ptme_df <- clb_ptme_df %>%
   mutate(`session_date(presence)` = as.Date(`session_date(presence)`)) %>%
   filter(
     between(`session_date(presence)`, start_date, end_date),
@@ -2931,7 +3065,7 @@ eid_ptme_res_df_pos_not_club<-eid_ptme_club_df%>%
 -	`r sum(eid_ptme_res_df_pos$n)` : `r sum(eid_ptme_res_df_pos_not_hiv$n)` mères non sur HIV Haiti, `r sum(eid_ptme_res_df_pos_club$n)` mère(s) en club, `r sum(eid_ptme_res_df_pos_not_club$n)` mère(s) non en club.
 :::
 
-
+:::card
 ## Nombre d'enfants exposés ayant un test PCR positif vs Nombre d'enfants exposés ayant un test PCR négatif : mères non sur hivhaiti
 
 
@@ -2969,7 +3103,7 @@ eid_ptme_club_df4%>%
   ylab("")
 }
 ```
-
+:::
 
 ## Tableau des enfants sans test PCR
 
