@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "locale": "C",
+  "files": {
+    "app.R": {
+      "checksum": "5d41402abc4b2a76b9719d911017c592"
+    },
+    "all_gardens.xlsx": {
+      "checksum": "5d41402abc4b2a76b9719d911017c592"
+    },
+    "install_packages.R": {
+      "checksum": "5d41402abc4b2a76b9719d911017c592"
+    }
+  },
+  "packages": {
+    "shiny": {
+      "description": {
+        "Package": "shiny",
+        "Version": "1.7.5",
+        "Source": "CRAN"
+      }
+    },
+    "shinydashboard": {
+      "description": {
+        "Package": "shinydashboard", 
+        "Version": "0.7.2",
+        "Source": "CRAN"
+      }
+    },
+    "DT": {
+      "description": {
+        "Package": "DT",
+        "Version": "0.29",
+        "Source": "CRAN"
+      }
+    },
+    "plotly": {
+      "description": {
+        "Package": "plotly",
+        "Version": "4.10.2", 
+        "Source": "CRAN"
+      }
+    },
+    "readxl": {
+      "description": {
+        "Package": "readxl",
+        "Version": "1.4.3",
+        "Source": "CRAN"
+      }
+    },
+    "dplyr": {
+      "description": {
+        "Package": "dplyr",
+        "Version": "1.1.3",
+        "Source": "CRAN"
+      }
+    },
+    "lubridate": {
+      "description": {
+        "Package": "lubridate",
+        "Version": "1.9.2",
+        "Source": "CRAN"
+      }
+    },
+    "openxlsx": {
+      "description": {
+        "Package": "openxlsx",
+        "Version": "4.2.5.2",
+        "Source": "CRAN"
+      }
+    }
+  }
+}
