@@ -35,15 +35,20 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("CommCare Smart Downloader — GUI")
-        self.geometry("980x680"); self.minsize(900, 600)
+        self.geometry("980x680")
+        self.minsize(900, 600)
+        self.state('zoomed')  # Plein écran au lancement
         self.running_thread = None
         self.keep_env_file = tk.BooleanVar(value=False)
         self.headless_var = tk.BooleanVar(value=bool(getattr(downloader, "HEADLESS", False)))
-        self.email_var = tk.StringVar(); self.pass_var = tk.StringVar()
+        self.email_var = tk.StringVar()
+        self.pass_var = tk.StringVar()
         default_dir = getattr(downloader, "DOWNLOAD_DIR", str(Path.home() / "Downloads"))
         self.dir_var = tk.StringVar(value=default_dir)
         self.base_vars = []
-        self._build_ui(); self._load_expected_bases(); self._poll_log_queue()
+        self._build_ui()
+        self._load_expected_bases()
+        self._poll_log_queue()
 
     def _build_ui(self):
         form = ttk.Frame(self, padding=10); form.pack(fill="x")
@@ -66,6 +71,25 @@ class App(tk.Tk):
         self.list_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
         canvas.create_window((0,0), window=self.list_frame, anchor="nw"); canvas.configure(yscrollcommand=scroll.set)
         canvas.pack(side="left", fill="both", expand=True); scroll.pack(side="right", fill="y")
+
+        # --- Encadré Call App ---
+        callapp_frame = ttk.LabelFrame(self, text="Exécution Call App", padding=10)
+        callapp_frame.pack(fill="x", expand=False, padx=10, pady=(0,10))
+        callapp_row = ttk.Frame(callapp_frame)
+        callapp_row.pack(fill="x", pady=(0,4))
+        ttk.Label(callapp_row, text="Date de début:").pack(side="left")
+        self.start_date_var = tk.StringVar()
+        self.end_date_var = tk.StringVar()
+        self.start_date_entry = ttk.Entry(callapp_row, textvariable=self.start_date_var, width=12)
+        self.start_date_entry.pack(side="left", padx=(2,10))
+        ttk.Label(callapp_row, text="Date de fin:").pack(side="left")
+        self.end_date_entry = ttk.Entry(callapp_row, textvariable=self.end_date_var, width=12)
+        self.end_date_entry.pack(side="left", padx=(2,10))
+        ttk.Button(callapp_row, text="Exécuter Call App", command=self._on_callapp_run).pack(side="left", padx=(10,0))
+
+        # --- Encadré Dashboard PVVIH ---
+        self._build_dashboard_frame()
+
         btns = ttk.Frame(self, padding=(10,0,10,10)); btns.pack(fill="x")
         self.run_btn = ttk.Button(btns, text="▶ Lancer", command=self._on_run, width=18); self.run_btn.pack(side="left")
         ttk.Button(btns, text="🧹 Effacer logs", command=self._clear_logs).pack(side="left", padx=6)
@@ -81,17 +105,122 @@ class App(tk.Tk):
         self.text.tag_configure("CRITICAL", foreground="#d11", underline=True)
         self.status = ttk.Label(self, text="Prêt.", anchor="w", relief="sunken"); self.status.pack(fill="x", side="bottom")
 
+    def _build_dashboard_frame(self):
+        dashboard_frame = ttk.LabelFrame(self, text="Dashboard PVVIH", padding=10)
+        dashboard_frame.pack(fill="x", expand=False, padx=10, pady=(0,10))
+        dashboard_row = ttk.Frame(dashboard_frame)
+        dashboard_row.pack(fill="x", pady=(0,4))
+        ttk.Button(dashboard_row, text="Ouvrir le Dashboard PVVIH", command=self._open_dashboard_pvvih).pack(side="left", padx=(2,10))
+
+    def _open_dashboard_pvvih(self):
+        import webbrowser
+        webbrowser.open_new("https://massonmoise.shinyapps.io/dashboard-pvvih/")
+
+    def _on_callapp_run(self):
+        import subprocess
+        if hasattr(self, 'callapp_thread') and self.callapp_thread and self.callapp_thread.is_alive():
+            messagebox.showinfo("En cours", "L'analyse Call App est déjà en cours."); return
+        start_date = self.start_date_var.get().strip()
+        end_date = self.end_date_var.get().strip()
+        if not start_date or not end_date:
+            messagebox.showwarning("Dates manquantes", "Veuillez renseigner la date de début et de fin."); return
+        self.status.config(text="Exécution Call App en cours…")
+        self._append_log("\n=== LANCEMENT CALL APP ===\n", "INFO")
+        def worker():
+            try:
+                env = os.environ.copy()
+                env["START_DATE"] = start_date
+                env["END_DATE"] = end_date
+                # Appel du script call-app.py
+                proc = subprocess.Popen([sys.executable, "call-app.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=env, cwd=os.getcwd(), text=True)
+                for line in proc.stdout:
+                    self._append_log(line, "INFO")
+                proc.wait()
+                if proc.returncode == 0:
+                    self._append_log("\nCall App terminé avec succès.\n", "INFO")
+                else:
+                    self._append_log(f"\nCall App terminé avec des erreurs (code {proc.returncode}).\n", "ERROR")
+            except Exception as e:
+                self._append_log(f"Erreur lors de l'exécution Call App: {e}\n", "ERROR")
+            finally:
+                self.after(0, lambda: self.status.config(text="Terminé."))
+        self.callapp_thread = threading.Thread(target=worker, daemon=True)
+        self.callapp_thread.start()
+
     def _load_expected_bases(self):
         bases = list(getattr(downloader, "EXPECTED_BASES", [])) or list(getattr(downloader, "EXPORT_URLS", {}).keys())
         bases = sorted(bases, key=str.lower)
+        # Mapping programme
+        PROGRAM_CATEGORIES = {
+            "PTME": [],
+            "OEV": [],
+            "MUSO": [],
+            "GARDENS": [],
+            "AUTRES": [],
+        }
+        for b in bases:
+            b_low = b.lower()
+            if "ptme" in b_low or "femme" in b_low:
+                PROGRAM_CATEGORIES["PTME"].append(b)
+            elif "oev" in b_low or "enfant" in b_low:
+                PROGRAM_CATEGORIES["OEV"].append(b)
+            elif "muso" in b_low:
+                PROGRAM_CATEGORIES["MUSO"].append(b)
+            elif "garden" in b_low:
+                PROGRAM_CATEGORIES["GARDENS"].append(b)
+            else:
+                PROGRAM_CATEGORIES["AUTRES"].append(b)
+
         head = ttk.Frame(self.list_frame); head.pack(fill="x")
         self.select_all_var = tk.BooleanVar(value=True)
         ttk.Checkbutton(head, text="(Tout sélectionner / désélectionner)", variable=self.select_all_var, command=self._toggle_all).pack(side="left")
         ttk.Label(head, text="  —  Exécuter uniquement les éléments cochés").pack(side="left")
-        for b in bases:
-            var = tk.BooleanVar(value=True)
-            ttk.Checkbutton(self.list_frame, text=b, variable=var).pack(anchor="w")
-            self.base_vars.append((b, var))
+
+        self.category_frames = {}
+        # Affichage horizontal : 5 colonnes, tous les programmes sur une seule ligne
+        cats = [cat for cat in ["PTME", "OEV", "MUSO", "GARDENS", "AUTRES"] if PROGRAM_CATEGORIES[cat]]
+        n_col = 5
+        grid_frame = ttk.Frame(self.list_frame)
+        grid_frame.pack(fill="x", padx=2, pady=2)
+        self.program_select_vars = {}
+        self.program_base_vars = {cat: [] for cat in cats}
+        self.program_checkbuttons = {cat: [] for cat in cats}
+        def update_program_var(cat):
+            # Met à jour la case programme selon l'état de toutes les cases enfants
+            all_checked = all(v.get() for _, v in self.program_base_vars[cat])
+            all_unchecked = all(not v.get() for _, v in self.program_base_vars[cat])
+            if all_checked:
+                self.program_select_vars[cat].set(True)
+            elif all_unchecked:
+                self.program_select_vars[cat].set(False)
+            else:
+                # État intermédiaire (ni tout coché ni tout décoché)
+                self.program_select_vars[cat].set(False)
+        for idx, cat in enumerate(cats):
+            lf = ttk.LabelFrame(grid_frame, text=cat, padding=(6,2,6,6))
+            lf.grid(row=0, column=idx, sticky="nsew", padx=6, pady=4)
+            self.category_frames[cat] = lf
+            prog_var = tk.BooleanVar(value=True)
+            self.program_select_vars[cat] = prog_var
+            def make_toggle(cat=cat):
+                def toggle():
+                    val = self.program_select_vars[cat].get()
+                    for _, v in self.program_base_vars[cat]:
+                        v.set(val)
+                return toggle
+            ttk.Checkbutton(lf, text="Tout sélectionner/désélectionner", variable=prog_var, command=make_toggle(cat)).pack(anchor="w", pady=(0,2))
+            for b in PROGRAM_CATEGORIES[cat]:
+                var = tk.BooleanVar(value=True)
+                def make_child_callback(cat=cat, var=var):
+                    def cb(*args):
+                        update_program_var(cat)
+                    return cb
+                var.trace_add('write', make_child_callback(cat, var))
+                ttk.Checkbutton(lf, text=b, variable=var).pack(anchor="w")
+                self.base_vars.append((b, var))
+                self.program_base_vars[cat].append((b, var))
+        for c in range(n_col):
+            grid_frame.grid_columnconfigure(c, weight=1)
 
     def _toggle_all(self):
         for _, v in self.base_vars: v.set(self.select_all_var.get())
