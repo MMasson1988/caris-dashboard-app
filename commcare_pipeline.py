@@ -1,55 +1,45 @@
+# coding: utf-8
+# Description :
+#  Script d’automatisation pour se connecter à CommCare, lancer les exports personnalisés
+#  et télécharger les fichiers. Inclut des options Chrome visant à réduire les avertissements
+#  liés à TensorFlow Lite et au délégué XNNPACK (Live Caption, etc.).
 
-# Standard library imports
 import os
-import re
 import time
 import warnings
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from dateutil.parser import parse
-
-# Third-party imports
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-import openpyxl
-import xlsxwriter
-import pymysql
-from sqlalchemy import create_engine
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
-# import functions
-from utils import get_commcare_odata
-# Download charges virales database from "Charges_virales_pediatriques.sql file"
-from caris_fonctions import execute_sql_query
 
-# Load environment variables from .env file
-load_dotenv('dot.env')
-pd.set_option('display.float_format', '{:.2f}'.format)  # Set float format
-# Suppress warnings
-warnings.filterwarnings('ignore')
+# Empêcher TensorFlow d’émettre des messages de log (niveau INFO/WARNING)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
-
-# Chargement des identifiants CommCare
+# Charger les identifiants CommCare depuis les fichiers .env
+load_dotenv("dot.env")
 load_dotenv("id_cc.env")
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
 
-# Configuration du navigateur (sans dossier de téléchargement personnalisé)
-options = Options()
-options.add_argument("--start-maximized")
-driver = webdriver.Chrome(options=options)
-driver.implicitly_wait(10)
+# Configuration de Chrome avec des options pour réduire les logs et désactiver certaines fonctionnalités ML
+def build_chrome_driver() -> webdriver.Chrome:
+    options = Options()
+    options.add_argument("--start-maximized")
+    # Réduire le niveau de log général
+    options.add_argument("--disable-logging")
+    options.add_argument("--log-level=3")
+    # Désactiver les fonctionnalités ML de Chrome responsables des messages XNNPACK
+    options.add_argument("--disable-features=LiveCaption,UseMLSpeechRecognition")
+    # Ne pas lancer le profil utilisateur habituel (réduit les risques de corruption)
+    # options.add_argument("--user-data-dir=/tmp/chrome-profile")
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(10)
+    return driver
 
-# Liste des liens à télécharger
+# Liste des exports CommCare à télécharger
 DOWNLOAD_LINKS = [
     {
         "name": "Household Mother",
@@ -67,7 +57,7 @@ DOWNLOAD_LINKS = [
         "name": "CaseID",
         "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/case/download/af6c4186011182dfda68a84536231f68/"
     },
- {
+    {
         "name": "Household muso",
         "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/case/download/462626788779f3781f9b9ebcce2b1a37/"
     },
@@ -85,50 +75,94 @@ DOWNLOAD_LINKS = [
     }
 ]
 
-# 🔐 Connexion à CommCare
-def login_to_commcare():
-    print("🔐 Connexion à CommCare...")
+# Connexion à CommCare
+def login_to_commcare(driver: webdriver.Chrome) -> None:
+    print("🔐 Connexion à CommCare…")
+    # On utilise l’URL du premier lien pour déclencher la connexion
     driver.get(DOWNLOAD_LINKS[0]["url"])
-    WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, "id_auth-username")))
-    driver.find_element(By.ID, "id_auth-username").send_keys(EMAIL)
-    driver.find_element(By.ID, "id_auth-password").send_keys(PASSWORD)
-    driver.find_element(By.CSS_SELECTOR, 'button[type=submit]').click()
-    print("✅ Connexion réussie.")
-
-# 📥 Téléchargement d’un export CommCare
-def download_file(url, name):
-    print(f"\n📄 Téléchargement de « {name} »...")
-    driver.get(url)
-
     try:
-        WebDriverWait(driver, 200).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="download-export-form"]/form/div[2]/div/div[2]/div[1]/button'))
-        ).click()
-        print("⏳ Préparation du fichier...")
+        username_field = WebDriverWait(driver, 30).until(
+            EC.element_to_be_clickable((By.ID, "id_auth-username"))
+        )
+        username_field.clear()
+        username_field.send_keys(EMAIL)
+
+        password_field = driver.find_element(By.ID, "id_auth-password")
+        password_field.clear()
+        password_field.send_keys(PASSWORD)
+
+        # Essayons plusieurs sélecteurs pour trouver le bouton « Se connecter »
+        selectors = [
+            'button[type="submit"]',
+            'input[type="submit"]',
+            '.btn-primary',
+            '[name="submit"]',
+            'button.btn'
+        ]
+
+        button = None
+        for selector in selectors:
+            try:
+                button = WebDriverWait(driver, 5).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
+                )
+                break
+            except Exception:
+                continue
+
+        if button:
+            # Clic sur le bouton
+            driver.execute_script("arguments[0].scrollIntoView(true);", button)
+            time.sleep(1)
+            try:
+                button.click()
+            except Exception:
+                driver.execute_script("arguments[0].click();", button)
+            print("✅ Connexion réussie.")
+        else:
+            print("❌ Bouton de connexion introuvable.")
     except Exception as e:
-        print(f"❌ Erreur en cliquant sur « Préparer » : {e}")
+        print(f"❌ Erreur lors de la connexion : {e}")
+        driver.save_screenshot("login_error.png")
+        raise
+
+# Téléchargement d’un export CommCare
+def download_file(driver: webdriver.Chrome, url: str, name: str) -> None:
+    print(f"\n📄 Téléchargement de « {name} »…")
+    driver.get(url)
+    try:
+        prepare_btn = WebDriverWait(driver, 200).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="download-export-form"]/form/div[2]/div/div[2]/div[1]/button'))
+        )
+        prepare_btn.click()
+        print("⏳ Préparation du fichier…")
+    except Exception as e:
+        print(f"❌ Erreur en cliquant sur « Préparer » : {e}")
         return
 
     try:
         download_xpath = '//*[@id="download-progress"]/div/div/div[2]/div[1]/form/a'
-        WebDriverWait(driver, 500).until(
+        download_link = WebDriverWait(driver, 500).until(
             EC.element_to_be_clickable((By.XPATH, download_xpath))
-        ).click()
+        )
+        download_link.click()
         print("✅ Téléchargement lancé.")
-        time.sleep(5)
+        time.sleep(5)  # temporisation pour le téléchargement
     except Exception as e:
         print(f"❌ Le bouton de téléchargement n’est pas apparu : {e}")
 
-# 🧠 Fonction principale
-def main():
-    login_to_commcare()
-    
-    for doc in DOWNLOAD_LINKS:
-        download_file(doc["url"], doc["name"])
-
-    print("\n🎉 Pipeline Muso CommCare terminé avec succès.")
+def main() -> None:
+    # Initialiser Chrome avec les options appropriées
+    driver = build_chrome_driver()
+    try:
+        login_to_commcare(driver)
+        for doc in DOWNLOAD_LINKS:
+            download_file(driver, doc["url"], doc["name"])
+        print("\n🎉 Pipeline Muso CommCare terminé avec succès.")
+    finally:
+        driver.quit()
 
 if __name__ == "__main__":
+    # Suppression des warnings Python
+    warnings.filterwarnings('ignore')
     main()
-
-#================================= PHASE II ==============================

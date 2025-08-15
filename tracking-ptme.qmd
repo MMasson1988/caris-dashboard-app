@@ -466,7 +466,7 @@ datatable(rptme_zero_comptage, extensions = 'Buttons', filter = 'bottom',
 ```{r, echo=FALSE}
 #Modify only the end_date_club
 start_date_club='2018-01-01'
-end_date_club='2025-07-30'
+end_date_club='2025-08-30'
 
 
 es=dbSendQuery(

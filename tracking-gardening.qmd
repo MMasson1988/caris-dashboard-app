@@ -451,7 +451,7 @@ else:
 plot_beneficiaries_by_categorie(
     df=all_gardens,
     lo_department='beneficiary_type',
-    set_title='Nombre de futures gradués en cyle 3',
+    set_title='Nombre de bénéficiaires par office pour la période',
     set_xlabel='Bénéficiaires',
     set_ylabel='Office'
 )
@@ -596,7 +596,7 @@ DT::datatable(rgarden_sans_comptage, extensions = 'Buttons', filter = 'bottom',
 plot_beneficiaries_by_categorie(
     df=garden_last_year,
     lo_department='office',
-    set_title='Nombre de futures gradués en cyle 4',
+    set_title='Nombre bénéficiaires avec comptage actualisé',
     set_xlabel='Beneficiaires',
     set_ylabel='office'
 )
@@ -609,7 +609,7 @@ plot_beneficiaries_by_categorie(
 plot_beneficiaries_by_categorie(
     df=garden_last_more_year,
     lo_department='office',
-    set_title='Nombre de futures gradués en cyle 4',
+    set_title='Nombre bénéficiaires avec comptage non actualisé',
     set_xlabel='Beneficiaires',
     set_ylabel='office'
 )

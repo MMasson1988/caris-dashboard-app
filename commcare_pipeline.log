@@ -1,0 +1,30 @@
+2025-08-04 14:37:33,471 - INFO - \U0001f510 Connexion à CommCare...
+2025-08-04 14:37:49,080 - INFO - \u274c Erreur de connexion : Message: element not interactable
+  (Session info: chrome=138.0.7204.184)
+Stacktrace:
+	GetHandleVerifier [0x0x7ff732aae415+77285]
+	GetHandleVerifier [0x0x7ff732aae470+77376]
+	(No symbol) [0x0x7ff73287989c]
+	(No symbol) [0x0x7ff7328d1904]
+	(No symbol) [0x0x7ff7328c3458]
+	(No symbol) [0x0x7ff7328f860a]
+	(No symbol) [0x0x7ff7328c2d06]
+	(No symbol) [0x0x7ff7328f8820]
+	(No symbol) [0x0x7ff73292087f]
+	(No symbol) [0x0x7ff7328f83e3]
+	(No symbol) [0x0x7ff7328c1521]
+	(No symbol) [0x0x7ff7328c22b3]
+	GetHandleVerifier [0x0x7ff732d91efd+3107021]
+	GetHandleVerifier [0x0x7ff732d8c29d+3083373]
+	GetHandleVerifier [0x0x7ff732dabedd+3213485]
+	GetHandleVerifier [0x0x7ff732ac884e+184862]
+	GetHandleVerifier [0x0x7ff732ad055f+216879]
+	GetHandleVerifier [0x0x7ff732ab7084+113236]
+	GetHandleVerifier [0x0x7ff732ab7239+113673]
+	GetHandleVerifier [0x0x7ff732a9e298+11368]
+	BaseThreadInitThunk [0x0x7ff9e044e8d7+23]
+	RtlUserThreadStart [0x0x7ff9e239c34c+44]
+
+2025-08-04 14:39:46,386 - INFO - \U0001f510 Connexion à CommCare...
+2025-08-04 14:40:10,594 - INFO - \u274c Erreur lors de la connexion : Message: 
+
