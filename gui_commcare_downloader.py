@@ -4,6 +4,9 @@ import os, sys, threading, queue, logging
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
+#from utils import file_matches_today
+import re
+from datetime import datetime
 
 MODULE_NAME = "commcare_downloader"
 ID_ENV_FILENAME = "id_cc.env"
@@ -66,11 +69,15 @@ class App(tk.Tk):
         row3 = ttk.Frame(form); row3.pack(fill="x", pady=(0,8))
         ttk.Checkbutton(row3, text="Conserver id_cc.env (ne pas supprimer après)", variable=self.keep_env_file).pack(side="left")
         sel = ttk.LabelFrame(self, text="Exports CommCare à télécharger", padding=10); sel.pack(fill="both", expand=False, padx=10, pady=(0,10))
-        canvas = tk.Canvas(sel, height=160); scroll = ttk.Scrollbar(sel, orient="vertical", command=canvas.yview)
+        canvas = tk.Canvas(sel, height=200); scroll = ttk.Scrollbar(sel, orient="vertical", command=canvas.yview)
         self.list_frame = ttk.Frame(canvas)
         self.list_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
         canvas.create_window((0,0), window=self.list_frame, anchor="nw"); canvas.configure(yscrollcommand=scroll.set)
         canvas.pack(side="left", fill="both", expand=True); scroll.pack(side="right", fill="y")
+
+        # --- Lancer button just after export box ---
+        lancer_frame = ttk.Frame(self, padding=(10,0,10,0)); lancer_frame.pack(fill="x")
+        self.run_btn = ttk.Button(lancer_frame, text="▶ Lancer le téléchargement", command=self._on_run, width=25); self.run_btn.pack(side="left")
 
         # --- Encadré Call App ---
         callapp_frame = ttk.LabelFrame(self, text="Exécution Call App", padding=10)
@@ -91,7 +98,6 @@ class App(tk.Tk):
         self._build_dashboard_frame()
 
         btns = ttk.Frame(self, padding=(10,0,10,10)); btns.pack(fill="x")
-        self.run_btn = ttk.Button(btns, text="▶ Lancer", command=self._on_run, width=18); self.run_btn.pack(side="left")
         ttk.Button(btns, text="🧹 Effacer logs", command=self._clear_logs).pack(side="left", padx=6)
         ttk.Button(btns, text="📂 Ouvrir dossier", command=self._open_folder).pack(side="left")
         ttk.Button(btns, text="Quitter", command=self._on_quit).pack(side="right")
@@ -152,25 +158,25 @@ class App(tk.Tk):
         bases = sorted(bases, key=str.lower)
         # Mapping programme
         PROGRAM_CATEGORIES = {
+            "CALL":[],
             "PTME": [],
             "OEV": [],
             "MUSO": [],
-            "GARDENS": [],
-            "AUTRES": [],
+            "GARDENS": []
         }
         for b in bases:
             b_low = b.lower()
-            if "ptme" in b_low or "femme" in b_low:
+            if "appels" in b_low or "visite" in b_low:
+                PROGRAM_CATEGORIES["CALL"].append(b)            
+            elif "ptme with" in b_low or "officiel" in b_low or "mother" in b_low:
                 PROGRAM_CATEGORIES["PTME"].append(b)
-            elif "oev" in b_low or "enfant" in b_low:
+            elif "child" in b_low or "caseid" in b_low or "household_child" in b_low:
                 PROGRAM_CATEGORIES["OEV"].append(b)
             elif "muso" in b_low:
                 PROGRAM_CATEGORIES["MUSO"].append(b)
-            elif "garden" in b_low:
+            else :
                 PROGRAM_CATEGORIES["GARDENS"].append(b)
-            else:
-                PROGRAM_CATEGORIES["AUTRES"].append(b)
-
+                
         head = ttk.Frame(self.list_frame); head.pack(fill="x")
         self.select_all_var = tk.BooleanVar(value=True)
         ttk.Checkbutton(head, text="(Tout sélectionner / désélectionner)", variable=self.select_all_var, command=self._toggle_all).pack(side="left")
@@ -178,7 +184,7 @@ class App(tk.Tk):
 
         self.category_frames = {}
         # Affichage horizontal : 5 colonnes, tous les programmes sur une seule ligne
-        cats = [cat for cat in ["PTME", "OEV", "MUSO", "GARDENS", "AUTRES"] if PROGRAM_CATEGORIES[cat]]
+        cats = [cat for cat in ["CALL","PTME", "OEV", "MUSO", "GARDENS"] if PROGRAM_CATEGORIES[cat]]
         n_col = 5
         grid_frame = ttk.Frame(self.list_frame)
         grid_frame.pack(fill="x", padx=2, pady=2)
@@ -273,6 +279,21 @@ class App(tk.Tk):
         self.run_btn.config(state="disabled"); self.status.config(text="Exécution en cours…"); self._append_log("\n=== LANCEMENT ===\n", "INFO")
         def worker():
             try:
+                # Correction : filtrer les exports déjà présents AVANT d'appeler main_enhanced
+                def list_xlsx(folder):
+                    return [str(f) for f in Path(folder).glob("*.xlsx")]
+                filtered = []
+                for b in selected:
+                    if any(file_matches_today(b, f) for f in list_xlsx(dl_dir)):
+                        logging.getLogger().info(f"⏩ Fichier déjà présent pour {b}. Aucun téléchargement lancé (appel GUI).")
+                    else:
+                        filtered.append(b)
+                if not filtered:
+                    logging.getLogger().info("Tous les fichiers sélectionnés existent déjà pour aujourd'hui. Aucun téléchargement lancé.")
+                    self.after(0, lambda: self.run_btn.config(state="normal"))
+                    self.after(0, lambda: self.status.config(text="Aucun téléchargement lancé."))
+                    return
+                downloader.EXPECTED_BASES = filtered
                 downloader.main_enhanced()
             except Exception as e:
                 logging.getLogger().exception(f"Erreur pendant l'exécution: {e}")
@@ -287,6 +308,13 @@ class App(tk.Tk):
         if self.running_thread and self.running_thread.is_alive():
             if not messagebox.askyesno("Quitter ?", "Un traitement est en cours. Quitter quand même ?"): return
         self.destroy()
+
+def file_matches_today(base, fname):
+    today = datetime.today().strftime('%Y-%m-%d')
+    base_norm = base.lower().replace(" ", "_")
+    fname_norm = os.path.basename(fname).lower().replace(" ", "_")
+    pat = re.compile(rf"^{re.escape(base_norm)}(\s*\(created\s+\d{{4}}-\d{{2}}-\d{{2}}\))?\s+{today}(?:\s+\(\d+\))?\.xlsx$")
+    return bool(pat.match(fname_norm))
 
 if __name__ == "__main__":
     App().mainloop()

@@ -21,6 +21,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 from selenium.webdriver.common.action_chains import ActionChains
 
+from utils import file_matches_today
+
 # ===================== CONFIG =====================
 DOWNLOAD_DIR = r"C:\Users\Moise\Downloads\caris-dashboard-app\data"
 
@@ -173,7 +175,13 @@ def build_pattern_with_today(base: str) -> re.Pattern:
     return re.compile(pat, re.IGNORECASE)
 
 def file_matches_today(base: str, filename: str) -> bool:
-    return bool(build_pattern_with_today(base).match(filename))
+    # Normalisation pour éviter les faux négatifs (casse, espaces)
+    today = today_str()
+    base_norm = base.lower().replace(" ", "_")
+    fname_norm = os.path.basename(filename).lower().replace(" ", "_")
+    # Pattern robuste pour tous les cas
+    pat = re.compile(rf"^{re.escape(base_norm)}(\s*\(created\s+\d{{4}}-\d{{2}}-\d{{2}}\))?\s+{today}(?:\s+\(\d+\))?\.xlsx$")
+    return bool(pat.match(fname_norm))
 
 # ===================== VERIFICATION =====================
 def check_existing_files(expected_bases: List[str], folder_path: str) -> Tuple[List[str], Dict[str, List[str]]]:
@@ -372,6 +380,11 @@ def download_with_verification(export_base: str, driver, max_retries: int = MAX_
     actual_retries = 2 if export_base in HEAVY_FILES else max_retries
 
     for attempt in range(1, actual_retries + 1):
+        # Vérifie si le fichier existe déjà AVANT de tenter quoi que ce soit (sécurité renforcée)
+        if any(file_matches_today(export_base, f) for f in list_xlsx(DOWNLOAD_DIR)):
+            log.info(f"⏩ Fichier déjà présent pour {export_base} (avant tentative {attempt}). Aucun téléchargement lancé.")
+            return True
+
         log.info(f"Téléchargement de {target_hint} (tentative {attempt}/{actual_retries})…")
         cleanup_orphan_crdownload(DOWNLOAD_DIR)
 
@@ -500,26 +513,35 @@ def main_enhanced(driver=None):
             failed_files: List[str] = []
 
             for base in files_to_download:
+                # Vérification stricte AVANT chaque tentative, même en cas de relance
+                if any(file_matches_today(base, f) for f in list_xlsx(DOWNLOAD_DIR)):
+                    log.info(f"⏩ Fichier déjà présent pour {base}. Aucun téléchargement lancé.")
+                    successful_downloads += 1
+                    continue
+
                 log.info(f"📥 Début du téléchargement: {expected_filename_for_today(base)}")
                 ok = download_with_verification(base, driver, max_retries=MAX_RETRIES_PER_FILE)
                 if ok:
                     successful_downloads += 1
                     log.info(f"✅ Téléchargement réussi pour: {base}")
-                    # Nettoyage immédiat des doublons après chaque téléchargement
                     cleanup_duplicate_files(DOWNLOAD_DIR)
                 else:
                     failed_files.append(base)
                     log.warning(f"❌ Téléchargement échoué pour: {base}")
 
+            # Filtrer à nouveau les bases déjà téléchargées pour la prochaine passe
+            files_to_download = [
+                b for b in failed_files
+                if not any(file_matches_today(b, f) for f in list_xlsx(DOWNLOAD_DIR))
+            ]
             log.info("Résultats Passe %d:", current_pass)
             log.info("   Réussis: %d", successful_downloads)
-            log.info("   Échoués: %d", len(failed_files))
-            if failed_files:
-                ff_disp = [expected_filename_for_today(b) for b in failed_files]
+            log.info("   Échoués: %d", len(files_to_download))
+            if files_to_download:
+                ff_disp = [expected_filename_for_today(b) for b in files_to_download]
                 log.info("   Fichiers échoués: %s", human_list(ff_disp))
 
             total_success += successful_downloads
-            files_to_download = failed_files
             current_pass += 1
 
         # Rapport final

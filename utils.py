@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timedelta
 # Get system timezone
 import time
+import re
 load_dotenv()
 
 def get_commcare_odata(url, auth_credentials, filter_params):
@@ -113,3 +114,14 @@ def is_groupe_active(row):
     if (pd.isnull(row['is_inactive']) or row['is_inactive']==0) and (row['is_graduated']==0 or pd.isnull(row['is_graduated'])):
         return "yes"
     return "no"
+
+import re
+from datetime import datetime
+import os
+
+def file_matches_today(base, fname):
+    today = datetime.today().strftime('%Y-%m-%d')
+    base_norm = base.lower().replace(" ", "_")
+    fname_norm = os.path.basename(fname).lower().replace(" ", "_")
+    pat = re.compile(rf"^{re.escape(base_norm)}\s+{today}(?:\s+\(\d+\))?\.xlsx$")
+    return bool(pat.match(fname_norm))
