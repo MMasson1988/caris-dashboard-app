@@ -1,0 +1,8 @@
+# Required R packages for shinyapps.io deployment
+shiny
+shinydashboard
+DT
+dplyr
+ggplot2
+plotly
+readxl
