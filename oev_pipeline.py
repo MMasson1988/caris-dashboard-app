@@ -30,49 +30,6 @@ from utils import get_commcare_odata
 # Download charges virales database from "Charges_virales_pediatriques.sql file"
 from caris_fonctions import execute_sql_query
 
-# Load environment variables from .env file
-load_dotenv('dot.env')
-pd.set_option('display.float_format', '{:.2f}'.format)  # Set float format
-# Suppress warnings
-warnings.filterwarnings('ignore')
-
-
-# Charger les identifiants
-load_dotenv('id_cc.env')
-email = os.getenv('EMAIL')
-password_cc = os.getenv('PASSWORD')
-
-# Configurer le navigateur
-options = Options()
-options.add_argument("start-maximized")
-driver = webdriver.Chrome(options=options)
-driver.implicitly_wait(10)
-
-wait = WebDriverWait(driver, 120)
-
-# Fonction de connexion
-def commcare_login():
-    driver.get(
-        'https://www.commcarehq.org/a/caris-test/data/export/custom/new/case/download/0379abcdafdf9979863c2d634792b5a8/'
-    )
-    wait.until(EC.presence_of_element_located((By.ID, "id_auth-username"))).send_keys(email)
-    driver.find_element(By.ID, "id_auth-password").send_keys(password_cc)
-    driver.find_element(By.CSS_SELECTOR, 'button[type=submit]').click()
-
-# Connexion
-commcare_login()
-
-# Cliquer sur "Prepare export"
-prepare_btn_xpath = '//*[@id="download-export-form"]/form/div[2]/div/div[2]/div[1]/button'
-wait.until(EC.element_to_be_clickable((By.XPATH, prepare_btn_xpath))).click()
-
-# Attendre que le lien de téléchargement apparaisse
-download_link_xpath = '//*[@id="download-progress"]//form/a'
-download_link = wait.until(EC.element_to_be_clickable((By.XPATH, download_link_xpath)))
-download_link.click()
-time.sleep(30)
-
-driver.quit()
 
 
 # ========== FILTRAGE OEV ==========
@@ -136,7 +93,7 @@ def main():
 
     # Étape 2 : Charger le fichier téléchargé
     today_str = datetime.today().strftime('%Y-%m-%d')
-    path = f"~/Downloads/All_child_PatientCode_CaseID {today_str}.xlsx"
+    path = f"~/Downloads/caris-dashboard-app/data/All_child_PatientCode_CaseID {today_str}.xlsx"
     caseid = pd.read_excel(os.path.expanduser(path))
 
     # Étape 3 : Charger la base de données charges virales

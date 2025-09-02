@@ -8,7 +8,7 @@ from datetime import datetime
 def main():
     # Étape 1 : Définir le nom du fichier
     today_str = datetime.today().strftime('%Y-%m-%d')
-    garden_path = os.path.expanduser(f"~/Downloads/All Gardens {today_str}.xlsx")
+    garden_path = os.path.expanduser(f"~/Downloads/caris-dashboard-app/data/All Gardens {today_str}.xlsx")
 
     # Étape 2 : Vérifier l'existence du fichier principal
     if not os.path.exists(garden_path):

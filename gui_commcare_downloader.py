@@ -4,8 +4,6 @@ import os, sys, threading, queue, logging
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-#from utils import file_matches_today
-import re
 from datetime import datetime
 
 MODULE_NAME = "commcare_downloader"
@@ -117,6 +115,15 @@ class App(tk.Tk):
         dashboard_row = ttk.Frame(dashboard_frame)
         dashboard_row.pack(fill="x", pady=(0,4))
         ttk.Button(dashboard_row, text="Ouvrir le Dashboard PVVIH", command=self._open_dashboard_pvvih).pack(side="left", padx=(2,10))
+        # Nouveau bouton pour lancer RStudio
+        ttk.Button(dashboard_row, text="Ouvrir RStudio", command=self._run_rstudio).pack(side="left", padx=(2,10))
+
+    def _run_rstudio(self):
+        import subprocess
+        try:
+            subprocess.Popen([sys.executable, "lancer_rstudio.py"], cwd=os.getcwd())
+        except Exception as e:
+            messagebox.showerror("Erreur", f"Impossible de lancer RStudio : {e}")
 
     def _open_dashboard_pvvih(self):
         import webbrowser
@@ -124,34 +131,10 @@ class App(tk.Tk):
 
     def _on_callapp_run(self):
         import subprocess
-        if hasattr(self, 'callapp_thread') and self.callapp_thread and self.callapp_thread.is_alive():
-            messagebox.showinfo("En cours", "L'analyse Call App est déjà en cours."); return
-        start_date = self.start_date_var.get().strip()
-        end_date = self.end_date_var.get().strip()
-        if not start_date or not end_date:
-            messagebox.showwarning("Dates manquantes", "Veuillez renseigner la date de début et de fin."); return
-        self.status.config(text="Exécution Call App en cours…")
-        self._append_log("\n=== LANCEMENT CALL APP ===\n", "INFO")
-        def worker():
-            try:
-                env = os.environ.copy()
-                env["START_DATE"] = start_date
-                env["END_DATE"] = end_date
-                # Appel du script call-app.py
-                proc = subprocess.Popen([sys.executable, "call-app.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=env, cwd=os.getcwd(), text=True)
-                for line in proc.stdout:
-                    self._append_log(line, "INFO")
-                proc.wait()
-                if proc.returncode == 0:
-                    self._append_log("\nCall App terminé avec succès.\n", "INFO")
-                else:
-                    self._append_log(f"\nCall App terminé avec des erreurs (code {proc.returncode}).\n", "ERROR")
-            except Exception as e:
-                self._append_log(f"Erreur lors de l'exécution Call App: {e}\n", "ERROR")
-            finally:
-                self.after(0, lambda: self.status.config(text="Terminé."))
-        self.callapp_thread = threading.Thread(target=worker, daemon=True)
-        self.callapp_thread.start()
+        try:
+            subprocess.Popen([sys.executable, "call-app.py"], cwd=os.getcwd())
+        except Exception as e:
+            messagebox.showerror("Erreur", f"Impossible d'exécuter call-app.py : {e}")
 
     def _load_expected_bases(self):
         bases = list(getattr(downloader, "EXPECTED_BASES", [])) or list(getattr(downloader, "EXPORT_URLS", {}).keys())
@@ -279,21 +262,6 @@ class App(tk.Tk):
         self.run_btn.config(state="disabled"); self.status.config(text="Exécution en cours…"); self._append_log("\n=== LANCEMENT ===\n", "INFO")
         def worker():
             try:
-                # Correction : filtrer les exports déjà présents AVANT d'appeler main_enhanced
-                def list_xlsx(folder):
-                    return [str(f) for f in Path(folder).glob("*.xlsx")]
-                filtered = []
-                for b in selected:
-                    if any(file_matches_today(b, f) for f in list_xlsx(dl_dir)):
-                        logging.getLogger().info(f"⏩ Fichier déjà présent pour {b}. Aucun téléchargement lancé (appel GUI).")
-                    else:
-                        filtered.append(b)
-                if not filtered:
-                    logging.getLogger().info("Tous les fichiers sélectionnés existent déjà pour aujourd'hui. Aucun téléchargement lancé.")
-                    self.after(0, lambda: self.run_btn.config(state="normal"))
-                    self.after(0, lambda: self.status.config(text="Aucun téléchargement lancé."))
-                    return
-                downloader.EXPECTED_BASES = filtered
                 downloader.main_enhanced()
             except Exception as e:
                 logging.getLogger().exception(f"Erreur pendant l'exécution: {e}")

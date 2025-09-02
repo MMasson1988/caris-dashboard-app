@@ -284,7 +284,7 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     # Configuration générale adaptée pour Quarto
     sns.set(rc={'figure.figsize': (15, 10)})
     sns.set_style("whitegrid")
-    sns.set_context("notebook", font_scale=1.2)
+    sns.set_context("notebook", font_scale=1.5)
 
     # Agréger et trier les données
     sorted_data = df.groupby(lo_department).size().sort_values(ascending=False)
@@ -306,16 +306,15 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     )
 
     # Titre et labels
-    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=16, weight='bold')
-    ax.set_xlabel(set_xlabel, fontsize=14)
-    ax.set_ylabel(set_ylabel, fontsize=14)
-
+    ax.set_title(f"{set_title}\nTotal bénéficiaires : {total_active_patients}", fontsize=24, weight='bold')
+    ax.set_xlabel(set_xlabel, fontsize=22)
+    ax.set_ylabel(set_ylabel, fontsize=22)
     #Retrait de la grille
     ax.grid(False)
 
     # Ajout des valeurs sur les barres
     for container in ax.containers:
-        ax.bar_label(container, padding=3, fontsize=12, color='black')
+        ax.bar_label(container, padding=5, fontsize=26, weight="bold", color='black')
 
     # Nettoyage des bordures
     sns.despine()
@@ -760,21 +759,35 @@ DT::datatable(oev_sans_comptage, extensions = 'Buttons', filter = 'bottom',
                                                           buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
                                                           pageLength = 6))
 ```
-## Liste des enfants avec comptage non actualisée
-```{python, echo= FALSE}
-```
 
 
 
-# INDEX TESTING PEDIATRIQUE
-
-## Répartition des fatries selon leur statut de dépistage
 ```{python, echo= FALSE}
 # Charger et partager hmm dans l'environnement Python
 stat_index = pd.read_excel("hhm_club.xlsx", sheet_name=0)
-#stat_index.head(2)
+info_oev = pd.read_excel(
+    "site_info.xlsx",
+    sheet_name=0,
+    usecols=["site", "coordonnatrices", "nom_complet_agent", "username_agent","office"])
 ```
 
+## Représentation graphique des bénéficiaires indirects par bureau
+:::card
+```{python, echo=FALSE}
+stat_index["site"] = stat_index["patient_code"].str[:8]
+stat_index = pd.merge(stat_index, info_oev, on="site", how="left")
+plot_beneficiaries_by_categorie(
+  df = stat_index,
+  lo_department = "office",
+  set_title = "Nombre de bénéficiaires indirects par bureau",
+  set_xlabel = "Nombre de bénéficiaires indirects",
+  set_ylabel = "Bureau"
+)
+```
+:::
+
+# INDEX TESTING PEDIATRIQUE
+## Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…
 ```{r, echo= FALSE}
 #Effectif fratrie
 # S'assurer que reticulate est chargé

@@ -228,6 +228,8 @@ def plot_beneficiaries_by_categorie(df, lo_department, set_title, set_xlabel, se
     plt.tight_layout()
     plt.show()
 ```
+
+
 ```{r, echo=FALSE}
 library(lubridate)
 
@@ -1116,7 +1118,7 @@ write_xlsx(serv_ptme_app1, path = "serv_ptme_app1.xlsx")
 library(readxl)
 library(dplyr)
 # Définir le chemin de base
-first_part <- "C:\\Users\\moise\\Downloads\\"
+first_part <- "C:\\Users\\moise\\Downloads\\caris-dashboard-app\\data\\"
 
 # Charger les données du fichier "Ajout de menages ptme [officiel] <date>.xlsx"
 name_part_ptme <- "Ajout de menages ptme [officiel] "
@@ -1154,7 +1156,7 @@ distinct(patient_code, .keep_all = T)
 ```
 
 
-# INDEX TESTING
+
 ```{r,echo=FALSE}
 name_part_ptme="household mother "
 compt_ptme4<-read_excel(paste(first_part,name_part_ptme,sep="",Sys.Date(),".xlsx"),sheet = 1)
@@ -1189,9 +1191,26 @@ stat_ptme_index<-compt_ptme1%>%
 
 stat_ptme_index<-left_join(comm_ptme_mix,stat_ptme_index,by="patient_code")%>%
   filter(!is.na(caseid))
+write_xlsx(stat_ptme_index, "stat_ptme_index.xlsx")
 ```
 
 
+## Représentation graphique des bénéficiaires indirects par bureau
+:::card
+```{python, echo=FALSE}
+stat_ptme_index = pd.read_excel("stat_ptme_index.xlsx")
+plot_beneficiaries_by_categorie(
+  df = stat_ptme_index,
+  lo_department = "office",
+  set_title = "Nombre de bénéficiaires indirects par bureau",
+  set_xlabel = "Nombre de bénéficiaires indirects",
+  set_ylabel = "Bureau"
+)
+```
+:::
+
+# INDEX TESTING
+## Représentation graphique des fréquences d’enfants testés, VIH-, VIH+, non testés…
 ```{r,echo=FALSE}
 #Effectif enfants
 
@@ -1406,15 +1425,15 @@ datatable(inconnu_ptme_com, extensions = 'Buttons', filter = 'bottom',
 library(dplyr)
 library(lubridate)
 # IMPORT PTME appel
-ptme_app_0 <- read_excel(paste0(first_part, 'Femme PMTE  - APPELS PTME - Femme allaitante ', Sys.Date(), '.xlsx'))
+ptme_app_0 <- read_excel(paste0(first_part, 'Caris Health Agent - Femme PMTE  - APPELS PTME (created 2025-02-13) ', Sys.Date(), '.xlsx'))
 
 # FOR Q1
 ptme_app_q1 <- ptme_app_0 %>%
-  select(`Date Appel:`, `#form/APPELS_PTME/patient_code`, `Personne trouvée:`) %>%
+  select(`form.APPELS_PTME.date_appel`, `form.APPELS_PTME.patient_code`, `form.APPELS_PTME.is_ptme_available`) %>%
   rename(
-    date_appel = `Date Appel:`,
-    patient_code = `#form/APPELS_PTME/patient_code`,
-    found = `Personne trouvée:`
+    date_appel = `form.APPELS_PTME.date_appel`,
+    patient_code = `form.APPELS_PTME.patient_code`,
+    found = `form.APPELS_PTME.is_ptme_available`
   ) %>%
   filter(found == '1') %>%
   select(patient_code, date_appel, found)

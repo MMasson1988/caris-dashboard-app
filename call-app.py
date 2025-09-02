@@ -34,8 +34,8 @@ import openpyxl
 from openpyxl.utils import get_column_letter
 
 # Define datetime range
-start_date = pd.to_datetime('2025-08-04')
-end_date = pd.to_datetime('2025-08-10')  # Fixed to today's date
+start_date = pd.to_datetime('2025-08-25')
+end_date = pd.to_datetime('2025-08-31')  # Fixed to today's date
 today_date = datetime.today().date().strftime('%Y-%m-%d')
 mois_ordre = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -219,8 +219,16 @@ def assign_commune(name):
     else:
         return 'Autre'
 
-# Function to filter rows by date, data column, and set commune and name values
-def dataframe_for_period(df, date_column):
+# Modify the dataframe_for_period function to accept start_date and end_date as parameters
+def dataframe_for_period(df, date_column, start_date=None, end_date=None):
+    """
+    Filter dataframe by date range and assign commune based on username
+    """
+    if start_date is None:
+        start_date = pd.to_datetime('2025-08-25')
+    if end_date is None:
+        end_date = pd.to_datetime('2025-08-31')
+    
     df[date_column] = pd.to_datetime(df[date_column])
     # Filter by date range
     df = df[(df[date_column] >= start_date) & (df[date_column] <= end_date)]
@@ -432,6 +440,11 @@ def main():
     """Main execution function"""
     print("Starting CallApp Analysis...")
     
+    # Define datetime range at the beginning of main()
+    start_date = pd.to_datetime('2025-08-25')
+    end_date = pd.to_datetime('2025-08-31')
+    today_date = datetime.today().date().strftime('%Y-%m-%d')
+    
     # Import dial dataset
     print("Reading dial datasets...")
     Apel_ptme = pd.read_excel(f"C:/Users/Moise/Downloads/caris-dashboard-app/data/Caris Health Agent - Femme PMTE  - APPELS PTME (created 2025-02-13) {today_date}.xlsx", parse_dates=True)
@@ -534,7 +547,8 @@ def main():
 
     data['date'].replace('---', '1901-01-01', inplace=True)
 
-    data = dataframe_for_period(data, 'date')
+    # Pass start_date and end_date as parameters
+    data = dataframe_for_period(data, 'date', start_date, end_date)
     print(f"Data after period filter: {data.shape}")
 
     data = transform_to_month_year_french(data, 'date')

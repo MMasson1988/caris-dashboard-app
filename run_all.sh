@@ -2,8 +2,8 @@
 
 # ================================
 # 🚀 SCRIPT D'EXÉCUTION AUTOMATIQUE
-# - 4 scripts Python
-# - 4 fichiers Quarto
+# - 3 scripts Python
+# - 3 fichiers Quarto
 # - Gestion des erreurs par fichier
 # ================================
 
@@ -14,7 +14,7 @@ echo "-------------------------------"
 # ========== PYTHON ==========
 echo "🐍 [1/2] Exécution des scripts Python..."
 
-PY_SCRIPTS=("oev_pipeline.py" "nutrition_pipeline.py" "ptme_pipeline.py" "garden_pipeline.py")
+PY_SCRIPTS=("oev_pipeline.py" "ptme_pipeline.py" "garden_pipeline.py")
 FAILED_PY=()
 
 for file in "${PY_SCRIPTS[@]}"; do
@@ -35,7 +35,7 @@ done
 echo ""
 echo "📝 [2/2] Rendu des fichiers Quarto..."
 
-QMD_FILES=("tracking-ptme.qmd" "tracking-nutrition.qmd" "tracking-oev.qmd" "tracking-gardening.qmd")
+QMD_FILES=("tracking-ptme.qmd" "tracking-oev.qmd" "tracking-gardening.qmd")
 FAILED_QMD=()
 
 for file in "${QMD_FILES[@]}"; do

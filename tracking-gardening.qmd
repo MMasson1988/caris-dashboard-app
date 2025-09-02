@@ -325,8 +325,23 @@ plot_beneficiaries_by_categorie(
 ```
 :::
 
-::: card
 
+## LISTE DES BENEFICIAIRES DU PROGRAMME JARDINAGE
+```{r, echo= FALSE}
+all_gardens_r <- py$all_gardens
+
+DT::datatable(all_gardens_r, extensions = 'Buttons', filter = 'bottom',
+                                           options = list(dom = 'Bfrtip',
+                                                          columnDefs = list(list(className = 'dt-center', targets = "_all")),
+                                                          initComplete = JS(
+                                                              "function(settings, json) {",
+                                                              "$(this.api().table().header()).css({'background-color': '#3E4827', 'color': '#fff'});",
+                                                              "}"),
+                                                          buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                                                          pageLength = 4))
+```
+
+::: card
 # NOMBRE DE BENEFICIAIRES AVEC JARDIN PAR OFFICE
 
 ```{python, echo= FALSE}
@@ -427,7 +442,7 @@ plot_beneficiaries_by_categorie(
 beneficiaires_cycle_3 = extraire_data(all_gardens, start_date, end_date, 'cycle_3_end_date')
 
 if beneficiaires_cycle_3.empty:
-    print("❌ Il n'y a pas de nouveaux bénéficiaires pour cette période.")
+    print("❌ Il n'y a pas de bénéficiaires pen cyclee 3 pour cette période.")
 else:
     # Export en Excel
     beneficiaires_cycle_3.to_excel("beneficiaires_cycle_3.xlsx", index=False)
@@ -506,6 +521,52 @@ plot_beneficiaries_by_categorie(
 :::
 
 
+
+
+## Nombre de bénéficiaires indirects
+:::card
+```{r, echo = FALSE}
+library(dplyr)
+library(stringr)   # str_trim, str_replace_all
+library(ggplot2)
+
+# 1) Nettoyage + conversion numérique (avec as.numeric)
+all_gardens_clean <- rall_gardens %>%
+  mutate(household_number = as.numeric(household_number))    # 
+
+# 2) Agrégation
+household_garden <- all_gardens_clean %>%
+  group_by(username) %>%
+  summarise(`Nombre de ménage compté` = sum(household_number, na.rm = TRUE), .groups = "drop") %>%
+  rename(agent_code = username) %>%
+  arrange(desc(`Nombre de ménage compté`))
+
+# 3) Total
+total_beneficiaires <- sum(household_garden$`Nombre de ménage compté`, na.rm = TRUE)
+
+# 4) Graphique
+ggplot(household_garden,
+       aes(x = reorder(agent_code, `Nombre de ménage compté`),
+           y = `Nombre de ménage compté`,
+           fill = `Nombre de ménage compté`)) +
+  geom_col(color = "black", show.legend = FALSE) +
+  geom_label(aes(label = `Nombre de ménage compté`),
+             size = 3.5, color = "black", show.legend = FALSE) +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    title   = paste("Total des bénéficiaires indirects :", total_beneficiaires),
+    caption = paste("Data source: CommCare", Sys.Date()),
+    x = "Techniciens",
+    y = "Bénéficiaires indirects"
+  ) +
+  theme(plot.caption = element_text(face = "italic", size = 14)) +
+  scale_fill_gradientn(colors = c("red", "yellow", "green"))
+
+```
+:::
+
+
 # COMPTAGE DE MENAGE
 
 ```{python, echo= FALSE}
@@ -551,7 +612,7 @@ garden_last_more_year = all_gardens[
 plot_beneficiaries_by_categorie(
     df=garden_avec_comptage,
     lo_department='office',
-    set_title='Nombre de futures gradués en cyle 4',
+    set_title='Nombre de bénéficiaires avec comptage de ménage',
     set_xlabel='Beneficiaires',
     set_ylabel='office'
 )
@@ -566,7 +627,7 @@ plot_beneficiaries_by_categorie(
 plot_beneficiaries_by_categorie(
     df=garden_sans_comptage,
     lo_department='office',
-    set_title='Nombre de futures gradués en cyle 4',
+    set_title='Nombre de bénéficiaires sans comptage de ménage',
     set_xlabel='Beneficiaires',
     set_ylabel='office'
 )
@@ -628,5 +689,5 @@ DT::datatable(rgarden_last_more_year, extensions = 'Buttons', filter = 'bottom',
                                                               "$(this.api().table().header()).css({'background-color': '#3E4827', 'color': '#fff'});",
                                                               "}"),
                                                           buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                                                          pageLength = 6))
+                                                          pageLength = 4))
 ```

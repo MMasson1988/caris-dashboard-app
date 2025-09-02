@@ -30,89 +30,6 @@ from utils import get_commcare_odata
 # Download charges virales database from "Charges_virales_pediatriques.sql file"
 from caris_fonctions import execute_sql_query
 
-# Load environment variables from .env file
-load_dotenv('dot.env')
-pd.set_option('display.float_format', '{:.2f}'.format)  # Set float format
-# Suppress warnings
-warnings.filterwarnings('ignore')
-
-
-# Chargement des identifiants CommCare
-load_dotenv("id_cc.env")
-EMAIL = os.getenv("EMAIL")
-PASSWORD = os.getenv("PASSWORD")
-
-# Configuration du navigateur (sans dossier de téléchargement personnalisé)
-options = Options()
-options.add_argument("--start-maximized")
-driver = webdriver.Chrome(options=options)
-driver.implicitly_wait(10)
-
-# Liste des liens à télécharger
-DOWNLOAD_LINKS = [
-    {
-        "name": "Household Mother",
-        "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/case/download/3eb9f92d8d82501ebe5c8cb89b83dbba/"
-    },
-    {
-        "name": "Ajout de menage",
-        "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/form/download/269567f0b84da5a1767712e519ced62e/"
-    },
-    {
-        "name": "Appel PTME (Nouveau)",
-        "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/form/download/9b22af972e065eda11f311ac0a1586e5/"
-    },
-    {
-        "name": "CaseID",
-        "url": "https://www.commcarehq.org/a/caris-test/data/export/custom/new/case/download/af6c4186011182dfda68a84536231f68/"
-    }
-]
-
-# 🔐 Connexion à CommCare
-def login_to_commcare():
-    print("🔐 Connexion à CommCare...")
-    driver.get(DOWNLOAD_LINKS[0]["url"])
-    WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, "id_auth-username")))
-    driver.find_element(By.ID, "id_auth-username").send_keys(EMAIL)
-    driver.find_element(By.ID, "id_auth-password").send_keys(PASSWORD)
-    driver.find_element(By.CSS_SELECTOR, 'button[type=submit]').click()
-    print("✅ Connexion réussie.")
-
-# 📥 Téléchargement d’un export CommCare
-def download_file(url, name):
-    print(f"\n📄 Téléchargement de « {name} »...")
-    driver.get(url)
-
-    try:
-        WebDriverWait(driver, 200).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="download-export-form"]/form/div[2]/div/div[2]/div[1]/button'))
-        ).click()
-        print("⏳ Préparation du fichier...")
-    except Exception as e:
-        print(f"❌ Erreur en cliquant sur « Préparer » : {e}")
-        return
-
-    try:
-        download_xpath = '//*[@id="download-progress"]/div/div/div[2]/div[1]/form/a'
-        WebDriverWait(driver, 500).until(
-            EC.element_to_be_clickable((By.XPATH, download_xpath))
-        ).click()
-        print("✅ Téléchargement lancé.")
-        time.sleep(5)
-    except Exception as e:
-        print(f"❌ Le bouton de téléchargement n’est pas apparu : {e}")
-
-# 🧠 Fonction principale
-def main():
-    login_to_commcare()
-    
-    for doc in DOWNLOAD_LINKS:
-        download_file(doc["url"], doc["name"])
-
-    print("\n🎉 Pipeline Muso CommCare terminé avec succès.")
-if __name__ == "__main__":
-    main()
-
 # In[2]:
 from utils import get_commcare_odata
 from ptme_fonction import creer_colonne_match_conditional
@@ -355,7 +272,7 @@ ptme_not_in_club.to_excel('ptme_not_in_club.xlsx', index=False)
 # file_path_patient = first_part + 'PTME WITH PATIENT CODE ' + datetime.now().strftime("%Y-%m-%d") + ".xlsx"
     # Étape 2 : Charger le fichier téléchargé
 today_str = datetime.today().strftime('%Y-%m-%d')
-path = f"~/Downloads/PTME WITH PATIENT CODE {today_str}.xlsx"
+path = f"~/Downloads/caris-dashboard-app/data/PTME WITH PATIENT CODE {today_str}.xlsx"
 caseid = pd.read_excel(os.path.expanduser(path))
 caseid = caseid.rename(columns={
     'caseid': 'case_id',
@@ -661,7 +578,7 @@ def save_dataframes_excel(output_name="output", df1=None, df2=None, df3=None, df
 
 # Example usage:
 save_dataframes_excel(
-	output_name="Statistiques_des_enfants_PTME",
+	output_name="Statistiques_des_femmes_PTME",
 	df1=ptme_enceinte,
 	df2=woman_in_club,
 	df3=ptme_not_in_club,
